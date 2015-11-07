@@ -1,0 +1,92 @@
+package com.github.socialc0de.gsw.adapter;
+
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import com.github.socialc0de.gsw.R;
+import com.github.socialc0de.gsw.customClasses.CardItem;
+
+import java.util.ArrayList;
+
+/**
+ * Created by patricebecker on 07/11/15.
+ */
+public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.CardItemViewHolder> {
+    private ArrayList<CardItem> cardItemArrayList;
+
+    @Override
+    public CardItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.
+                from(parent.getContext()).
+                inflate(R.layout.card_view, parent, false);
+
+        return new CardItemViewHolder(itemView);
+    }
+
+    public CardItemAdapter(ArrayList<CardItem> cardItemArrayList) {
+        this.cardItemArrayList = cardItemArrayList;
+    }
+
+    @Override
+    public void onBindViewHolder(CardItemViewHolder holder, int position) {
+        CardItem cardItem = cardItemArrayList.get(position);
+        holder.dashboardText.setText(cardItem.getCategoryName());
+        holder.dashboardImage.setImageResource(cardItem.getImage());
+    }
+
+    @Override
+    public int getItemCount() {
+        return cardItemArrayList.size();
+    }
+
+    public class CardItemViewHolder extends RecyclerView.ViewHolder {
+        private TextView dashboardText;
+        private ImageView dashboardImage;
+
+        public CardItemViewHolder(View v) {
+            super(v);
+            dashboardText = (TextView) v.findViewById(R.id.cardViewText);
+            dashboardImage = (ImageView) v.findViewById(R.id.cardViewImage);
+        }
+
+    }
+}
+/*
+public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
+
+    private List<ContactInfo> contactList;
+
+    public ContactAdapter(List<ContactInfo> contactList) {
+        this.contactList = contactList;
+    }
+
+    @Override
+    public int getItemCount() {
+        return contactList.size();
+    }
+
+    @Override
+    public void onBindViewHolder(ContactViewHolder contactViewHolder, int i) {
+        ContactInfo ci = contactList.get(i);
+        contactViewHolder.vName.setText(ci.name);
+        contactViewHolder.vSurname.setText(ci.surname);
+        contactViewHolder.vEmail.setText(ci.email);
+        contactViewHolder.vTitle.setText(ci.name + " " + ci.surname);
+    }
+
+    @Override
+    public ContactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View itemView = LayoutInflater.
+                from(viewGroup.getContext()).
+                inflate(R.layout.card_layout, viewGroup, false);
+
+        return new ContactViewHolder(itemView);
+    }
+
+    public static class ContactViewHolder extends RecyclerView.ViewHolder {
+        ...
+    }
+}*/

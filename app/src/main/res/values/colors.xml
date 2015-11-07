@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#1F4788</color>
+    <color name="primaryColorDark">#003171</color>
+    <color name="accentColor">@color/material_pink_a200</color>
+    <color name="accentColor2">@color/material_pink_a400</color>
+    <color name="textGrey">#3f3f3f</color>
+    <color name="textGrey2">#797979</color>
+    <color name="textWhite">#FFFFFF</color>
+    <color name="textBlack">#020202</color>
+    <color name="blueGrey">#89C4F4</color>
+    <color name="material_drawer_selected_text">#FF4081</color>
+</resources>
