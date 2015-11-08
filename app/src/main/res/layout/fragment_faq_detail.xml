@@ -1,0 +1,16 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			 xmlns:tools="http://schemas.android.com/tools" xmlns:card="http://schemas.android.com/apk/res-auto"
+			 android:layout_width="match_parent"
+			 android:layout_height="match_parent"
+			 tools:context="com.github.socialc0de.gsw.fragments.FaqDetailFragment">
+
+	<it.gmariotti.cardslib.library.recyclerview.view.CardRecyclerView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_marginLeft="10dp"
+			android:layout_marginRight="10dp"
+			card:list_card_layout_resourceID="@layout/native_recyclerview_card_layout"
+			android:id="@+id/carddemo_recyclerview"
+			/>
+
+</FrameLayout>
