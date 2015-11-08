@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.github.socialc0de.gsw.fragments.DashboardFragment;
+import com.github.socialc0de.gsw.fragments.FaqFragment;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
@@ -36,7 +37,7 @@ public class MainActivity extends ActionBarActivity {
 
         ArrayList<Fragment> newFragmentItems = new ArrayList<Fragment>();
         newFragmentItems.add(new DashboardFragment());
-        newFragmentItems.add(new DashboardFragment());
+        newFragmentItems.add(new FaqFragment());
 
         fillDataIntoFragmentList(newFragmentItems);
 
@@ -65,8 +66,8 @@ public class MainActivity extends ActionBarActivity {
                     .withActionBarDrawerToggle(true)
 
                     .addDrawerItems(
-                            new PrimaryDrawerItem().withName("DashboardFragment"),
-                            new PrimaryDrawerItem().withName("DashboardFragment 2"))
+                            new PrimaryDrawerItem().withName("Dashboard"),
+                            new PrimaryDrawerItem().withName("FAQ"))
                     .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                         @Override
                         public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
