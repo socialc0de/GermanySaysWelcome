@@ -22,30 +22,28 @@ public class FaqDetailFragment extends Fragment {
 
 
     public FaqDetailFragment() {
-        // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_faq_detail, container, false);
 
         ArrayList<Card> cards = new ArrayList<Card>();
 
-        //Create a Card
-        Card card = new Card(getContext());
+        Card card = new Card(getContext(), R.layout.native_card_layout);
+        card.setTitle("This is a test");
         CardExpand expand = new CardExpand(getContext());
         expand.setTitle("Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet!");
-        card.addCardExpand(expand);
+        //card.addCardExpand(expand);
 
         //Create a CardHeader
         CardHeader header = new CardHeader(getContext());
-        header.setTitle("Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet!");
+        header.setTitle("Sample Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet!");
         header.setButtonExpandVisible(true);
         //Add Header to card
-        card.addCardHeader(header);
+        //card.addCardHeader(header);
 
         cards.add(card);
         cards.add(card);
