@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.github.socialc0de.gsw.R;
+import com.github.socialc0de.gsw.customClasses.CustomCard;
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardExpand;
 import it.gmariotti.cardslib.library.internal.CardHeader;
@@ -32,24 +33,18 @@ public class FaqDetailFragment extends Fragment {
 
         ArrayList<Card> cards = new ArrayList<Card>();
 
-        Card card = new Card(getContext(), R.layout.native_card_layout);
-        card.setTitle("This is a test");
-        CardExpand expand = new CardExpand(getContext());
-        expand.setTitle("Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet!");
-        //card.addCardExpand(expand);
+        CustomCard customCard = new CustomCard(getContext(), "Lorem Ipsum dolor sit amet. Lorem Ipsum dolor sit amet. Lorem Ipsum dolor sit amet. Lorem Ipsum dolor sit amet. Lorem Ipsum dolor sit amet. Lorem Ipsum dolor sit amet.");
 
-        //Create a CardHeader
-        CardHeader header = new CardHeader(getContext());
-        header.setTitle("Sample Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet!");
-        header.setButtonExpandVisible(true);
-        //Add Header to card
-        //card.addCardHeader(header);
+        CardExpand cardExpand = new CardExpand(getContext());
+        cardExpand.setTitle("Sample");
+        customCard.addCardExpand(cardExpand);
 
-        cards.add(card);
-        cards.add(card);
-        cards.add(card);
-        cards.add(card);
+        CardHeader cardHeader = new CardHeader(getContext());
+        cardHeader.setTitle("Category");
+        cardHeader.setButtonExpandVisible(true);
+        customCard.addCardHeader(cardHeader);
 
+        cards.add(customCard);
 
         CardArrayRecyclerViewAdapter mCardArrayAdapter = new CardArrayRecyclerViewAdapter(getActivity(), cards);
 
