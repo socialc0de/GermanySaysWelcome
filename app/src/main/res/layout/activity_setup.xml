@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:tools="http://schemas.android.com/tools"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  tools:context="com.github.socialc0de.gsw.activities.SetupActivity"
+			  android:background="@color/primaryColor"
+			  android:paddingTop="46dp"
+			  android:paddingLeft="56dp"
+			  android:paddingRight="56dp"
+			  android:weightSum="9"
+			  android:orientation="vertical">
+
+
+	<LinearLayout android:layout_width="match_parent"
+				  android:layout_height="0dp"
+				  android:gravity="center"
+				  android:layout_weight="3"
+				  android:orientation="vertical">
+
+		<ImageView android:layout_width="56dp"
+				   android:layout_height="56dp"
+				   android:scaleType="centerCrop"
+				   android:src="@drawable/logo_white_small"
+				   android:layout_marginBottom="22dp"/>
+
+		<TextView android:layout_width="wrap_content"
+				  android:layout_height="wrap_content"
+				  android:text="Germany Says Welcome"
+				  android:singleLine="true"
+				  android:layout_marginBottom="5dp"
+				  style="@android:style/TextAppearance.DeviceDefault.Large.Inverse"
+				/>
+		<!--<TextView android:layout_width="wrap_content"
+				  android:layout_height="wrap_content"
+				  android:text="Please answer the questions to continue"
+				  android:singleLine="true"
+				  style="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
+				/>-->
+
+	</LinearLayout>
+
+	<LinearLayout android:layout_width="match_parent"
+				  android:layout_height="0dp"
+				  android:layout_weight="3">
+
+	</LinearLayout>
+	<LinearLayout android:layout_width="match_parent"
+				  android:layout_height="0dp"
+				  android:layout_weight="3">
+
+	</LinearLayout>
+
+</LinearLayout>

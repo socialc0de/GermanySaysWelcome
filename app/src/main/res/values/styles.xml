@@ -14,4 +14,8 @@
         <item name="colorControlHighlight">@color/accentColor</item>
     </style>
 
+    <style name="AppTheme.Base.Setup" parent="AppTheme.Base">
+        <item name="android:textColor">@color/textWhite</item>
+    </style>
+
 </resources>

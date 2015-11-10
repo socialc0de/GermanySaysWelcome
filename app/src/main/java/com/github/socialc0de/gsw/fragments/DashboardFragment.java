@@ -10,8 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-import com.github.socialc0de.gsw.MainActivity;
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.adapter.CardItemAdapter;
 import com.github.socialc0de.gsw.adapter.RecyclerItemClickListener;

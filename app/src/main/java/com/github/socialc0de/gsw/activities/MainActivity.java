@@ -1,9 +1,14 @@
-package com.github.socialc0de.gsw;
+package com.github.socialc0de.gsw.activities;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -11,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.fragments.DashboardFragment;
 import com.github.socialc0de.gsw.fragments.FaqFragment;
 import com.mikepenz.materialdrawer.Drawer;
@@ -25,11 +31,33 @@ public class MainActivity extends ActionBarActivity {
 
     private Drawer mDrawer;
     private ArrayList<Fragment> fragmentList = new ArrayList<Fragment>();
+    private SharedPreferences mPrefs;
+    private final String welcomeScreenShownPref = "welcomeScreenShown";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Check if app was started before
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // second argument is the default to use if the preference can't be found
+        Boolean welcomeScreenShown = mPrefs.getBoolean(welcomeScreenShownPref, false);
+
+        if (!welcomeScreenShown) {
+            // here you can launch another activity if you like
+            // the code below will display a popup
+
+            Intent myIntent = new Intent(MainActivity.this, SetupActivity.class);
+            MainActivity.this.startActivity(myIntent);
+
+            SharedPreferences.Editor editor = mPrefs.edit();
+            editor.putBoolean(welcomeScreenShownPref, true);
+            editor.commit(); // Very important to save the preference
+        }
+
+
 
         // Navigation Drawer Initializing
 
