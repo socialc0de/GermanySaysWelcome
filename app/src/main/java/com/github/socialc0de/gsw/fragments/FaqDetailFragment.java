@@ -53,7 +53,7 @@ public class FaqDetailFragment extends Fragment {
         cardHeader.setButtonExpandVisible(true);
 
         customCard.addCardHeader(cardHeader);
-        customCard.setCardElevation(2.0f);
+        customCard.setCardElevation(4.0f);
 
         return customCard;
     }
@@ -65,7 +65,7 @@ public class FaqDetailFragment extends Fragment {
 
         ArrayList<Card> cards = new ArrayList<Card>();
 
-        Card customCard = createCustomCard("How to manage my finances?", "Law & Order", "Ask local authorities");
+        Card customCard = createCustomCard("How to manage my finances? How to manage my finances? How to manage my finances? How to manage my finances?", "Law & Order", "Ask local authorities. Ask local authorities. Ask local authorities. Ask local authorities. Ask local authorities");
         Card customCard1 = createCustomCard("How to manage my asylum application?", "Asylum", "Ask local authorities");
         Card customCard2 = createCustomCard("How to manage my job application?", "Education & Work", "Ask local authorities");
 
