@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.github.socialc0de.gsw.R;
 import it.gmariotti.cardslib.library.internal.Card;
-import it.gmariotti.cardslib.library.internal.ViewToClickToExpand;
 
 /**
  * Created by patricebecker on 10/11/15.

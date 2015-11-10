@@ -3,6 +3,7 @@ package com.github.socialc0de.gsw.fragments;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -58,13 +59,21 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
                 new RecyclerItemClickListener(view.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Toast.makeText(view.getContext(), "Netter Versuch, Karl!",
-                                Toast.LENGTH_LONG).show();                        /*
-                        FAQCategoryFragment faqCategoryFragment = new FAQCategoryFragment(list.get(position).getId());
-                        //((MaterialNavigationDrawer) getActivity()).setFragmentChild(faqCategoryFragment,"Answers");
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, faqCategoryFragment).addToBackStack(null).commit();
-                        MainActivity.getMainActivity().getmDrawer().setSelection(-1, false);
-                        */
+                        FragmentTransaction fragmentTransaction =  getActivity().getSupportFragmentManager().beginTransaction();
+                        switch (position){
+                            case 0:
+                                FaqFragment faqFragment = new FaqFragment();
+                                fragmentTransaction.replace(R.id.container, faqFragment, "FAQ Fragment");
+                                fragmentTransaction.addToBackStack("FAQ Fragment");
+                                fragmentTransaction.commit();
+                                break;
+                        }
+                        Log.d("Position = ",""+position);
+                        /*
+                        FaqDetailFragment faqDetailFragment= new FaqDetailFragment();
+                        fragmentTransaction.replace(R.id.container, faqDetailFragment, "FAQ Detail Fragment");
+                        fragmentTransaction.addToBackStack("FAQ Detail Fragment");
+                        fragmentTransaction.commit();*/
                     }
                 })
         );

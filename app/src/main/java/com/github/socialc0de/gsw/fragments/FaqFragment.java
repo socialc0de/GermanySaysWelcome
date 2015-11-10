@@ -52,8 +52,7 @@ public class FaqFragment extends Fragment {
                 new RecyclerItemClickListener(view.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Toast.makeText(view.getContext(), "Start New Activity Here!",
-                                Toast.LENGTH_LONG).show();                        /*
+                                               /*
                         FAQCategoryFragment faqCategoryFragment = new FAQCategoryFragment(list.get(position).getId());
                         //((MaterialNavigationDrawer) getActivity()).setFragmentChild(faqCategoryFragment,"Answers");
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, faqCategoryFragment).addToBackStack(null).commit();
