@@ -34,6 +34,7 @@
 				  android:layout_height="wrap_content"
 				  android:text="Step (1/2)"
 				  android:singleLine="true"
+				  android:id="@+id/stepViewer"
 				  style="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
 				/>
 
@@ -50,20 +51,23 @@
 				  android:text="Please enter your language. You'll be able to change your input later in the settings."
 				  android:layout_gravity="top"
 				  style="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
+				  android:id="@+id/instructions"
 				/>
 		<Button
-				android:id="@+id/choose_language"
+				android:id="@+id/choose_button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:text="CHOOSE LANGUAGE"
 				/>
 
-		<ImageView android:layout_width="42dp"
-				   android:layout_height="42dp"
-				   android:layout_gravity="bottom|center_horizontal"
-				   android:id="@+id/languageFlag"
-				   android:src="@drawable/gb"
+		<TextView android:layout_width="wrap_content"
+				  android:layout_height="wrap_content"
+				  android:text="@string/german"
+				  android:layout_gravity="bottom|center_horizontal"
+				  android:id="@+id/chooseText"
+				  style="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
+
 				/>
 
 
@@ -77,6 +81,7 @@
 					  android:layout_height="wrap_content"
 					  android:orientation="horizontal"
 					  android:gravity="center"
+					  android:id="@+id/nextButton"
 				>
 			<TextView android:layout_width="wrap_content"
 					  android:layout_height="wrap_content"

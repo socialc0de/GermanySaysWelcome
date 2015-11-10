@@ -16,6 +16,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.fragments.DashboardFragment;
 import com.github.socialc0de.gsw.fragments.FaqFragment;
@@ -56,6 +58,20 @@ public class MainActivity extends ActionBarActivity {
             editor.putBoolean(welcomeScreenShownPref, true);
             editor.commit(); // Very important to save the preference
         }
+
+        new MaterialDialog.Builder(this)
+                .title("Info für Hamid")
+                .content("Da der Setup-Screen nur beim ersten Start gezeigt wird, hast du hier die Möglichkeit, ihn dir erneut anzeigen zulassen [DEVELOPER-OPTION]")
+                .positiveText("Open Setup")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(MaterialDialog materialDialog, DialogAction dialogAction) {
+                        Intent myIntent = new Intent(MainActivity.this, SetupActivity.class);
+                        MainActivity.this.startActivity(myIntent);
+                    }
+                })
+                .negativeText("Close")
+                .show();
 
 
 

@@ -1,84 +1,47 @@
 package com.github.socialc0de.gsw.activities;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.simplelist.MaterialSimpleListAdapter;
 import com.afollestad.materialdialogs.simplelist.MaterialSimpleListItem;
 import com.github.socialc0de.gsw.R;
 
 public class SetupActivity extends ActionBarActivity implements View.OnClickListener {
-    private MaterialSimpleListAdapter adapter;
-    private ImageView languageFlag;
+    private TextView chooseText, stepViewer, instructionText;
+    private Button chooseButton;
+    private LinearLayout nextButton;
 
-    @Override
+    private CharSequence[] items1 = {"Deutsch","English","\u200Fاللغة العربية","/ˈɟuha ˈʃcipɛ/","فارسی\u200E","درى\u200E","ትግርኛ","српски","русский язык"};
+    private CharSequence[] items2 = {"Step 1: You just arrived in Germany (will be translated to chosen language)","Step 2: You wait for asylum confirmation (will be translated to chosen language)","Step 3: You'll start finding a job (will be translated to chosen language)"};
+
+
+@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
 
-        Button chooseLanguageButton = (Button) findViewById(R.id.choose_language);
-        chooseLanguageButton.setOnClickListener(this);
 
-        languageFlag = (ImageView) findViewById(R.id.languageFlag);
+        chooseButton = (Button) findViewById(R.id.choose_button);
+        chooseButton.setOnClickListener(this);
 
+        nextButton = (LinearLayout) findViewById(R.id.nextButton);
+        nextButton.setOnClickListener(this);
 
-        adapter = new MaterialSimpleListAdapter(this);
-        adapter.add(new MaterialSimpleListItem.Builder(this)
-                .content("Syria")
-                .backgroundColor(Color.WHITE)
-                .icon(R.drawable.sy)
-                .build());
-        adapter.add(new MaterialSimpleListItem.Builder(this)
-                .content("Afghanistan")
-                .backgroundColor(Color.WHITE)
-                .icon(R.drawable.af)
-                .build());
-        adapter.add(new MaterialSimpleListItem.Builder(this)
-                .content("Eritrea")
-                .icon(R.drawable.er)
-                .backgroundColor(Color.WHITE)
-                .build());
-        adapter.add(new MaterialSimpleListItem.Builder(this)
-                .content("Somalia")
-                .icon(R.drawable.so)
-                .backgroundColor(Color.WHITE)
-                .build());
-        adapter.add(new MaterialSimpleListItem.Builder(this)
-                .content("Iraq")
-                .icon(R.drawable.ir)
-                .backgroundColor(Color.WHITE)
-                .build());
-        adapter.add(new MaterialSimpleListItem.Builder(this)
-                .content("Russia")
-                .icon(R.drawable.ru)
-                .backgroundColor(Color.WHITE)
-                .build());
-        adapter.add(new MaterialSimpleListItem.Builder(this)
-                .content("Germany")
-                .icon(R.drawable.de)
-                .backgroundColor(Color.WHITE)
-                .build());
-        adapter.add(new MaterialSimpleListItem.Builder(this)
-                .content("France")
-                .icon(R.drawable.fr)
-                .backgroundColor(Color.WHITE)
-                .build());
-        adapter.add(new MaterialSimpleListItem.Builder(this)
-                .content("Great Britain")
-                .icon(R.drawable.gb)
-                .backgroundColor(Color.WHITE)
-                .build());
+        chooseText = (TextView) findViewById(R.id.chooseText);
+        stepViewer = (TextView) findViewById(R.id.stepViewer);
+        instructionText = (TextView) findViewById(R.id.instructions);
 
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,18 +70,47 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.choose_language:
-                new MaterialDialog.Builder(this)
-                        .title("Choose Your Language")
-                        .adapter(adapter, new MaterialDialog.ListCallback() {
-                            @Override
-                            public void onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
-                                MaterialSimpleListItem item = adapter.getItem(which);
-                                languageFlag.setImageDrawable(item.getIcon());
-                                dialog.cancel();
-                            }
-                        })
-                        .show();
+            case R.id.choose_button:
+                if (stepViewer.getText().equals("Step (1/2)")) {
+                    new MaterialDialog.Builder(this)
+                            .title("Choose Your Asylum Status")
+                            .items(items1)
+                            .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                                @Override
+                                public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                    chooseText.setText(text);
+                                    return true;
+                                }
+                            })
+                            .positiveText("Done")
+                            .show();
+                } else {
+                    new MaterialDialog.Builder(this)
+                            .title("Choose Your Asylum Status")
+                            .items(items2)
+                            .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                                @Override
+                                public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                    chooseText.setText(text);
+                                    return true;
+                                }
+                            })
+                            .positiveText("Done")
+                            .show();
+                }
+                break;
+            case R.id.nextButton:
+                if (stepViewer.getText().equals("Step (1/2)")) {
+                    chooseText.setText("Step 1");
+                    chooseButton.setText("Choose Step");
+                    instructionText.setText("To show you according information, we'd like to ask you for your asylum status. Enter your step:");
+                    stepViewer.setText("Step (2/2)");
+                    Toast.makeText(getApplicationContext(), "@Hamid Hier wird die Sprache angepasst, wenn ich die Übersetzungen habe.",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    Intent myIntent = new Intent(SetupActivity.this, MainActivity.class);
+                    SetupActivity.this.startActivity(myIntent);
+                }
                 break;
         }
     }
