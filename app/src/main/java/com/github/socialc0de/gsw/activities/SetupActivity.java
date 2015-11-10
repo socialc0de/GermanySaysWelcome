@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.simplelist.MaterialSimpleListAdapter;
 import com.afollestad.materialdialogs.simplelist.MaterialSimpleListItem;
@@ -15,6 +16,7 @@ import com.github.socialc0de.gsw.R;
 
 public class SetupActivity extends ActionBarActivity implements View.OnClickListener {
     private MaterialSimpleListAdapter adapter;
+    private ImageView languageFlag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,9 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
 
         Button chooseLanguageButton = (Button) findViewById(R.id.choose_language);
         chooseLanguageButton.setOnClickListener(this);
+
+        languageFlag = (ImageView) findViewById(R.id.languageFlag);
+
 
         adapter = new MaterialSimpleListAdapter(this);
         adapter.add(new MaterialSimpleListItem.Builder(this)
@@ -109,11 +114,10 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                             @Override
                             public void onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
                                 MaterialSimpleListItem item = adapter.getItem(which);
-                                Log.d("Item Selected: " + text, "");
-                                // TODO
+                                languageFlag.setImageDrawable(item.getIcon());
+                                dialog.cancel();
                             }
                         })
-                        .positiveText("Done")
                         .show();
                 break;
         }

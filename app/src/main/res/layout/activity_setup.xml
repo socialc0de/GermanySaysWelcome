@@ -62,6 +62,7 @@
 		<ImageView android:layout_width="42dp"
 				   android:layout_height="42dp"
 				   android:layout_gravity="bottom|center_horizontal"
+				   android:id="@+id/languageFlag"
 				   android:src="@drawable/gb"
 				/>
 
