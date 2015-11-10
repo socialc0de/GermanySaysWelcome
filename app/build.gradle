@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         jcenter()
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.1.1'
@@ -35,7 +36,9 @@ android {
         }
     }
 }
-
+repositories {
+    maven { url "https://jitpack.io" }
+}
 dependencies {
     compile 'com.android.support:appcompat-v7:22.+'
     compile('com.mikepenz:materialdrawer:4.0.8@aar') {
@@ -43,12 +46,15 @@ dependencies {
     }
     compile 'com.android.support:cardview-v7:22.+'
     compile 'com.android.support:recyclerview-v7:22.+'
-    //Core
+
     compile 'com.github.gabrielemariotti.cards:cardslib-core:2.1.0'
-
-    //Optional for built-in cards
     compile 'com.github.gabrielemariotti.cards:cardslib-cards:2.1.0'
-
-    //Optional for RecyclerView
     compile 'com.github.gabrielemariotti.cards:cardslib-recyclerview:2.1.0'
+
+    compile('com.github.afollestad.material-dialogs:core:0.8.5.0@aar') {
+        transitive = true
+    }
+    compile('com.github.afollestad.material-dialogs:commons:0.8.5.0@aar') {
+        transitive = true
+    }
 }
