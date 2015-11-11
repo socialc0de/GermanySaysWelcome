@@ -65,6 +65,14 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
                                 fragmentTransaction.addToBackStack("FAQ Fragment");
                                 fragmentTransaction.commit();
                                 break;
+                            case 1:
+                                break;
+                            case 2:
+                                PhraseFragment phraseFragment = new PhraseFragment();
+                                fragmentTransaction.replace(R.id.container, phraseFragment, "Phrasebook Fragment");
+                                fragmentTransaction.addToBackStack("Phrasebook Fragment");
+                                fragmentTransaction.commit();
+                                break;
                         }
                         Log.d("Position = ",""+position);
                         /*
