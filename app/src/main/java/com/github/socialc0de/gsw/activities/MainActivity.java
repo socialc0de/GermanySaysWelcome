@@ -1,6 +1,5 @@
 package com.github.socialc0de.gsw.activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -8,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -21,10 +19,13 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.fragments.DashboardFragment;
 import com.github.socialc0de.gsw.fragments.FaqFragment;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 public class MainActivity extends ActionBarActivity {
 
     private Drawer mDrawer;
+    private AccountHeader headerResult;
     private ArrayList<Fragment> fragmentList = new ArrayList<Fragment>();
     private SharedPreferences mPrefs;
     private final String welcomeScreenShownPref = "welcomeScreenShown";
@@ -104,11 +106,23 @@ public class MainActivity extends ActionBarActivity {
 
     private void createNavigationDrawer(Drawer mDrawer){
         if (mDrawer == null) {
+            headerResult = new AccountHeaderBuilder()
+                    .withActivity(this)
+                    .withHeaderBackground(R.drawable.productback)
+                    .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
+                        @Override
+                        public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
+                            return false;
+                        }
+                    })
+                    .withSelectionListEnabledForSingleProfile(false)
+                    .build();
+
             this.mDrawer = new DrawerBuilder()
                     .withActivity(this)
                     .withToolbar((Toolbar) findViewById(R.id.app_bar))
                     .withActionBarDrawerToggle(true)
-
+                    .withAccountHeader(headerResult)
                     .addDrawerItems(
                             new PrimaryDrawerItem().withName("Dashboard"),
                             new PrimaryDrawerItem().withName("FAQ"))
