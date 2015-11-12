@@ -73,7 +73,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
             case R.id.choose_button:
                 if (stepViewer.getText().equals("Step (1/2)")) {
                     new MaterialDialog.Builder(this)
-                            .title("Choose Your Asylum Status")
+                            .title("Choose Your Language")
                             .items(items1)
                             .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
                                 @Override
