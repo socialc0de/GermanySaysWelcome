@@ -51,6 +51,9 @@ public class MainActivity extends ActionBarActivity {
 
         // second argument is the default to use if the preference can't be found
         Boolean welcomeScreenShown = mPrefs.getBoolean(welcomeScreenShownPref, false);
+        Integer languageSetting = mPrefs.getInt("languageSetting",-1);
+        Integer asylumStep = mPrefs.getInt("asylumStep",0);
+        Log.d("LanguageSetting: "+languageSetting,"AsylumStep: "+asylumStep);
 
         if (!welcomeScreenShown) {
             // here you can launch another activity if you like
@@ -66,7 +69,7 @@ public class MainActivity extends ActionBarActivity {
 
         new MaterialDialog.Builder(this)
                 .title("Info für Hamid")
-                .content("Da der Setup-Screen nur beim ersten Start gezeigt wird, hast du hier die Möglichkeit, ihn dir erneut anzeigen zulassen [DEVELOPER-OPTION]")
+                .content("SetupActivity is only shown at the very first startup of the app. Here you have the chance to open our setup again [DEVELOPER-OPTION]")
                 .positiveText("Open Setup")
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override

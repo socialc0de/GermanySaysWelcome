@@ -1,8 +1,11 @@
 package com.github.socialc0de.gsw.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,14 +14,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.afollestad.materialdialogs.simplelist.MaterialSimpleListAdapter;
-import com.afollestad.materialdialogs.simplelist.MaterialSimpleListItem;
 import com.github.socialc0de.gsw.R;
 
 public class SetupActivity extends ActionBarActivity implements View.OnClickListener {
     private TextView chooseText, stepViewer, instructionText;
     private Button chooseButton;
     private LinearLayout nextButton;
+    private SharedPreferences mPrefs;
+    private final String asylumStep = "asylumStep";
+    private final String languageSetting = "languageSetting";
 
     private CharSequence[] items1 = {"Deutsch","English","\u200Fاللغة العربية","/ˈɟuha ˈʃcipɛ/","فارسی\u200E","درى\u200E","ትግርኛ","српски","русский язык"};
     private CharSequence[] items2 = {"Step 1: You just arrived in Germany (will be translated to chosen language)","Step 2: You wait for asylum confirmation (will be translated to chosen language)","Step 3: You'll start finding a job (will be translated to chosen language)"};
@@ -78,6 +82,13 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                             .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
                                 @Override
                                 public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                    Log.d("[SETUP] ","Language : "+which);
+
+                                    mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                    SharedPreferences.Editor editor = mPrefs.edit();
+                                    editor.putInt(languageSetting,which);
+                                    editor.commit();
+
                                     chooseText.setText(text);
                                     return true;
                                 }
@@ -91,7 +102,17 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                             .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
                                 @Override
                                 public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                                    chooseText.setText(text.subSequence(0,6));
+                                    String stepText = (String) text.subSequence(0,6);
+                                    int step = Integer.parseInt(stepText.substring(5, 6));
+
+                                    Log.d("[SETUP] ","Step selected: "+step);
+                                    chooseText.setText(text.subSequence(0, 6));
+
+                                    mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                    SharedPreferences.Editor editor = mPrefs.edit();
+                                    editor.putInt(asylumStep,step);
+                                    editor.commit();
+
                                     return true;
                                 }
                             })
