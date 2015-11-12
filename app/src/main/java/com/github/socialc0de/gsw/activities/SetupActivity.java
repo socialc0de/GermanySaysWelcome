@@ -91,7 +91,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                             .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
                                 @Override
                                 public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                                    chooseText.setText(text);
+                                    chooseText.setText(text.subSequence(0,6));
                                     return true;
                                 }
                             })

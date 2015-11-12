@@ -14,11 +14,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.fragments.DashboardFragment;
 import com.github.socialc0de.gsw.fragments.FaqFragment;
+import com.github.socialc0de.gsw.fragments.PhraseFragment;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -42,6 +44,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         // Check if app was started before
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -84,6 +87,7 @@ public class MainActivity extends ActionBarActivity {
         ArrayList<Fragment> newFragmentItems = new ArrayList<Fragment>();
         newFragmentItems.add(new DashboardFragment());
         newFragmentItems.add(new FaqFragment());
+        newFragmentItems.add(new PhraseFragment());
 
         fillDataIntoFragmentList(newFragmentItems);
 
@@ -91,7 +95,18 @@ public class MainActivity extends ActionBarActivity {
         SpannableString s = new SpannableString(getString(R.string.app_name));
         s.setSpan(new com.github.socialc0de.gsw.TypefaceSpan(getApplicationContext(), "bebaskai.otf"), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ((Toolbar) findViewById(R.id.app_bar)).setTitle(s);
+        Toolbar toolbar = ((Toolbar) findViewById(R.id.app_bar));
+        toolbar.setTitle(s);
+        toolbar.inflateMenu(R.menu.menu_main);
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+
+                Log.d("Toolbar Menu clicked","");
+                return false;
+            }
+        });
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentList.get(0)).commit();
 
@@ -125,15 +140,14 @@ public class MainActivity extends ActionBarActivity {
                     .withAccountHeader(headerResult)
                     .addDrawerItems(
                             new PrimaryDrawerItem().withName("Dashboard"),
-                            new PrimaryDrawerItem().withName("FAQ"))
+                            new PrimaryDrawerItem().withName("FAQ"),
+                            new PrimaryDrawerItem().withName("Phrasebook"))
                     .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                         @Override
                         public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                            // do something with the clicked item :D
                             getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                            Log.d("onItemClick called: ", "position: "+position);
-                            getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentList.get(position)).addToBackStack(null).commit();
-                            // closes Drawer
+                            //Log.d("onItemClick called: ", "position: "+position);
+                            getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentList.get(position-1)).addToBackStack(null).commit();
                             return false;
                         }
                     })
