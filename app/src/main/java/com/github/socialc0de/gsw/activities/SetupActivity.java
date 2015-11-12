@@ -2,9 +2,12 @@ package com.github.socialc0de.gsw.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +19,8 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
 
+import java.util.Locale;
+
 public class SetupActivity extends ActionBarActivity implements View.OnClickListener {
     private TextView chooseText, stepViewer, instructionText;
     private Button chooseButton;
@@ -23,12 +28,13 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
     private SharedPreferences mPrefs;
     private final String asylumStep = "asylumStep";
     private final String languageSetting = "languageSetting";
+    private Locale myLocale;
 
-    private CharSequence[] items1 = {"Deutsch","English","\u200Fاللغة العربية","/ˈɟuha ˈʃcipɛ/","فارسی\u200E","درى\u200E","ትግርኛ","српски","русский язык"};
-    private CharSequence[] items2 = {"Step 1: You just arrived in Germany (will be translated to chosen language)","Step 2: You wait for asylum confirmation (will be translated to chosen language)","Step 3: You'll start finding a job (will be translated to chosen language)"};
+    private CharSequence[] items1 = {"Deutsch", "English", "\u200Fاللغة العربية", "/ˈɟuha ˈʃcipɛ/", "فارسی\u200E", "درى\u200E", "ትግርኛ", "српски", "русский язык"};
+    private CharSequence[] items2 = {"Step 1: You just arrived in Germany (will be translated to chosen language)", "Step 2: You wait for asylum confirmation (will be translated to chosen language)", "Step 3: You'll start finding a job (will be translated to chosen language)"};
 
 
-@Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
@@ -82,14 +88,49 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                             .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
                                 @Override
                                 public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                                    Log.d("[SETUP] ","Language : "+which);
+                                    String langCode;
+
+                                    switch (which){
+                                        case 0:
+                                            langCode = "de";
+                                            break;
+                                        case 1:
+                                            langCode = "en";
+                                            break;
+                                        case 2:
+                                            langCode = "ar";
+                                            break;
+                                        case 3:
+                                            langCode = "sq";
+                                            break;
+                                        case 4:
+                                            langCode = "fa";
+                                            break;
+                                        case 5:
+                                            langCode = "fa";
+                                            break;
+                                        case 6:
+                                            langCode = "ti";
+                                            break;
+                                        case 7:
+                                            langCode = "sr";
+                                            break;
+                                        case 8:
+                                            langCode = "ru";
+                                            break;
+                                        default:
+                                            langCode = "en";
+                                            break;
+
+                                    }
 
                                     mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                     SharedPreferences.Editor editor = mPrefs.edit();
-                                    editor.putInt(languageSetting,which);
+                                    editor.putString(languageSetting, langCode);
                                     editor.commit();
 
                                     chooseText.setText(text);
+                                    Log.d("[SETUP] ", "Language : " + which);
                                     return true;
                                 }
                             })
@@ -102,15 +143,15 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                             .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
                                 @Override
                                 public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                                    String stepText = (String) text.subSequence(0,6);
+                                    String stepText = (String) text.subSequence(0, 6);
                                     int step = Integer.parseInt(stepText.substring(5, 6));
 
-                                    Log.d("[SETUP] ","Step selected: "+step);
+                                    Log.d("[SETUP] ", "Step selected: " + step);
                                     chooseText.setText(text.subSequence(0, 6));
 
                                     mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                     SharedPreferences.Editor editor = mPrefs.edit();
-                                    editor.putInt(asylumStep,step);
+                                    editor.putInt(asylumStep, step);
                                     editor.commit();
 
                                     return true;
@@ -134,5 +175,14 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                 }
                 break;
         }
+    }
+
+    public void setLocale(String lang) {
+        myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
     }
 }

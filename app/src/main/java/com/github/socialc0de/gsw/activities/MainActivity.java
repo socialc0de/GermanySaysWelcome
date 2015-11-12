@@ -51,7 +51,8 @@ public class MainActivity extends ActionBarActivity {
 
         // second argument is the default to use if the preference can't be found
         Boolean welcomeScreenShown = mPrefs.getBoolean(welcomeScreenShownPref, false);
-        Integer languageSetting = mPrefs.getInt("languageSetting",-1);
+        String languageSetting = mPrefs.getString("languageSetting","NOTHING");
+
         Integer asylumStep = mPrefs.getInt("asylumStep",0);
         Log.d("LanguageSetting: "+languageSetting,"AsylumStep: "+asylumStep);
 
