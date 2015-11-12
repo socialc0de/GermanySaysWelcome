@@ -56,6 +56,8 @@ public class MainActivity extends ActionBarActivity {
         Integer asylumStep = mPrefs.getInt("asylumStep",0);
         Log.d("LanguageSetting: "+languageSetting,"AsylumStep: "+asylumStep);
 
+        Log.d("[MainActivity] ","Location: "+getResources().getConfiguration().locale.getLanguage());
+
         if (!welcomeScreenShown) {
             // here you can launch another activity if you like
             // the code below will display a popup

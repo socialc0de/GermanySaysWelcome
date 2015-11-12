@@ -30,7 +30,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
     private final String languageSetting = "languageSetting";
     private Locale myLocale;
 
-    private CharSequence[] items1 = {"Deutsch", "English", "\u200Fاللغة العربية", "/ˈɟuha ˈʃcipɛ/", "فارسی\u200E", "درى\u200E", "ትግርኛ", "српски", "русский язык"};
+    private CharSequence[] items1 = {"Deutsch", "English", "\u200Fاللغة العربية"};
     private CharSequence[] items2 = {"Step 1: You just arrived in Germany (will be translated to chosen language)", "Step 2: You wait for asylum confirmation (will be translated to chosen language)", "Step 3: You'll start finding a job (will be translated to chosen language)"};
 
 
@@ -100,29 +100,12 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                                         case 2:
                                             langCode = "ar";
                                             break;
-                                        case 3:
-                                            langCode = "sq";
-                                            break;
-                                        case 4:
-                                            langCode = "fa";
-                                            break;
-                                        case 5:
-                                            langCode = "fa";
-                                            break;
-                                        case 6:
-                                            langCode = "ti";
-                                            break;
-                                        case 7:
-                                            langCode = "sr";
-                                            break;
-                                        case 8:
-                                            langCode = "ru";
-                                            break;
                                         default:
                                             langCode = "en";
                                             break;
 
                                     }
+                                    setLocale(langCode);
 
                                     mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                     SharedPreferences.Editor editor = mPrefs.edit();
