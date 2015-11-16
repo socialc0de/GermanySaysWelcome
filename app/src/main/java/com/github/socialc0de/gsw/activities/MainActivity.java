@@ -2,6 +2,7 @@ package com.github.socialc0de.gsw.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.audiofx.BassBoost;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -56,7 +57,7 @@ public class MainActivity extends ActionBarActivity {
         Integer asylumStep = mPrefs.getInt("asylumStep",0);
         Log.d("LanguageSetting: "+languageSetting,"AsylumStep: "+asylumStep);
 
-        Log.d("[MainActivity] ","Location: "+getResources().getConfiguration().locale.getLanguage());
+        Log.d("[MainActivity] ", "Location: " + getResources().getConfiguration().locale.getLanguage());
 
         if (!welcomeScreenShown) {
             // here you can launch another activity if you like
@@ -71,7 +72,7 @@ public class MainActivity extends ActionBarActivity {
         }
 
         new MaterialDialog.Builder(this)
-                .title("Info für Hamid")
+                .title("Information")
                 .content("SetupActivity is only shown at the very first startup of the app. Here you have the chance to open our setup again [DEVELOPER-OPTION]")
                 .positiveText("Open Setup")
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
@@ -101,15 +102,18 @@ public class MainActivity extends ActionBarActivity {
         SpannableString s = new SpannableString(getString(R.string.app_name));
         s.setSpan(new com.github.socialc0de.gsw.TypefaceSpan(getApplicationContext(), "bebaskai.otf"), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        Toolbar toolbar = ((Toolbar) findViewById(R.id.app_bar));
+        final Toolbar toolbar = ((Toolbar) findViewById(R.id.app_bar));
         toolbar.setTitle(s);
         toolbar.inflateMenu(R.menu.menu_main);
+        toolbar.canShowOverflowMenu();
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-
+                toolbar.showOverflowMenu();
                 Log.d("Toolbar Menu clicked","");
+                Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
+                MainActivity.this.startActivity(myIntent);
                 return false;
             }
         });
