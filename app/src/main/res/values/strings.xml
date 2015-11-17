@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Germany says Welcome</string>
+    <string name="app_name">Germany Says Welcome</string>
     <string name="title_activity_main">MainActivity</string>
 
     <string name="hello_world">Hello world!</string>

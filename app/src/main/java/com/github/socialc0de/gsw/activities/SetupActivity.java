@@ -134,7 +134,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
 
                                     mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                     SharedPreferences.Editor editor = mPrefs.edit();
-                                    editor.putInt(asylumStep, step);
+                                    editor.putString(asylumStep, step+"");
                                     editor.commit();
 
                                     return true;

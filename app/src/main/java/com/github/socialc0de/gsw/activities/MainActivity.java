@@ -54,7 +54,7 @@ public class MainActivity extends ActionBarActivity {
         Boolean welcomeScreenShown = mPrefs.getBoolean(welcomeScreenShownPref, false);
         String languageSetting = mPrefs.getString("languageSetting","NOTHING");
 
-        Integer asylumStep = mPrefs.getInt("asylumStep",0);
+        String asylumStep = mPrefs.getString("asylumStep","");
         Log.d("LanguageSetting: "+languageSetting,"AsylumStep: "+asylumStep);
 
         Log.d("[MainActivity] ", "Location: " + getResources().getConfiguration().locale.getLanguage());
@@ -102,6 +102,9 @@ public class MainActivity extends ActionBarActivity {
         SpannableString s = new SpannableString(getString(R.string.app_name));
         s.setSpan(new com.github.socialc0de.gsw.TypefaceSpan(getApplicationContext(), "bebaskai.otf"), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+
+        // Toolbar Initializing
         final Toolbar toolbar = ((Toolbar) findViewById(R.id.app_bar));
         toolbar.setTitle(s);
         toolbar.inflateMenu(R.menu.menu_main);
