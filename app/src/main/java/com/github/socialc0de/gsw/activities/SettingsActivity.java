@@ -14,7 +14,8 @@ import com.github.socialc0de.gsw.R;
  */
 public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     private SharedPreferences sharedPreferences;
-    private String asylumStep, languageSetting;
+    private String asylumStep = "asylumStep";
+    private String languageSetting = "languageSetting";
     private String KEY_LANGUAGE = "languageSetting";
     private String KEY_ASYLUMSTEP = "asylumStep";
     private String KEY_BACKGROUNDUPDATE = "backgroundUpdate";
