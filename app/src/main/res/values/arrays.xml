@@ -16,10 +16,10 @@
 		<item>Step 3: Integration</item>
 		<item>View All Information (May look unclear)</item>
 	</string-array>
-	<integer-array name="asylumKeys">
+	<string-array name="asylumKeys">
 		<item>1</item>
 		<item>2</item>
 		<item>3</item>
 		<item>0</item>
-	</integer-array>
+	</string-array>
 </resources>

@@ -19,30 +19,55 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     private String KEY_LANGUAGE = "languageSetting";
     private String KEY_ASYLUMSTEP = "asylumStep";
     private String KEY_BACKGROUNDUPDATE = "backgroundUpdate";
+    private Preference asylumPref, languagePref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Toast.makeText(getApplicationContext(), "SettingsActivity started", Toast.LENGTH_LONG).show();
         addPreferencesFromResource(R.xml.preferences);
-
+        asylumPref = findPreference(KEY_ASYLUMSTEP);
+        languagePref = findPreference(KEY_LANGUAGE);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
+          setAsylumPref();
+        setLanguageSetting();
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        Log.d("SETTINGS", "Key pressed: "+key);
         if (key.equals(KEY_LANGUAGE)) {
-            Preference languagePref = findPreference(key);
             // Set summary to be the user-description for the selected value
             Log.d("SETTINGS ","languagePref: "+sharedPreferences.getString(KEY_LANGUAGE,""));
-            languagePref.setSummary(sharedPreferences.getString(key, ""));
+            setLanguageSetting();
         }
-        else if (key.equals(KEY_ASYLUMSTEP)){
-            Preference asylumPref = findPreference(key);
-            Log.d("SETTINGS ","asylumPref: "+sharedPreferences.getString(KEY_ASYLUMSTEP,""));
-            asylumPref.setSummary("Step: "+sharedPreferences.getString(key,""));
+        else if (key.equals(KEY_ASYLUMSTEP)) {
+
+            Log.d("SETTINGS ", "asylumPref: " + sharedPreferences.getString(KEY_ASYLUMSTEP, ""));
+            setAsylumPref();
+
+        }
+    }
+
+    public void setAsylumPref(){
+        if (sharedPreferences.getString(KEY_ASYLUMSTEP, "").equals("0")) {
+            asylumPref.setSummary("View all information");
+        } else {
+            asylumPref.setSummary("Step: " + sharedPreferences.getString(KEY_ASYLUMSTEP, ""));
+        }
+    }
+
+    public void setLanguageSetting(){
+        if (sharedPreferences.getString(KEY_LANGUAGE,"").equals("de")){
+            languagePref.setSummary("Deutsch");
+        }
+        else if (sharedPreferences.getString(KEY_LANGUAGE,"").equals("en")){
+            languagePref.setSummary("English");
+        }
+        else if (sharedPreferences.getString(KEY_LANGUAGE,"").equals("ar")){
+            languagePref.setSummary("Arabic");
         }
     }
 }
