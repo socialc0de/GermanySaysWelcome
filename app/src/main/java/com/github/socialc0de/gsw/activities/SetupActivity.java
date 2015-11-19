@@ -30,8 +30,8 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
     private final String languageSetting = "languageSetting";
     private Locale myLocale;
 
-    private CharSequence[] items1 = {"Deutsch", "English", "\u200Fاللغة العربية"};
-    private CharSequence[] items2 = {"Step 1: You just arrived in Germany (will be translated to chosen language)", "Step 2: You wait for asylum confirmation (will be translated to chosen language)", "Step 3: You'll start finding a job (will be translated to chosen language)"};
+    private CharSequence[] items1 = {getResources().getString(R.string.arabic), getResources().getString(R.string.english), getResources().getString(R.string.german)};
+    private CharSequence[] items2 = {getResources().getString(R.string.step1), getResources().getString(R.string.step2), getResources().getString(R.string.step3)};
 
 
     @Override

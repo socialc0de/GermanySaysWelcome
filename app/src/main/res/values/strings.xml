@@ -20,16 +20,24 @@
     <!-- User Interface -->
     <string name="cancel">Cancel</string>
     <string name="done">Done</string>
+    <string name="action_settings">Settings</string>
 
     <!-- Fragment Names -->
     <string name="phrasebook">Phrasebook</string>
     <string name="faq">FAQ</string>
     <string name="authority_map">Map</string>
     <string name="about">About</string>
+    <string name="title_activity_setup">Setup</string>
 
     <!-- Fragment specific content -->
+    <!-- Map -->
     <string name="authority_information">Authority Information:</string>
     <string name="free_wifi">Free Wifi HotSpot</string>
+
+    <!-- Setup -->
+    <string name="step1">Step 1: You just arrived in Germany (will be translated to chosen language)</string>
+    <string name="step2">Step 2: You wait for asylum confirmation (will be translated to chosen language)</string>
+    <string name="step3">Step 3: You\'ll start finding a job (will be translated to chosen language)</string>
 
     <!-- Error messages -->
     <string name="couldnt_fetch">Could not fetch %s. Please check your network connection and then try again.</string>
@@ -41,7 +49,7 @@
     <string name="loading_administration_locations">Loading Administration Locations</string>
 
     <!-- Langugages -->
-    <string name="arabic">Arabic</string>
+    <string name="arabic">اللغة العربية</string>
     <string name="german">Deutsch</string>
     <string name="english">English</string>
 
