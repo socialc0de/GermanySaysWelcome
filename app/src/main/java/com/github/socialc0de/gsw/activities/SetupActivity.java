@@ -30,8 +30,8 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
     private final String languageSetting = "languageSetting";
     private Locale myLocale;
 
-    private CharSequence[] items1 = {getResources().getString(R.string.arabic), getResources().getString(R.string.english), getResources().getString(R.string.german)};
-    private CharSequence[] items2 = {getResources().getString(R.string.step1), getResources().getString(R.string.step2), getResources().getString(R.string.step3)};
+    private CharSequence[] items1;
+    private CharSequence[] items2;
 
 
     @Override
@@ -39,6 +39,8 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
 
+        items1 = new CharSequence[]{getResources().getString(R.string.arabic), getResources().getString(R.string.english), getResources().getString(R.string.german)};
+        items2 = new CharSequence[]{getResources().getString(R.string.step1), getResources().getString(R.string.step2), getResources().getString(R.string.step3)};
 
         chooseButton = (Button) findViewById(R.id.choose_button);
         chooseButton.setOnClickListener(this);
@@ -81,7 +83,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.choose_button:
-                if (stepViewer.getText().equals("Step (1/2)")) {
+                if (stepViewer.getText().equals(getResources().getString(R.string.setupstep1))) {
                     new MaterialDialog.Builder(this)
                             .title("Choose Your Language")
                             .items(items1)
@@ -145,13 +147,12 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                 }
                 break;
             case R.id.nextButton:
-                if (stepViewer.getText().equals("Step (1/2)")) {
-                    chooseText.setText("Step 1");
+                if (stepViewer.getText().equals(getResources().getString(R.string.setupstep1))) {
+                    chooseText.setText("");
                     chooseButton.setText("Choose Step");
                     instructionText.setText("To show you according information, we'd like to ask you for your asylum status. Enter your step:");
-                    stepViewer.setText("Step (2/2)");
-                    Toast.makeText(getApplicationContext(), "@Hamid Hier wird die Sprache angepasst, wenn ich die Übersetzungen habe.",
-                            Toast.LENGTH_LONG).show();
+                    stepViewer.setText(getResources().getString(R.string.setupstep2));
+
                 } else {
                     Intent myIntent = new Intent(SetupActivity.this, MainActivity.class);
                     SetupActivity.this.startActivity(myIntent);
