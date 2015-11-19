@@ -43,7 +43,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
         setContentView(R.layout.activity_setup);
         predefinedSystemLanguage = Locale.getDefault().getISO3Language();
 
-        items1 = new CharSequence[]{getResources().getString(R.string.arabic), getResources().getString(R.string.english), getResources().getString(R.string.german)};
+        items1 = new CharSequence[]{getResources().getString(R.string.german), getResources().getString(R.string.english), getResources().getString(R.string.arabic)};
 
         chooseButton = (Button) findViewById(R.id.choose_button);
         chooseButton.setOnClickListener(this);
@@ -112,6 +112,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                                             break;
 
                                     }
+                                    Log.d("Setup: ","selected Language: "+langCode);
                                     setLocale(langCode);
 
                                     mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
