@@ -2,12 +2,11 @@ package com.github.socialc0de.gsw.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.audiofx.BassBoost;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -15,7 +14,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
@@ -52,10 +50,10 @@ public class MainActivity extends ActionBarActivity {
 
         // second argument is the default to use if the preference can't be found
         Boolean welcomeScreenShown = mPrefs.getBoolean(welcomeScreenShownPref, false);
-        String languageSetting = mPrefs.getString("languageSetting","NOTHING");
+        String languageSetting = mPrefs.getString("languageSetting", "NOTHING");
 
-        String asylumStep = mPrefs.getString("asylumStep","");
-        Log.d("LanguageSetting: "+languageSetting,"AsylumStep: "+asylumStep);
+        String asylumStep = mPrefs.getString("asylumStep", "");
+        Log.d("LanguageSetting: " + languageSetting, "AsylumStep: " + asylumStep);
 
         Log.d("[MainActivity] ", "Location: " + getResources().getConfiguration().locale.getLanguage());
 
@@ -86,7 +84,6 @@ public class MainActivity extends ActionBarActivity {
                 .show();
 
 
-
         // Navigation Drawer Initializing
 
         //new DrawerBuilder().withActivity(this).build();
@@ -114,7 +111,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 toolbar.showOverflowMenu();
-                Log.d("Toolbar Menu clicked","");
+                Log.d("Toolbar Menu clicked", "");
                 Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
                 MainActivity.this.startActivity(myIntent);
                 return false;
@@ -126,13 +123,13 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    private void fillDataIntoFragmentList(ArrayList<Fragment> fragmentAddList){
-        for (int i = 0; i<fragmentAddList.size(); i++){
+    private void fillDataIntoFragmentList(ArrayList<Fragment> fragmentAddList) {
+        for (int i = 0; i < fragmentAddList.size(); i++) {
             this.fragmentList.add(fragmentAddList.get(i));
         }
     }
 
-    private void createNavigationDrawer(Drawer mDrawer){
+    private void createNavigationDrawer(Drawer mDrawer) {
         if (mDrawer == null) {
             headerResult = new AccountHeaderBuilder()
                     .withActivity(this)
@@ -160,7 +157,7 @@ public class MainActivity extends ActionBarActivity {
                         public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                             getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                             //Log.d("onItemClick called: ", "position: "+position);
-                            getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentList.get(position-1)).addToBackStack(null).commit();
+                            getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentList.get(position - 1)).addToBackStack(null).commit();
                             return false;
                         }
                     })

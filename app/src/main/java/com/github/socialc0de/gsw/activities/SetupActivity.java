@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.media.audiofx.BassBoost;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
@@ -97,7 +96,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                                     String langCode;
 
 
-                                    switch (which){
+                                    switch (which) {
                                         case 0:
                                             langCode = "de";
                                             break;
@@ -112,7 +111,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                                             break;
 
                                     }
-                                    Log.d("Setup: ","selected Language: "+langCode);
+                                    Log.d("Setup: ", "selected Language: " + langCode);
                                     setLocale(langCode);
 
                                     mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -138,11 +137,11 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                                     int step = Integer.parseInt(stepText.replaceAll("[\\D]", ""));
 
                                     Log.d("[SETUP] ", "Step selected: " + step);
-                                    chooseText.setText(getResources().getString(R.string.settingsstep)+" "+step);
+                                    chooseText.setText(getResources().getString(R.string.settingsstep) + " " + step);
 
                                     mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                     SharedPreferences.Editor editor = mPrefs.edit();
-                                    editor.putString(asylumStep, step+"");
+                                    editor.putString(asylumStep, step + "");
                                     editor.commit();
 
                                     return true;
@@ -162,10 +161,9 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                     items2 = new CharSequence[]{getResources().getString(R.string.step1), getResources().getString(R.string.step2), getResources().getString(R.string.step3)};
                     steponedone = true;
                 } else {
-                    if (chooseText.getText().equals("")){
+                    if (chooseText.getText().equals("")) {
                         Toast.makeText(getApplicationContext(), getResources().getString(R.string.no_stepselected), Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    } else {
                         Intent myIntent = new Intent(SetupActivity.this, MainActivity.class);
                         SetupActivity.this.startActivity(myIntent);
                     }

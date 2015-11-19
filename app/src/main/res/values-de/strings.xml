@@ -35,22 +35,26 @@
 	<string name="phrasebook">Übersetzungen</string>
 	<string name="profession">Beruf</string>
 	<string name="settingslangchange">Die Einstellungen werden automatisch gespeichert</string>
-	<string name="settingstoast">Um die Einstellungen zu verlassen, klicken Sie auf den Zurück-Buttons Ihres Telefons</string>
+	<string name="settingstoast">Um die Einstellungen zu verlassen, klicken Sie auf den Zurück-Buttons Ihres Telefons
+	</string>
 	<string name="setupstep1">Schritt (1/2)</string>
 	<string name="setupstep1description">Bitte wählen Sie eine Sprache aus. Sie können diese Einstellungen später
-		anpassen.</string>
+		anpassen.
+	</string>
 	<string name="setupstep1title">Wählen Sie die Sprache</string>
 	<string name="setupstep2">Schritt (2/2)</string>
 	<string name="setupstep2button">Etappenauswahl</string>
 	<string name="setupstep1button">Sprachwahl</string>
-	<string name="setupstep2description">Um passende Informationen anzuzeigen, filtern wir die Eingaben je nach Flüchtlingsstatus von Ihnen.</string>
+	<string name="setupstep2description">Um passende Informationen anzuzeigen, filtern wir die Eingaben je nach
+		Flüchtlingsstatus von Ihnen.
+	</string>
 	<string name="setupstep2title">Wählen Sie Ihren Flüchtlingsstatus</string>
 	<string name="sexual_gender_identity">Geschlechtergleichberechtigung</string>
 	<string name="step1">Schritt 1: Sie sind gerade in Deutschland angekommen</string>
 	<string name="step2">Schritt 2: Sie warten auf die Bestätigung Ihres Asylantrages</string>
 	<string name="step3">Schritt 3: Ihr Asylantrag wurde bestätigt.</string>
 	<string name="title_activity_main">MainActivity</string>
-	<string name="title_activity_setup" translatable="false">Setup</string>
+	<string name="title_activity_setup">Setup</string>
 	<string name="dashboard">Dashboard</string>
 	<string name="allinfo">Alle Informationen anzeigen</string>
 	<string name="settingsstep">Schritt:</string>

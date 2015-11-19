@@ -36,21 +36,20 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
-          setAsylumPref();
+        setAsylumPref();
         setLanguageSetting();
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        Log.d("SETTINGS", "Key pressed: "+key);
+        Log.d("SETTINGS", "Key pressed: " + key);
 
         if (key.equals(KEY_LANGUAGE)) {
             // Set summary to be the user-description for the selected value
-            Log.d("SETTINGS ","languagePref: "+sharedPreferences.getString(KEY_LANGUAGE,""));
+            Log.d("SETTINGS ", "languagePref: " + sharedPreferences.getString(KEY_LANGUAGE, ""));
             setLanguageSetting();
             setLocale();
-        }
-        else if (key.equals(KEY_ASYLUMSTEP)) {
+        } else if (key.equals(KEY_ASYLUMSTEP)) {
 
             Log.d("SETTINGS ", "asylumPref: " + sharedPreferences.getString(KEY_ASYLUMSTEP, ""));
             setAsylumPref();
@@ -60,13 +59,13 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
     @Override
     public void onBackPressed() {
-        Intent setIntent = new Intent(this,MainActivity.class);
+        Intent setIntent = new Intent(this, MainActivity.class);
         startActivity(setIntent);
         super.onBackPressed();
         return;
     }
 
-    public void setAsylumPref(){
+    public void setAsylumPref() {
         if (sharedPreferences.getString(KEY_ASYLUMSTEP, "").equals("0")) {
             asylumPref.setSummary(getResources().getString(R.string.allinfo));
         } else {
@@ -74,20 +73,18 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         }
     }
 
-    public void setLanguageSetting(){
-        if (sharedPreferences.getString(KEY_LANGUAGE,"").equals("de")){
+    public void setLanguageSetting() {
+        if (sharedPreferences.getString(KEY_LANGUAGE, "").equals("de")) {
             languagePref.setSummary(getResources().getString(R.string.german));
-        }
-        else if (sharedPreferences.getString(KEY_LANGUAGE,"").equals("en")){
+        } else if (sharedPreferences.getString(KEY_LANGUAGE, "").equals("en")) {
             languagePref.setSummary(getResources().getString(R.string.english));
-        }
-        else if (sharedPreferences.getString(KEY_LANGUAGE,"").equals("ar")){
+        } else if (sharedPreferences.getString(KEY_LANGUAGE, "").equals("ar")) {
             languagePref.setSummary(getResources().getString(R.string.arabic));
         }
     }
 
     public void setLocale() {
-        String lang = sharedPreferences.getString(KEY_LANGUAGE,"en");
+        String lang = sharedPreferences.getString(KEY_LANGUAGE, "en");
         myLocale = new Locale(lang);
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
