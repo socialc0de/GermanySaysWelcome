@@ -174,6 +174,10 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
         }
     }
 
+    @Override
+    public void onBackPressed() {
+    }
+
     public void setLocale(String lang) {
         myLocale = new Locale(lang);
         Resources res = getResources();
