@@ -31,6 +31,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
     private final String languageSetting = "languageSetting";
     private Locale myLocale;
     private boolean steponedone = false;
+    private String predefinedSystemLanguage;
 
     private CharSequence[] items1;
     private CharSequence[] items2;
@@ -40,6 +41,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
+        predefinedSystemLanguage = Locale.getDefault().getISO3Language();
 
         items1 = new CharSequence[]{getResources().getString(R.string.arabic), getResources().getString(R.string.english), getResources().getString(R.string.german)};
 
@@ -94,6 +96,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                                 public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
                                     String langCode;
 
+
                                     switch (which){
                                         case 0:
                                             langCode = "de";
@@ -105,7 +108,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                                             langCode = "ar";
                                             break;
                                         default:
-                                            langCode = "en";
+                                            langCode = predefinedSystemLanguage;
                                             break;
 
                                     }
@@ -158,8 +161,13 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                     items2 = new CharSequence[]{getResources().getString(R.string.step1), getResources().getString(R.string.step2), getResources().getString(R.string.step3)};
                     steponedone = true;
                 } else {
-                    Intent myIntent = new Intent(SetupActivity.this, MainActivity.class);
-                    SetupActivity.this.startActivity(myIntent);
+                    if (chooseText.getText().equals("")){
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.no_stepselected), Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Intent myIntent = new Intent(SetupActivity.this, MainActivity.class);
+                        SetupActivity.this.startActivity(myIntent);
+                    }
                 }
                 break;
         }

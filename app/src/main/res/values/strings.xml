@@ -68,6 +68,7 @@
     <string name="couldnt_fetch">Could not fetch %s. Please check your network connection and then try again.</string>
     <string name="no_location">Couldn\'t get Location</string>
     <string name="no_questions">No Questions found</string>
+    <string name="no_stepselected">Please define a step to continue!</string>
 
     <!-- Loading messages -->
     <string name="loading_wifi_locations">Loading Wifi Hotspot Locations</string>

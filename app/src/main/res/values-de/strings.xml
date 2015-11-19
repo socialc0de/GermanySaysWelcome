@@ -57,4 +57,5 @@
 	<string name="step1short">Schritt 1: Ankunft</string>
 	<string name="step2short">Schritt 2: Asylantrag</string>
 	<string name="step3short">Schritt 3: Gesellschaftliche Integration</string>
+	<string name="no_stepselected">Bitte klicken Sie auf einen der angezeigten Schritte, um fortzufahren.</string>
 </resources>
