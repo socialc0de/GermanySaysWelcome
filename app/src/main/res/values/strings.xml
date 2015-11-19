@@ -22,8 +22,10 @@
     <string name="done">Done</string>
     <string name="next">Next</string>
     <string name="action_settings">Settings</string>
+    <string name="example">Example</string>
 
     <!-- Fragment Names -->
+    <string name="dashboard">Dashboard</string>
     <string name="phrasebook">Phrasebook</string>
     <string name="faq">FAQ</string>
     <string name="authority_map">Map</string>
@@ -35,6 +37,9 @@
     <string name="authority_information">Authority Information:</string>
     <string name="free_wifi">Free Wifi HotSpot</string>
 
+    <!-- FAQ -->
+    <string name="faqdetail">FAQ Detail</string>
+
     <!-- Setup -->
     <string name="step1">Step 1: You just arrived in Germany (will be translated to chosen language)</string>
     <string name="step2">Step 2: You wait for asylum confirmation (will be translated to chosen language)</string>
@@ -42,12 +47,11 @@
     <string name="setupstep1">Step (1/2)</string>
     <string name="setupstep1button">Choose Language</string>
     <string name="setupstep1title">Choose Your Language</string>
-    <string name="setupstep1description">Please enter your language. You'll be able to change your input later in the settings.</string>
-
+    <string name="setupstep1description">Please enter your language. You\'ll be able to change your input later in the settings.</string>
     <string name="setupstep2">Step (2/2)</string>
     <string name="setupstep2button">Choose Status</string>
     <string name="setupstep2title">Choose Your Asylum Status</string>
-    <string name="setupstep2description">To show you according information, we'd like to ask you for your asylum status. Enter your step:</string>
+    <string name="setupstep2description">To show you according information, we\'d like to ask you for your asylum status. Enter your step:</string>
 
     <!-- Error messages -->
     <string name="couldnt_fetch">Could not fetch %s. Please check your network connection and then try again.</string>

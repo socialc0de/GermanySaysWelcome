@@ -36,7 +36,7 @@ public class FaqFragment extends Fragment {
         recList.setLayoutManager(llm);
 
 
-        CardItem sampleCard = new CardItem(R.drawable.faq,"Beispielkategorie");
+        CardItem sampleCard = new CardItem(R.drawable.faq,getResources().getString(R.string.example));
 
         ArrayList<CardItem> cardItemArrayList = new ArrayList<CardItem>();
         cardItemArrayList.add(sampleCard);
@@ -61,8 +61,8 @@ public class FaqFragment extends Fragment {
                         */
                         FragmentTransaction fragmentTransaction =  getActivity().getSupportFragmentManager().beginTransaction();
                         FaqDetailFragment faqDetailFragment= new FaqDetailFragment();
-                        fragmentTransaction.replace(R.id.container, faqDetailFragment, "FAQ Detail Fragment");
-                        fragmentTransaction.addToBackStack("FAQ Detail Fragment");
+                        fragmentTransaction.replace(R.id.container, faqDetailFragment, getResources().getString(R.string.faqdetail));
+                        fragmentTransaction.addToBackStack(getResources().getString(R.string.faqdetail));
                         fragmentTransaction.commit();
                     }
                 })

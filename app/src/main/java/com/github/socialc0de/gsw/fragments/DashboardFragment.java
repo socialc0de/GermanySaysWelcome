@@ -61,16 +61,16 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
                         switch (position){
                             case 0:
                                 FaqFragment faqFragment = new FaqFragment();
-                                fragmentTransaction.replace(R.id.container, faqFragment, "FAQ Fragment");
-                                fragmentTransaction.addToBackStack("FAQ Fragment");
+                                fragmentTransaction.replace(R.id.container, faqFragment, getResources().getString(R.string.faq));
+                                fragmentTransaction.addToBackStack(getResources().getString(R.string.faq));
                                 fragmentTransaction.commit();
                                 break;
                             case 1:
                                 break;
                             case 2:
                                 PhraseFragment phraseFragment = new PhraseFragment();
-                                fragmentTransaction.replace(R.id.container, phraseFragment, "Phrasebook Fragment");
-                                fragmentTransaction.addToBackStack("Phrasebook Fragment");
+                                fragmentTransaction.replace(R.id.container, phraseFragment, getResources().getString(R.string.phrasebook));
+                                fragmentTransaction.addToBackStack(getResources().getString(R.string.phrasebook));
                                 fragmentTransaction.commit();
                                 break;
                         }

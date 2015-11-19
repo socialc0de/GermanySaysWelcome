@@ -152,9 +152,9 @@ public class MainActivity extends ActionBarActivity {
                     .withActionBarDrawerToggle(true)
                     .withAccountHeader(headerResult)
                     .addDrawerItems(
-                            new PrimaryDrawerItem().withName("Dashboard"),
-                            new PrimaryDrawerItem().withName("FAQ"),
-                            new PrimaryDrawerItem().withName("Phrasebook"))
+                            new PrimaryDrawerItem().withName(getResources().getString(R.string.dashboard)),
+                            new PrimaryDrawerItem().withName(getResources().getString(R.string.faq)),
+                            new PrimaryDrawerItem().withName(getResources().getString(R.string.phrasebook)))
                     .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                         @Override
                         public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
