@@ -50,6 +50,11 @@
     <string name="step1">Step 1: You just arrived in Germany</string>
     <string name="step2">Step 2: You wait for asylum confirmation</string>
     <string name="step3">Step 3: You\'ll start finding a job</string>
+
+    <string name="step1short">Step 1</string>
+    <string name="step2short">Step 2</string>
+    <string name="step3short">Step 3</string>
+
     <string name="setupstep1">Step (1/2)</string>
     <string name="setupstep1button">Choose Language</string>
     <string name="setupstep1title">Choose Your Language</string>

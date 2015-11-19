@@ -22,7 +22,7 @@ import com.github.socialc0de.gsw.R;
 import java.util.Locale;
 
 public class SetupActivity extends ActionBarActivity implements View.OnClickListener {
-    private TextView chooseText, stepViewer, instructionText;
+    private TextView chooseText, stepViewer, instructionText, nextButtonText;
     private Button chooseButton;
     private LinearLayout nextButton;
     private SharedPreferences mPrefs;
@@ -45,6 +45,8 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
 
         chooseButton = (Button) findViewById(R.id.choose_button);
         chooseButton.setOnClickListener(this);
+
+        nextButtonText = (TextView) findViewById(R.id.nextButtonText);
 
         nextButton = (LinearLayout) findViewById(R.id.nextButton);
         nextButton.setOnClickListener(this);
@@ -119,7 +121,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                                     return true;
                                 }
                             })
-                            .positiveText("Done")
+                            .positiveText(getResources().getString(R.string.done))
                             .show();
                 } else {
                     new MaterialDialog.Builder(this)
@@ -152,6 +154,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                     chooseButton.setText(getResources().getString(R.string.setupstep2button));
                     instructionText.setText(getResources().getString(R.string.setupstep2description));
                     stepViewer.setText(getResources().getString(R.string.setupstep2));
+                    nextButtonText.setText(getResources().getString(R.string.next));
                     steponedone = true;
                 } else {
                     Intent myIntent = new Intent(SetupActivity.this, MainActivity.class);

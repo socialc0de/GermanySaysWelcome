@@ -11,9 +11,9 @@
 		<item>ar</item>
 	</string-array>
 	<string-array name="asylumSteps">
-		<item>@string/step1</item>
-		<item>@string/step2</item>
-		<item>@string/step3</item>
+		<item>@string/step1short</item>
+		<item>@string/step2short</item>
+		<item>@string/step3short</item>
 		<item>@string/allinfo</item>
 	</string-array>
 	<string-array name="asylumKeys">
