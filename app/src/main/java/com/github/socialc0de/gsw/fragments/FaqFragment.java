@@ -27,6 +27,7 @@ public class FaqFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_faq, container, false);
 
 
+
         // Initialize RecyclerView
         RecyclerView recList = (RecyclerView) view.findViewById(R.id.faq_recyclerview);
         recList.setHasFixedSize(true);
