@@ -52,7 +52,6 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
         stepViewer = (TextView) findViewById(R.id.stepViewer);
         instructionText = (TextView) findViewById(R.id.instructions);
 
-
     }
 
     @Override
@@ -85,7 +84,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
             case R.id.choose_button:
                 if (stepViewer.getText().equals(getResources().getString(R.string.setupstep1))) {
                     new MaterialDialog.Builder(this)
-                            .title("Choose Your Language")
+                            .title(getResources().getString(R.string.setupstep1title))
                             .items(items1)
                             .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
                                 @Override
@@ -123,7 +122,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                             .show();
                 } else {
                     new MaterialDialog.Builder(this)
-                            .title("Choose Your Asylum Status")
+                            .title(getResources().getString(R.string.setupstep2title))
                             .items(items2)
                             .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
                                 @Override
@@ -142,15 +141,15 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                                     return true;
                                 }
                             })
-                            .positiveText("Done")
+                            .positiveText(getResources().getString(R.string.done))
                             .show();
                 }
                 break;
             case R.id.nextButton:
                 if (stepViewer.getText().equals(getResources().getString(R.string.setupstep1))) {
                     chooseText.setText("");
-                    chooseButton.setText("Choose Step");
-                    instructionText.setText("To show you according information, we'd like to ask you for your asylum status. Enter your step:");
+                    chooseButton.setText(getResources().getString(R.string.setupstep2button));
+                    instructionText.setText(getResources().getString(R.string.setupstep2description));
                     stepViewer.setText(getResources().getString(R.string.setupstep2));
 
                 } else {

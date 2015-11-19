@@ -48,7 +48,7 @@
 
 		<TextView android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  android:text="Please enter your language. You'll be able to change your input later in the settings."
+				  android:text="@string/setupstep1description"
 				  android:layout_gravity="top"
 				  style="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
 				  android:id="@+id/instructions"
@@ -58,12 +58,11 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
-				android:text="CHOOSE LANGUAGE"
+				android:text="@string/setupstep1button"
 				/>
 
 		<TextView android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  android:text="@string/german"
 				  android:layout_gravity="bottom|center_horizontal"
 				  android:id="@+id/chooseText"
 				  style="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
@@ -85,7 +84,8 @@
 				>
 			<TextView android:layout_width="wrap_content"
 					  android:layout_height="wrap_content"
-					  android:text="NEXT"
+					  android:text="@string/next"
+					  android:textAllCaps="true"
 					  android:layout_marginRight="-10dp"
 					  android:layout_marginLeft="18dp"
 					  style="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"

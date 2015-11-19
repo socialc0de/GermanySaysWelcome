@@ -20,6 +20,7 @@
     <!-- User Interface -->
     <string name="cancel">Cancel</string>
     <string name="done">Done</string>
+    <string name="next">Next</string>
     <string name="action_settings">Settings</string>
 
     <!-- Fragment Names -->
@@ -39,7 +40,14 @@
     <string name="step2">Step 2: You wait for asylum confirmation (will be translated to chosen language)</string>
     <string name="step3">Step 3: You\'ll start finding a job (will be translated to chosen language)</string>
     <string name="setupstep1">Step (1/2)</string>
+    <string name="setupstep1button">Choose Language</string>
+    <string name="setupstep1title">Choose Your Language</string>
+    <string name="setupstep1description">Please enter your language. You'll be able to change your input later in the settings.</string>
+
     <string name="setupstep2">Step (2/2)</string>
+    <string name="setupstep2button">Choose Status</string>
+    <string name="setupstep2title">Choose Your Asylum Status</string>
+    <string name="setupstep2description">To show you according information, we'd like to ask you for your asylum status. Enter your step:</string>
 
     <!-- Error messages -->
     <string name="couldnt_fetch">Could not fetch %s. Please check your network connection and then try again.</string>
