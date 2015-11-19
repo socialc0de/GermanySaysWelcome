@@ -52,4 +52,6 @@
 	<string name="title_activity_main">MainActivity</string>
 	<string name="title_activity_setup" translatable="false">Setup</string>
 	<string name="dashboard">Dashboard</string>
+	<string name="allinfo">Alle Informationen anzeigen</string>
+	<string name="settingsstep">Schritt:</string>
 </resources>
