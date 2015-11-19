@@ -1,7 +1,7 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+	<!-- Default screen margins, per the Android Design guidelines. -->
+	<dimen name="activity_horizontal_margin">16dp</dimen>
+	<dimen name="activity_vertical_margin">16dp</dimen>
 
 	<dimen name="card_header_native_default_paddingBottom">0dp</dimen>
 	<dimen name="card_base_empty_height">46dp</dimen>
