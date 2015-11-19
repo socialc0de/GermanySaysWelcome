@@ -59,6 +59,14 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent setIntent = new Intent(this,MainActivity.class);
+        startActivity(setIntent);
+        super.onBackPressed();
+        return;
+    }
+
     public void setAsylumPref(){
         if (sharedPreferences.getString(KEY_ASYLUMSTEP, "").equals("0")) {
             asylumPref.setSummary(getResources().getString(R.string.allinfo));
