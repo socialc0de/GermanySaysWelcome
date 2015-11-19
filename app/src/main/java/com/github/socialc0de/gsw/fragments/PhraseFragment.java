@@ -6,10 +6,10 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.SlidingTabLayout;
 import com.github.socialc0de.gsw.adapter.PhraseViewPagerAdapter;
+
 import java.util.ArrayList;
 
 /**

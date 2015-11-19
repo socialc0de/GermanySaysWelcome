@@ -26,7 +26,7 @@ public class FaqDetailFragment extends Fragment {
     public FaqDetailFragment() {
     }
 
-    public CustomCard createCustomCard(String question, String category, String answer){
+    public CustomCard createCustomCard(String question, String category, String answer) {
         CustomCard customCard = new CustomCard(getActivity(), question);
 
         ViewToClickToExpand viewToClickToExpand =

@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.adapter.CardItemAdapter;
 import com.github.socialc0de.gsw.adapter.RecyclerItemClickListener;
@@ -24,8 +23,7 @@ public class FaqFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_faq, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_faq, container, false);
 
 
         // Initialize RecyclerView
@@ -36,7 +34,7 @@ public class FaqFragment extends Fragment {
         recList.setLayoutManager(llm);
 
 
-        CardItem sampleCard = new CardItem(R.drawable.faq,getResources().getString(R.string.example));
+        CardItem sampleCard = new CardItem(R.drawable.faq, getResources().getString(R.string.example));
 
         ArrayList<CardItem> cardItemArrayList = new ArrayList<CardItem>();
         cardItemArrayList.add(sampleCard);
@@ -59,8 +57,8 @@ public class FaqFragment extends Fragment {
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, faqCategoryFragment).addToBackStack(null).commit();
                         MainActivity.getMainActivity().getmDrawer().setSelection(-1, false);
                         */
-                        FragmentTransaction fragmentTransaction =  getActivity().getSupportFragmentManager().beginTransaction();
-                        FaqDetailFragment faqDetailFragment= new FaqDetailFragment();
+                        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        FaqDetailFragment faqDetailFragment = new FaqDetailFragment();
                         fragmentTransaction.replace(R.id.container, faqDetailFragment, getResources().getString(R.string.faqdetail));
                         fragmentTransaction.addToBackStack(getResources().getString(R.string.faqdetail));
                         fragmentTransaction.commit();

@@ -1,8 +1,8 @@
 package com.github.socialc0de.gsw.fragments;
 
 
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,7 +33,7 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_dashboard, container, false);
+        View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         RecyclerView recList = (RecyclerView) view.findViewById(R.id.dashboard_recyclerview);
         recList.setHasFixedSize(true);
@@ -42,7 +42,7 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
         recList.setLayoutManager(llm);
 
 
-        CardItem faqCard = new CardItem(R.drawable.faq,getResources().getString(R.string.faq));
+        CardItem faqCard = new CardItem(R.drawable.faq, getResources().getString(R.string.faq));
         CardItem mapCard = new CardItem(R.drawable.map, getResources().getString(R.string.authority_map));
         CardItem phrasebookCard = new CardItem(R.drawable.phrasebook, getResources().getString(R.string.phrasebook));
 
@@ -57,8 +57,8 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
                 new RecyclerItemClickListener(view.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        FragmentTransaction fragmentTransaction =  getActivity().getSupportFragmentManager().beginTransaction();
-                        switch (position){
+                        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        switch (position) {
                             case 0:
                                 FaqFragment faqFragment = new FaqFragment();
                                 fragmentTransaction.replace(R.id.container, faqFragment, getResources().getString(R.string.faq));
@@ -74,7 +74,7 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
                                 fragmentTransaction.commit();
                                 break;
                         }
-                        Log.d("Position = ",""+position);
+                        Log.d("Position = ", "" + position);
                         /*
                         FaqDetailFragment faqDetailFragment= new FaqDetailFragment();
                         fragmentTransaction.replace(R.id.container, faqDetailFragment, "FAQ Detail Fragment");

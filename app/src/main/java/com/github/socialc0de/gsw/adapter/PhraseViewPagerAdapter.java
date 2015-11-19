@@ -3,7 +3,6 @@ package com.github.socialc0de.gsw.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
 import com.github.socialc0de.gsw.fragments.PhraseListTabFragment;
 
 import java.util.ArrayList;
