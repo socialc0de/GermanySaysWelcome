@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Germany Says Welcome</string>
+	<string name="german"></string>
+	<string name="about">Über</string>
+	<string name="action_settings">Einstellungen</string>
+	<string name="animals">Tiere</string>
+	<string name="arabic"></string>
+	<string name="authority_information">Amtinformationen</string>
+	<string name="authority_map">Karte</string>
+	<string name="basic_adjectives">Wichtige Adjektive</string>
+	<string name="basic_conversation">Redewendungen</string>
+	<string name="cancel">Abbrechen</string>
+	<string name="children">Kinder</string>
+	<string name="clothing">Kleidung</string>
+	<string name="colours">Farben</string>
+	<string name="couldnt_fetch">Inhalte konnten nicht geladen werden. Bitte überprüfen Sie die Internetverbindung
+	</string>
+	<string name="direction_places_transport">Navigation und Transport</string>
+	<string name="done">Fertig</string>
+	<string name="english"></string>
+	<string name="example">Beispiel</string>
+	<string name="faq">Häufig gestellte Fragen</string>
+	<string name="faqdetail">FAQ Details</string>
+	<string name="food">Nahrung</string>
+	<string name="free_wifi">Kostenlose WLAN-HotSpots</string>
+	<string name="loading_administration_locations">Lade Flüchtlingsämter...</string>
+	<string name="loading_wifi_locations">Lade Wifi-HotSpots...</string>
+	<string name="medical_terms">Gesundheit</string>
+	<string name="misc">Verschiedene</string>
+	<string name="nature_weather">Klima</string>
+	<string name="next">Weiter</string>
+	<string name="no_location">Konnte den aktuellen Ort nicht abrufen</string>
+	<string name="no_questions">Es wurden keine Fragen gefunden</string>
+	<string name="phrasebook">Übersetzungen</string>
+	<string name="profession">Beruf</string>
+	<string name="settingslangchange">Die Einstellungen werden automatisch gespeichert</string>
+	<string name="settingstoast">Um die Einstellungen zu verlassen, klicken Sie auf den Zurück-Buttons Ihres Telefons</string>
+	<string name="setupstep1">Schritt (1/2)</string>
+	<string name="setupstep1description">Bitte geben Sie die Sprache ein. Sie können diese Einstellungen später verändern.</string>
+	<string name="setupstep1title">Wählen Sie die Sprache</string>
+	<string name="setupstep2">Schritt (2/2)</string>
+	<string name="setupstep2button">Etappenauswahl</string>
+	<string name="setupstep1button">Sprachwahl</string>
+	<string name="setupstep2description">Um passende Informationen anzuzeigen, filtern wir die Eingaben je nach Flüchtlingsstatus von Ihnen.</string>
+	<string name="setupstep2title">Wählen Sie Ihren Flüchtlingsstatus</string>
+	<string name="sexual_gender_identity">Geschlechtergleichberechtigung</string>
+	<string name="step1">Schritt 1: Sie sind gerade in Deutschland angekommen</string>
+	<string name="step2">Schritt 2: Sie warten auf die Bestätigung Ihres Asylantrages</string>
+	<string name="step3">Schritt 3: Ihr Asylantrag wurde bestätigt.</string>
+	<string name="title_activity_main"></string>
+</resources>

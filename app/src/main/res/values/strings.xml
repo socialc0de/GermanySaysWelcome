@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Germany Says Welcome</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main" translatable="false">MainActivity</string>
 
     <!-- Phrasebook Headings -->
     <string name="animals">Animals</string>
@@ -25,14 +25,18 @@
     <string name="example">Example</string>
 
     <!-- Fragment Names -->
-    <string name="dashboard">Dashboard</string>
+    <string name="dashboard" translatable="false">Dashboard</string>
     <string name="phrasebook">Phrasebook</string>
     <string name="faq">FAQ</string>
     <string name="authority_map">Map</string>
     <string name="about">About</string>
-    <string name="title_activity_setup">Setup</string>
+    <string name="title_activity_setup" translatable="false">Setup</string>
 
     <!-- Fragment specific content -->
+    <!-- Settings -->
+    <string name="settingstoast">To leave the settings, click the Back-Button on your phone</string>
+    <string name="settingslangchange">To make changed visible, exit the settings</string>
+
     <!-- Map -->
     <string name="authority_information">Authority Information:</string>
     <string name="free_wifi">Free Wifi HotSpot</string>
@@ -41,9 +45,9 @@
     <string name="faqdetail">FAQ Detail</string>
 
     <!-- Setup -->
-    <string name="step1">Step 1: You just arrived in Germany (will be translated to chosen language)</string>
-    <string name="step2">Step 2: You wait for asylum confirmation (will be translated to chosen language)</string>
-    <string name="step3">Step 3: You\'ll start finding a job (will be translated to chosen language)</string>
+    <string name="step1">Step 1: You just arrived in Germany</string>
+    <string name="step2">Step 2: You wait for asylum confirmation</string>
+    <string name="step3">Step 3: You\'ll start finding a job</string>
     <string name="setupstep1">Step (1/2)</string>
     <string name="setupstep1button">Choose Language</string>
     <string name="setupstep1title">Choose Your Language</string>
@@ -63,9 +67,9 @@
     <string name="loading_administration_locations">Loading Administration Locations</string>
 
     <!-- Langugages -->
-    <string name="arabic">اللغة العربية</string>
-    <string name="german">Deutsch</string>
-    <string name="english">English</string>
+    <string name="arabic" translatable="false">اللغة العربية</string>
+    <string name="german" translatable="false">Deutsch</string>
+    <string name="english" translatable="false">English</string>
 
 
 </resources>

@@ -25,14 +25,14 @@
 
 		<TextView android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  android:text="Germany Says Welcome"
+				  android:text="@string/app_name"
 				  android:singleLine="true"
 				  android:layout_marginBottom="5dp"
 				  style="@android:style/TextAppearance.DeviceDefault.Large.Inverse"
 				/>
 		<TextView android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
-				  android:text="Step (1/2)"
+				  android:text="@string/setupstep1"
 				  android:singleLine="true"
 				  android:id="@+id/stepViewer"
 				  style="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
@@ -48,8 +48,8 @@
 
 		<TextView android:layout_width="wrap_content"
 				  android:layout_height="wrap_content"
+				  android:gravity="center"
 				  android:text="@string/setupstep1description"
-				  android:layout_gravity="top"
 				  style="@android:style/TextAppearance.DeviceDefault.Small.Inverse"
 				  android:id="@+id/instructions"
 				/>

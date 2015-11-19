@@ -1,30 +1,35 @@
 package com.github.socialc0de.gsw.activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 import com.github.socialc0de.gsw.R;
+
+import java.util.Locale;
 
 /**
  * Created by patricebecker on 16/11/15.
  */
 public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     private SharedPreferences sharedPreferences;
-    private String asylumStep = "asylumStep";
-    private String languageSetting = "languageSetting";
     private String KEY_LANGUAGE = "languageSetting";
     private String KEY_ASYLUMSTEP = "asylumStep";
     private String KEY_BACKGROUNDUPDATE = "backgroundUpdate";
     private Preference asylumPref, languagePref;
+    private Locale myLocale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(getApplicationContext(), "SettingsActivity started", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), getResources().getString(R.string.settingstoast), Toast.LENGTH_LONG).show();
         addPreferencesFromResource(R.xml.preferences);
         asylumPref = findPreference(KEY_ASYLUMSTEP);
         languagePref = findPreference(KEY_LANGUAGE);
@@ -38,10 +43,13 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Log.d("SETTINGS", "Key pressed: "+key);
+
         if (key.equals(KEY_LANGUAGE)) {
             // Set summary to be the user-description for the selected value
             Log.d("SETTINGS ","languagePref: "+sharedPreferences.getString(KEY_LANGUAGE,""));
             setLanguageSetting();
+            setLocale();
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.settingslangchange), Toast.LENGTH_LONG).show();
         }
         else if (key.equals(KEY_ASYLUMSTEP)) {
 
@@ -61,13 +69,26 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
     public void setLanguageSetting(){
         if (sharedPreferences.getString(KEY_LANGUAGE,"").equals("de")){
-            languagePref.setSummary("Deutsch");
+            languagePref.setSummary(getResources().getString(R.string.german));
         }
         else if (sharedPreferences.getString(KEY_LANGUAGE,"").equals("en")){
-            languagePref.setSummary("English");
+            languagePref.setSummary(getResources().getString(R.string.english));
         }
         else if (sharedPreferences.getString(KEY_LANGUAGE,"").equals("ar")){
-            languagePref.setSummary("Arabic");
+            languagePref.setSummary(getResources().getString(R.string.arabic));
         }
+    }
+
+    public void setLocale() {
+        String lang = sharedPreferences.getString(KEY_LANGUAGE,"en");
+        myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
     }
 }
