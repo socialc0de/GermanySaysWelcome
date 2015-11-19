@@ -36,6 +36,8 @@
     <!-- Settings -->
     <string name="settingstoast">To leave the settings, click the Back-Button on your phone</string>
     <string name="settingslangchange">To make changed visible, exit the settings</string>
+    <string name="allinfo">View all information</string>
+    <string name="settingsstep">Step: </string>
 
     <!-- Map -->
     <string name="authority_information">Authority Information:</string>

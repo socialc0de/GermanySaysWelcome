@@ -61,9 +61,9 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
     public void setAsylumPref(){
         if (sharedPreferences.getString(KEY_ASYLUMSTEP, "").equals("0")) {
-            asylumPref.setSummary("View all information");
+            asylumPref.setSummary(getResources().getString(R.string.allinfo));
         } else {
-            asylumPref.setSummary("Step: " + sharedPreferences.getString(KEY_ASYLUMSTEP, ""));
+            asylumPref.setSummary(getResources().getString(R.string.settingsstep) + sharedPreferences.getString(KEY_ASYLUMSTEP, ""));
         }
     }
 

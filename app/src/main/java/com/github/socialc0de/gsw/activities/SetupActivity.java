@@ -29,6 +29,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
     private final String asylumStep = "asylumStep";
     private final String languageSetting = "languageSetting";
     private Locale myLocale;
+    private boolean steponedone = false;
 
     private CharSequence[] items1;
     private CharSequence[] items2;
@@ -146,12 +147,12 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                 }
                 break;
             case R.id.nextButton:
-                if (stepViewer.getText().equals(getResources().getString(R.string.setupstep1))) {
+                if (!steponedone) {
                     chooseText.setText("");
                     chooseButton.setText(getResources().getString(R.string.setupstep2button));
                     instructionText.setText(getResources().getString(R.string.setupstep2description));
                     stepViewer.setText(getResources().getString(R.string.setupstep2));
-
+                    steponedone = true;
                 } else {
                     Intent myIntent = new Intent(SetupActivity.this, MainActivity.class);
                     SetupActivity.this.startActivity(myIntent);

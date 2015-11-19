@@ -7,15 +7,13 @@
 			/>
 	<ListPreference
 			android:key="languageSetting"
-			android:title="Choose your Language"
-			android:summary="Language Chooser"
+			android:title="@string/setupstep1title"
 			android:entries="@array/languageOptions"
 			android:entryValues="@array/languageKeys"
 			/>
 	<ListPreference
 			android:key="asylumStep"
-			android:title="Choose your Asylum Step"
-			android:summary="Step Chooser"
+			android:title="@string/setupstep2title"
 			android:entries="@array/asylumSteps"
 			android:entryValues="@array/asylumKeys"
 			/>

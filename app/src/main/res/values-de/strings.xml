@@ -37,7 +37,8 @@
 	<string name="settingslangchange">Die Einstellungen werden automatisch gespeichert</string>
 	<string name="settingstoast">Um die Einstellungen zu verlassen, klicken Sie auf den Zurück-Buttons Ihres Telefons</string>
 	<string name="setupstep1">Schritt (1/2)</string>
-	<string name="setupstep1description">Bitte geben Sie die Sprache ein. Sie können diese Einstellungen später verändern.</string>
+	<string name="setupstep1description">Bitte wählen Sie eine Sprache aus. Sie können diese Einstellungen später
+		anpassen.</string>
 	<string name="setupstep1title">Wählen Sie die Sprache</string>
 	<string name="setupstep2">Schritt (2/2)</string>
 	<string name="setupstep2button">Etappenauswahl</string>
