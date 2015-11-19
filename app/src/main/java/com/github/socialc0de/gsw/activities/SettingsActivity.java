@@ -49,7 +49,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
             Log.d("SETTINGS ","languagePref: "+sharedPreferences.getString(KEY_LANGUAGE,""));
             setLanguageSetting();
             setLocale();
-            Toast.makeText(getApplicationContext(), getResources().getString(R.string.settingslangchange), Toast.LENGTH_LONG).show();
         }
         else if (key.equals(KEY_ASYLUMSTEP)) {
 

@@ -54,7 +54,7 @@
 	<string name="dashboard">Dashboard</string>
 	<string name="allinfo">Alle Informationen anzeigen</string>
 	<string name="settingsstep">Schritt:</string>
-	<string name="step1short">Schritt 1</string>
-	<string name="step2short">Schritt 2</string>
-	<string name="step3short">Schritt 3</string>
+	<string name="step1short">Schritt 1: Ankunft</string>
+	<string name="step2short">Schritt 2: Asylantrag</string>
+	<string name="step3short">Schritt 3: Gesellschaftliche Integration</string>
 </resources>
