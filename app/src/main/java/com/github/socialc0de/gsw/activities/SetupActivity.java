@@ -127,11 +127,11 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                             .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
                                 @Override
                                 public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                                    String stepText = (String) text.subSequence(0, 6);
+                                    String stepText = (String) text;
                                     int step = Integer.parseInt(stepText.replaceAll("[\\D]", ""));
 
                                     Log.d("[SETUP] ", "Step selected: " + step);
-                                    chooseText.setText(text.subSequence(0, 6));
+                                    chooseText.setText(text);
 
                                     mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                     SharedPreferences.Editor editor = mPrefs.edit();

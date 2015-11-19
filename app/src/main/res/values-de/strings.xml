@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">Germany Says Welcome</string>
-	<string name="german"></string>
+	<string name="german">Deutsch</string>
 	<string name="about">Über</string>
 	<string name="action_settings">Einstellungen</string>
 	<string name="animals">Tiere</string>
-	<string name="arabic"></string>
+	<string name="arabic">اللغة العربية</string>
 	<string name="authority_information">Amtinformationen</string>
 	<string name="authority_map">Karte</string>
 	<string name="basic_adjectives">Wichtige Adjektive</string>
@@ -18,7 +18,7 @@
 	</string>
 	<string name="direction_places_transport">Navigation und Transport</string>
 	<string name="done">Fertig</string>
-	<string name="english"></string>
+	<string name="english">English</string>
 	<string name="example">Beispiel</string>
 	<string name="faq">Häufig gestellte Fragen</string>
 	<string name="faqdetail">FAQ Details</string>
@@ -48,5 +48,7 @@
 	<string name="step1">Schritt 1: Sie sind gerade in Deutschland angekommen</string>
 	<string name="step2">Schritt 2: Sie warten auf die Bestätigung Ihres Asylantrages</string>
 	<string name="step3">Schritt 3: Ihr Asylantrag wurde bestätigt.</string>
-	<string name="title_activity_main"></string>
+	<string name="title_activity_main">MainActivity</string>
+	<string name="title_activity_setup" translatable="false">Setup</string>
+	<string name="dashboard">Dashboard</string>
 </resources>

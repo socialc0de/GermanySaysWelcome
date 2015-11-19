@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Germany Says Welcome</string>
-    <string name="title_activity_main" translatable="false">MainActivity</string>
+    <string name="title_activity_main">MainActivity</string>
 
     <!-- Phrasebook Headings -->
     <string name="animals">Animals</string>
@@ -25,12 +25,12 @@
     <string name="example">Example</string>
 
     <!-- Fragment Names -->
-    <string name="dashboard" translatable="false">Dashboard</string>
+    <string name="dashboard">Dashboard</string>
     <string name="phrasebook">Phrasebook</string>
     <string name="faq">FAQ</string>
     <string name="authority_map">Map</string>
     <string name="about">About</string>
-    <string name="title_activity_setup" translatable="false">Setup</string>
+    <string name="title_activity_setup">Setup</string>
 
     <!-- Fragment specific content -->
     <!-- Settings -->
@@ -67,9 +67,9 @@
     <string name="loading_administration_locations">Loading Administration Locations</string>
 
     <!-- Langugages -->
-    <string name="arabic" translatable="false">اللغة العربية</string>
-    <string name="german" translatable="false">Deutsch</string>
-    <string name="english" translatable="false">English</string>
+    <string name="arabic">اللغة العربية</string>
+    <string name="german">Deutsch</string>
+    <string name="english">English</string>
 
 
 </resources>
