@@ -41,7 +41,6 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
         setContentView(R.layout.activity_setup);
 
         items1 = new CharSequence[]{getResources().getString(R.string.arabic), getResources().getString(R.string.english), getResources().getString(R.string.german)};
-        items2 = new CharSequence[]{getResources().getString(R.string.step1), getResources().getString(R.string.step2), getResources().getString(R.string.step3)};
 
         chooseButton = (Button) findViewById(R.id.choose_button);
         chooseButton.setOnClickListener(this);
@@ -134,7 +133,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                                     int step = Integer.parseInt(stepText.replaceAll("[\\D]", ""));
 
                                     Log.d("[SETUP] ", "Step selected: " + step);
-                                    chooseText.setText(text);
+                                    chooseText.setText(getResources().getString(R.string.settingsstep)+" "+step);
 
                                     mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                     SharedPreferences.Editor editor = mPrefs.edit();
@@ -155,6 +154,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                     instructionText.setText(getResources().getString(R.string.setupstep2description));
                     stepViewer.setText(getResources().getString(R.string.setupstep2));
                     nextButtonText.setText(getResources().getString(R.string.next));
+                    items2 = new CharSequence[]{getResources().getString(R.string.step1), getResources().getString(R.string.step2), getResources().getString(R.string.step3)};
                     steponedone = true;
                 } else {
                     Intent myIntent = new Intent(SetupActivity.this, MainActivity.class);
