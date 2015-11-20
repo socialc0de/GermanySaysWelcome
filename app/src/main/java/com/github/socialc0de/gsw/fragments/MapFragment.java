@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.github.socialc0de.gsw.R;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
@@ -38,7 +37,7 @@ public class MapFragment extends Fragment {
         mMapController.setZoom(13);
         GeoPoint gPt = new GeoPoint(51500000, -150000);
         mMapController.setCenter(gPt);
-        return  view;
+        return view;
     }
 
 }
