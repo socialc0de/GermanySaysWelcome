@@ -28,7 +28,7 @@ android {
     lintOptions {
         abortOnError false
     }
-    
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_6
         targetCompatibility JavaVersion.VERSION_1_6
@@ -47,7 +47,6 @@ dependencies {
     compile('com.mikepenz:materialdrawer:4.0.8@aar') {
         transitive = true
     }
-
 
     compile('com.github.afollestad.material-dialogs:core:0.8.5.0@aar') {
         transitive = true
