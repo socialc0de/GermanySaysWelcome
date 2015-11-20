@@ -19,6 +19,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.fragments.DashboardFragment;
 import com.github.socialc0de.gsw.fragments.FaqFragment;
+import com.github.socialc0de.gsw.fragments.MapFragment;
 import com.github.socialc0de.gsw.fragments.PhraseFragment;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -84,16 +85,10 @@ public class MainActivity extends ActionBarActivity {
                 .show();
 
 
-        // Navigation Drawer Initializing
-
-        //new DrawerBuilder().withActivity(this).build();
-
-        ArrayList<Fragment> newFragmentItems = new ArrayList<Fragment>();
-        newFragmentItems.add(new DashboardFragment());
-        newFragmentItems.add(new FaqFragment());
-        newFragmentItems.add(new PhraseFragment());
-
-        fillDataIntoFragmentList(newFragmentItems);
+        fragmentList.add(new DashboardFragment());
+        fragmentList.add(new FaqFragment());
+        fragmentList.add(new PhraseFragment());
+        fragmentList.add(new MapFragment());
 
         createNavigationDrawer(mDrawer);
         SpannableString s = new SpannableString(getString(R.string.app_name));
@@ -123,12 +118,6 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    private void fillDataIntoFragmentList(ArrayList<Fragment> fragmentAddList) {
-        for (int i = 0; i < fragmentAddList.size(); i++) {
-            this.fragmentList.add(fragmentAddList.get(i));
-        }
-    }
-
     private void createNavigationDrawer(Drawer mDrawer) {
         if (mDrawer == null) {
             headerResult = new AccountHeaderBuilder()
@@ -151,7 +140,8 @@ public class MainActivity extends ActionBarActivity {
                     .addDrawerItems(
                             new PrimaryDrawerItem().withName(getResources().getString(R.string.dashboard)),
                             new PrimaryDrawerItem().withName(getResources().getString(R.string.faq)),
-                            new PrimaryDrawerItem().withName(getResources().getString(R.string.phrasebook)))
+                            new PrimaryDrawerItem().withName(getResources().getString(R.string.phrasebook)),
+                            new PrimaryDrawerItem().withName(getResources().getString(R.string.map)))
                     .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                         @Override
                         public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {

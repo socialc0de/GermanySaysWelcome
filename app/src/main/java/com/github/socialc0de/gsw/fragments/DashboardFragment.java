@@ -1,7 +1,6 @@
 package com.github.socialc0de.gsw.fragments;
 
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,9 +16,8 @@ import com.github.socialc0de.gsw.customClasses.CardItem;
 
 import java.util.ArrayList;
 
-
 /**
- * A simple {@link Fragment} subclass.
+ * Created by patricebecker on 10/11/15.
  */
 public class DashboardFragment extends android.support.v4.app.Fragment {
 
@@ -43,7 +41,7 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
 
 
         CardItem faqCard = new CardItem(R.drawable.faq, getResources().getString(R.string.faq));
-        CardItem mapCard = new CardItem(R.drawable.map, getResources().getString(R.string.authority_map));
+        CardItem mapCard = new CardItem(R.drawable.map, getResources().getString(R.string.map));
         CardItem phrasebookCard = new CardItem(R.drawable.phrasebook, getResources().getString(R.string.phrasebook));
 
         ArrayList<CardItem> cardItemArrayList = new ArrayList<CardItem>();
