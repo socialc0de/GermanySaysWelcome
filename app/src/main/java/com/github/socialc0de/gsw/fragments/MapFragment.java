@@ -7,10 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.github.socialc0de.gsw.R;
-import org.osmdroid.ResourceProxy;
+import org.osmdroid.bonuspack.overlays.Marker;
+import org.osmdroid.bonuspack.routing.OSRMRoadManager;
+import org.osmdroid.bonuspack.routing.RoadManager;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.util.ResourceProxyImpl;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.ScaleBarOverlay;
@@ -45,20 +46,28 @@ public class MapFragment extends Fragment {
         mMapView.setMultiTouchControls(true);
         mMapController = (MapController) mMapView.getController();
         mMapController.setZoom(13);
-        GeoPoint gPt = new GeoPoint(51500000, -150000);
-        mMapController.setCenter(gPt);
-
-
-        this.mLocationOverlay = new MyLocationNewOverlay(getActivity(), new GpsMyLocationProvider(getActivity()),mMapView);
-        mMapView.getOverlays().add(this.mLocationOverlay);
-
-        this.mCompassOverlay = new CompassOverlay(getActivity(), new InternalCompassOrientationProvider(getActivity()), mMapView);
-        mMapView.getOverlays().add(this.mCompassOverlay);
+        GeoPoint startPoint = new GeoPoint(51500000, -150000);
+        mMapController.setCenter(startPoint);
 
         mScaleBarOverlay = new ScaleBarOverlay(getContext());
         mScaleBarOverlay.setCentred(true);
-        mScaleBarOverlay.setScaleBarOffset(getActivity().getWindowManager().getDefaultDisplay().getWidth()/ 2, 10);
+        mScaleBarOverlay.setScaleBarOffset(getActivity().getWindowManager().getDefaultDisplay().getWidth() / 2, 10);
         mMapView.getOverlays().add(this.mScaleBarOverlay);
+
+
+        Marker startMarker = new Marker(mMapView);
+        startMarker.setPosition(startPoint);
+        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+        startMarker.setIcon(getResources().getDrawable(R.mipmap.ic_launcher));
+        startMarker.setTitle("Start point");
+        mMapView.getOverlays().add(startMarker);
+        mMapView.invalidate();
+
+
+        // ROUTE TESTING
+        RoadManager roadManager = new OSRMRoadManager();
+
+
         return view;
     }
 

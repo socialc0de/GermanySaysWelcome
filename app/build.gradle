@@ -11,6 +11,10 @@ apply plugin: 'com.android.application'
 
 repositories {
     jcenter()
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 android {
@@ -47,7 +51,6 @@ dependencies {
     compile('com.mikepenz:materialdrawer:4.0.8@aar') {
         transitive = true
     }
-
     compile('com.github.afollestad.material-dialogs:core:0.8.5.0@aar') {
         transitive = true
     }
@@ -62,5 +65,9 @@ dependencies {
     compile 'com.github.gabrielemariotti.cards:cardslib-recyclerview:2.1.0'
     compile 'com.android.support:support-v4:23.1.0'
     compile 'org.osmdroid:osmdroid-android:5.0.1@aar'
+    compile(name: 'osmbonuspack_v5.5', ext: 'aar')
+    compile 'org.apache.commons:commons-lang3:3.3.2'
+    compile 'com.google.code.gson:gson:2.3'
+
 
 }
