@@ -79,6 +79,7 @@ public class MapFragment extends Fragment {
         mMapView.getOverlays().add(startMarker);
         mMapView.invalidate();
 
+        /*
         ArrayList<GeoPoint> waypoints = new ArrayList<GeoPoint>();
         for (double i = 0.01; i<0.2; i = i+0.01){
             GeoPoint endPoint = new GeoPoint(48.13+i, -1.63-i);
@@ -86,12 +87,6 @@ public class MapFragment extends Fragment {
             waypoints.add(endPoint);
         }
 
-
-        // ROUTE TESTING
-        //new UpdateRoadTask().execute(waypoints);
-
-        /*
-        
         RadiusMarkerClusterer poiMarkers = new RadiusMarkerClusterer(getActivity());
         Drawable clusterIconD = getResources().getDrawable(R.drawable.fr);
         Bitmap clusterIcon = ((BitmapDrawable)clusterIconD).getBitmap();
