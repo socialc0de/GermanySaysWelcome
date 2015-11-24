@@ -61,7 +61,6 @@ public class EmergencyFragment extends Fragment {
 
         } */
 
-
         CardItemAdapter ca = new CardItemAdapter(cardItemArrayList);
         recList.setAdapter(ca);
         recList.addOnItemTouchListener(
@@ -82,6 +81,7 @@ public class EmergencyFragment extends Fragment {
                     }
                 })
         );
+
         return view;
     }
 
