@@ -1,13 +1,16 @@
 package com.github.socialc0de.gsw.fragments;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
+import com.github.socialc0de.gsw.customClasses.MapItem;
 import com.melnykov.fab.FloatingActionButton;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -18,11 +21,13 @@ import org.osmdroid.views.overlay.ScaleBarOverlay;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
+import java.util.ArrayList;
+
 /**
  * Created by patricebecker on 20/11/15.
  */
 
-public class MapFragment extends Fragment implements View.OnClickListener{
+public class MapFragment extends Fragment implements View.OnClickListener {
     private MapView mMapView;
     private MapController mMapController;
     private MyLocationNewOverlay mLocationOverlay;
@@ -30,6 +35,7 @@ public class MapFragment extends Fragment implements View.OnClickListener{
     private ScaleBarOverlay mScaleBarOverlay;
     private GeoPoint startPoint;
     private FloatingActionButton floatingActionButton;
+    private String[] filterArray;
 
     public MapFragment() {
         // Required empty public constructor
@@ -45,6 +51,8 @@ public class MapFragment extends Fragment implements View.OnClickListener{
         floatingActionButton = (FloatingActionButton) view.findViewById(R.id.filterButton);
         floatingActionButton.setOnClickListener(this);
 
+        filterArray = getResources().getStringArray(R.array.filterChooser);
+
         mMapView = (MapView) view.findViewById(R.id.mapview);
         mMapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
         mMapView.setMultiTouchControls(true);
@@ -57,7 +65,6 @@ public class MapFragment extends Fragment implements View.OnClickListener{
         mScaleBarOverlay.setCentred(true);
         mScaleBarOverlay.setScaleBarOffset(getActivity().getWindowManager().getDefaultDisplay().getWidth() / 2, 10);
         mMapView.getOverlays().add(this.mScaleBarOverlay);
-
 
 
         Marker startMarker = new Marker(mMapView);
@@ -106,15 +113,32 @@ public class MapFragment extends Fragment implements View.OnClickListener{
                 .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
                     @Override
                     public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
-                        /**
-                         * If you use alwaysCallMultiChoiceCallback(), which is discussed below,
-                         * returning false here won't allow the newly selected check box to actually be selected.
-                         * See the limited multi choice dialog example in the sample project for details.
-                         **/
+                        for (int i = 0; i < which.length; i++) Log.d("Selected items", " : " + which[i]);
+                        new FilterTask(which).execute();
                         return true;
                     }
                 })
                 .positiveText(R.string.done)
                 .show();
+    }
+
+
+    private class FilterTask extends AsyncTask<Integer, Void, ArrayList<ArrayList<MapItem>>> {
+        private Integer[] which;
+
+        public FilterTask(Integer[] which){
+            this.which = which;
+        }
+
+        @Override
+        protected ArrayList<ArrayList<MapItem>> doInBackground(Integer... params) {
+            Log.d("AsyncTask called", "");
+            ArrayList<ArrayList<MapItem>> retrievedData = new ArrayList<ArrayList<MapItem>>();
+            for (int i = 0; i < which.length; i++) {
+                String currentValue = filterArray[i];
+                Log.d("currentValue = ", currentValue);
+            }
+            return null;
+        }
     }
 }
