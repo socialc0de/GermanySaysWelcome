@@ -22,4 +22,10 @@
 		<item>3</item>
 		<item>0</item>
 	</string-array>
+	<string-array name="filterChooser">
+		<item>@string/authorities</item>
+		<item>@string/hotspots</item>
+		<item>@string/hospitals</item>
+		<item>@string/helpcenter</item>
+	</string-array>
 </resources>

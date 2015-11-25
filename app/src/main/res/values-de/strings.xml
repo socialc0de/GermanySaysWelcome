@@ -62,4 +62,10 @@
 	<string name="step2short">Schritt 2: Asylantrag</string>
 	<string name="step3short">Schritt 3: Gesellschaftliche Integration</string>
 	<string name="no_stepselected">Bitte klicken Sie auf einen der angezeigten Schritte, um fortzufahren.</string>
+	<string name="authorities">Ämter</string>
+	<string name="filter">Filter aussuchen</string>
+	<string name="hello_blank_fragment">Sample</string>
+	<string name="helpcenter">Hilfszentren</string>
+	<string name="hospitals">Krankenhäuser</string>
+	<string name="hotspots">WiFi HotSpots</string>
 </resources>

@@ -42,6 +42,12 @@
 	<!-- Map -->
 	<string name="authority_information">Authority Information:</string>
 	<string name="free_wifi">Free Wifi HotSpot</string>
+	<string name="filter">Choose Filter</string>
+	
+	<string name="authorities">Authorities</string>
+	<string name="hotspots">WiFi HotSpots</string>
+	<string name="hospitals">Hospitals</string>
+	<string name="helpcenter">Helping Centers</string>
 
 	<!-- FAQ -->
 	<string name="faqdetail">FAQ Detail</string>
