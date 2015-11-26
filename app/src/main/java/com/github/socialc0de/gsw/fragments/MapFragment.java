@@ -2,6 +2,7 @@ package com.github.socialc0de.gsw.fragments;
 
 
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -22,6 +23,7 @@ import org.osmdroid.views.overlay.compass.CompassOverlay;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by patricebecker on 20/11/15.
@@ -36,6 +38,8 @@ public class MapFragment extends Fragment implements View.OnClickListener {
     private GeoPoint startPoint;
     private FloatingActionButton floatingActionButton;
     private String[] filterArray;
+    private ArrayList<ArrayList<MapItem>> retrievedData;
+    private String TAG = "MapFragmentTag: ";
 
     public MapFragment() {
         // Required empty public constructor
@@ -56,10 +60,12 @@ public class MapFragment extends Fragment implements View.OnClickListener {
         mMapView = (MapView) view.findViewById(R.id.mapview);
         mMapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
         mMapView.setMultiTouchControls(true);
+        mMapView.setBuiltInZoomControls(true);
         mMapController = (MapController) mMapView.getController();
         mMapController.setZoom(13);
         startPoint = new GeoPoint(48.13, -1.63);
         mMapController.setCenter(startPoint);
+
 
         mScaleBarOverlay = new ScaleBarOverlay(getContext());
         mScaleBarOverlay.setCentred(true);
@@ -114,7 +120,36 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
                         for (int i = 0; i < which.length; i++) Log.d("Selected items", " : " + which[i]);
-                        new FilterTask(which).execute();
+
+                        FilterTask filterTask = new FilterTask(which);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+                            filterTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                        else
+                            filterTask.execute();
+
+                        // Get ArrayList
+                        try {
+                            retrievedData = filterTask.get();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        }
+                        for (int i = 0; i < retrievedData.size(); i++) {
+                            for (int t = 0; t<retrievedData.get(i).size(); t++){
+                                MapItem mapItem = retrievedData.get(i).get(t);
+                                GeoPoint mapPoint = new GeoPoint(mapItem.getLatitude(), mapItem.getLongitude());
+                                Log.d(TAG,"i: "+i+" t: "+t+" retrievedData: "+mapItem.toString());
+                                Marker mapMarker = new Marker(mMapView);
+                                mapMarker.setPosition(mapPoint);
+                                mapMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+                                mapMarker.setIcon(getResources().getDrawable(R.mipmap.ic_launcher));
+                                mapMarker.setTitle(mapItem.getTitle());
+                                mapMarker.setSubDescription(mapItem.getDescription());
+                                mMapView.getOverlays().add(mapMarker);
+                                mMapView.invalidate();
+                            }
+                        }
                         return true;
                     }
                 })
@@ -126,7 +161,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
     private class FilterTask extends AsyncTask<Integer, Void, ArrayList<ArrayList<MapItem>>> {
         private Integer[] which;
 
-        public FilterTask(Integer[] which){
+        public FilterTask(Integer[] which) {
             this.which = which;
         }
 
@@ -134,11 +169,31 @@ public class MapFragment extends Fragment implements View.OnClickListener {
         protected ArrayList<ArrayList<MapItem>> doInBackground(Integer... params) {
             Log.d("AsyncTask called", "");
             ArrayList<ArrayList<MapItem>> retrievedData = new ArrayList<ArrayList<MapItem>>();
+            ArrayList<MapItem> authorities = new ArrayList<MapItem>();
+            ArrayList<MapItem> wifihotspots = new ArrayList<MapItem>();
+            ArrayList<MapItem> hospitals = new ArrayList<MapItem>();
+            ArrayList<MapItem> helpcenters = new ArrayList<MapItem>();
+
             for (int i = 0; i < which.length; i++) {
                 String currentValue = filterArray[i];
                 Log.d("currentValue = ", currentValue);
+                switch (i) {
+                    case 0:
+                        authorities.add(new MapItem(50.102130, 8.637670, "Ausländeramt Frankfurt", "Detail Description"));
+                        retrievedData.add(authorities);
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        break;
+                }
             }
-            return null;
+
+            return retrievedData;
         }
     }
 }
