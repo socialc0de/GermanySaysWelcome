@@ -7,12 +7,14 @@ public class MapItem {
     private double latitude, longitude;
     private String title;
     private String description;
+    private int resource;
 
-    public MapItem(double latitude, double longitude, String title, String description){
+    public MapItem(double latitude, double longitude, String title, String description, int resource){
         this.latitude = latitude;
         this.longitude = longitude;
         this.title = title;
         this.description = description;
+        this.resource = resource;
     }
 
     @Override
@@ -34,5 +36,13 @@ public class MapItem {
 
     public String getTitle() {
         return title;
+    }
+
+    public int getResource() {
+        return resource;
+    }
+
+    public void setResource(int resource) {
+        this.resource = resource;
     }
 }

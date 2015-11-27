@@ -141,29 +141,13 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                                 mapMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
                                 mapMarker.setTitle(mapItem.getTitle());
                                 mapMarker.setSubDescription(mapItem.getDescription());
-
-                                switch (i) {
-                                    case 0:
-                                        mapMarker.setIcon(getResources().getDrawable(R.mipmap.ic_launcher));
-                                        break;
-                                    case 1:
-                                        mapMarker.setIcon(getResources().getDrawable(R.mipmap.ic_launcher));
-                                        break;
-                                    case 2:
-                                        mapMarker.setIcon(getResources().getDrawable(R.mipmap.ic_launcher));
-                                        break;
-                                    case 3:
-                                        mapMarker.setIcon(getResources().getDrawable(R.mipmap.ic_launcher));
-                                        break;
-                                    default:
-                                        mapMarker.setIcon(getResources().getDrawable(R.mipmap.ic_launcher));
-                                        break;
-                                }
+                                mapMarker.setIcon(getResources().getDrawable(mapItem.getResource()));
                                 poiMarkers.add(mapMarker);
                             }
                         }
-
+                        Log.d(TAG, " retrievedData loaded");
                         mMapView.getOverlays().add(poiMarkers);
+                        mMapView.invalidate();
                         return true;
                     }
                 })
@@ -193,20 +177,25 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                 Log.d("currentValue = ", currentValue);
                 switch (i) {
                     case 0:
-                        authorities.add(new MapItem(50.102130, 8.637670, "Ausländeramt Frankfurt", "Detail Description"));
+                        authorities.add(new MapItem(50.102130, 8.637670, "Ausländeramt Frankfurt", "Detail Description", R.drawable.ic_home_white));
                         retrievedData.add(authorities);
                         break;
                     case 1:
+                        wifihotspots.add(new MapItem(50.102150, 8.637310, "Freifunk Frankfurt", "Detail Description",R.drawable.ic_network_wifi_white));
+                        retrievedData.add(wifihotspots);
                         break;
                     case 2:
+                        hospitals.add(new MapItem(50.102200, 8.636540, "Uniklinik Frankfurt", "Detail Description",R.drawable.ic_view_module_white));
+                        retrievedData.add(hospitals);
                         break;
                     case 3:
+                        helpcenters.add(new MapItem(50.102310, 8.635620, "Refugee Center Frankfurt", "Detail Description",R.drawable.ic_search_white));
+                        retrievedData.add(helpcenters);
                         break;
                     default:
                         break;
                 }
             }
-
             return retrievedData;
         }
     }
