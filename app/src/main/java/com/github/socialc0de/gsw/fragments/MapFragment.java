@@ -1,6 +1,9 @@
 package com.github.socialc0de.gsw.fragments;
 
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +16,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.customClasses.MapItem;
 import com.melnykov.fab.FloatingActionButton;
+import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
@@ -89,21 +93,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
             waypoints.add(endPoint);
         }
 
-        RadiusMarkerClusterer poiMarkers = new RadiusMarkerClusterer(getActivity());
-        Drawable clusterIconD = getResources().getDrawable(R.drawable.fr);
-        Bitmap clusterIcon = ((BitmapDrawable)clusterIconD).getBitmap();
-        poiMarkers.setIcon(clusterIcon);
 
-        Drawable poiIcon = getResources().getDrawable(R.drawable.de);
-        for (int i = 0; i < waypoints.size(); i++){
-            Marker poiMarker = new Marker(mMapView);
-            poiMarker.setTitle("SAMPLE MARKER");
-            poiMarker.setSnippet("SAMPLE MARKER DESCRIPTION");
-            poiMarker.setPosition(waypoints.get(i));
-            poiMarker.setIcon(poiIcon);
-            poiMarkers.add(poiMarker);
-        }
-        mMapView.getOverlays().add(poiMarkers);
         mMapView.invalidate();
 
         */
@@ -135,21 +125,45 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                         } catch (ExecutionException e) {
                             e.printStackTrace();
                         }
+
+                        RadiusMarkerClusterer poiMarkers = new RadiusMarkerClusterer(getActivity());
+                        Drawable clusterIconD = getResources().getDrawable(R.drawable.fr);
+                        Bitmap clusterIcon = ((BitmapDrawable) clusterIconD).getBitmap();
+                        poiMarkers.setIcon(clusterIcon);
+
                         for (int i = 0; i < retrievedData.size(); i++) {
-                            for (int t = 0; t<retrievedData.get(i).size(); t++){
+                            for (int t = 0; t < retrievedData.get(i).size(); t++) {
                                 MapItem mapItem = retrievedData.get(i).get(t);
                                 GeoPoint mapPoint = new GeoPoint(mapItem.getLatitude(), mapItem.getLongitude());
-                                Log.d(TAG,"i: "+i+" t: "+t+" retrievedData: "+mapItem.toString());
+                                Log.d(TAG, "i: " + i + " t: " + t + " retrievedData: " + mapItem.toString());
                                 Marker mapMarker = new Marker(mMapView);
                                 mapMarker.setPosition(mapPoint);
                                 mapMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-                                mapMarker.setIcon(getResources().getDrawable(R.mipmap.ic_launcher));
                                 mapMarker.setTitle(mapItem.getTitle());
                                 mapMarker.setSubDescription(mapItem.getDescription());
-                                mMapView.getOverlays().add(mapMarker);
-                                mMapView.invalidate();
+
+                                switch (i) {
+                                    case 0:
+                                        mapMarker.setIcon(getResources().getDrawable(R.mipmap.ic_launcher));
+                                        break;
+                                    case 1:
+                                        mapMarker.setIcon(getResources().getDrawable(R.mipmap.ic_launcher));
+                                        break;
+                                    case 2:
+                                        mapMarker.setIcon(getResources().getDrawable(R.mipmap.ic_launcher));
+                                        break;
+                                    case 3:
+                                        mapMarker.setIcon(getResources().getDrawable(R.mipmap.ic_launcher));
+                                        break;
+                                    default:
+                                        mapMarker.setIcon(getResources().getDrawable(R.mipmap.ic_launcher));
+                                        break;
+                                }
+                                poiMarkers.add(mapMarker);
                             }
                         }
+
+                        mMapView.getOverlays().add(poiMarkers);
                         return true;
                     }
                 })
