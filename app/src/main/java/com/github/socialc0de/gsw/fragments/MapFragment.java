@@ -131,6 +131,19 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                         Bitmap clusterIcon = ((BitmapDrawable) clusterIconD).getBitmap();
                         poiMarkers.setIcon(clusterIcon);
 
+                        Drawable authority = getResources().getDrawable(R.drawable.ic_local_hospital_white_24dp);
+                        Drawable hospital = getResources().getDrawable(R.drawable.ic_local_hospital_white_24dp);
+                        Drawable wifihotpots = getResources().getDrawable(R.drawable.ic_local_hospital_white_24dp);
+                        Drawable helpcenters = getResources().getDrawable(R.drawable.ic_local_hospital_white_24dp);
+
+                        //hospital.setTint(getResources().getColor(R.color.accentColor));
+
+                        ArrayList<Drawable> iconList = new ArrayList<Drawable>();
+                        iconList.add(hospital);
+                        iconList.add(authority);
+                        iconList.add(wifihotpots);
+                        iconList.add(helpcenters);
+
                         for (int i = 0; i < retrievedData.size(); i++) {
                             for (int t = 0; t < retrievedData.get(i).size(); t++) {
                                 MapItem mapItem = retrievedData.get(i).get(t);
@@ -141,7 +154,8 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                                 mapMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
                                 mapMarker.setTitle(mapItem.getTitle());
                                 mapMarker.setSubDescription(mapItem.getDescription());
-                                mapMarker.setIcon(getResources().getDrawable(mapItem.getResource()));
+
+                                mapMarker.setIcon(iconList.get(i));
                                 poiMarkers.add(mapMarker);
                             }
                         }
@@ -177,7 +191,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                 Log.d("currentValue = ", currentValue);
                 switch (i) {
                     case 0:
-                        authorities.add(new MapItem(50.102130, 8.637670, "Ausländeramt Frankfurt", "Detail Description", R.drawable.ic_home_white));
+                        authorities.add(new MapItem(50.102130, 8.637670, "Ausländeramt Frankfurt", "Detail Description", R.drawable.ic_info_outline_white));
                         retrievedData.add(authorities);
                         break;
                     case 1:
@@ -185,11 +199,11 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                         retrievedData.add(wifihotspots);
                         break;
                     case 2:
-                        hospitals.add(new MapItem(50.102200, 8.636540, "Uniklinik Frankfurt", "Detail Description",R.drawable.ic_view_module_white));
+                        hospitals.add(new MapItem(50.102200, 8.636540, "Uniklinik Frankfurt", "Detail Description",R.drawable.ic_local_hospital_white_24dp));
                         retrievedData.add(hospitals);
                         break;
                     case 3:
-                        helpcenters.add(new MapItem(50.102310, 8.635620, "Refugee Center Frankfurt", "Detail Description",R.drawable.ic_search_white));
+                        helpcenters.add(new MapItem(50.102310, 8.635620, "Refugee Center Frankfurt", "Detail Description",R.drawable.ic_help_white_24dp));
                         retrievedData.add(helpcenters);
                         break;
                     default:
