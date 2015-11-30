@@ -12,8 +12,13 @@ Features:
 - Phrasebook [provides the most important translations]
 
 Working so far:
-- Setup
-- Dashboard [not fully]
+- Setup [Multilanguage support || Language / Asylum Step Chooser]
+- Dashboard [not fully][Displays RecyclerViewAdapterList]
 - Phrasebook [further improvements and offline caching planned]
 - FAQ [Frontend done, must be connected to backend though]
 - Map [Shows different filter options]
+
+To be done:
+- Fully implement all map icons
+- Load data from database
+- FAQ - Possibility to ask own questions
