@@ -2,7 +2,7 @@
 
 This is an app for refugees with the most important functionalities
 
-[![Build Status](http://dev.kobosil.me:8081/buildStatus/icon?job=GermanySaysWelcome)](http://dev.kobosil.me:8081/job/GermanySaysWelcome/)
+[![Build Status](http://jenkins.germany-says-welcome.de/buildStatus/icon?job=Germany Says Welcome App)](http://jenkins.germany-says-welcome.de/job/Germany%20Says%20Welcome%20App/)
 
 Features:
 - Setup [asks you for your refugee status and language]
