@@ -9,10 +9,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.github.socialc0de.gsw.R;
+import com.github.socialc0de.gsw.activities.MainActivity;
 import com.github.socialc0de.gsw.adapter.CardItemAdapter;
 import com.github.socialc0de.gsw.adapter.RecyclerItemClickListener;
+import com.github.socialc0de.gsw.api.FaqCategoryLoadManager_;
+import com.github.socialc0de.gsw.api.interfaces.FaqCategoryCallBack;
 import com.github.socialc0de.gsw.customClasses.CardItem;
+import com.github.socialc0de.gsw.customClasses.api.FaqCategory;
 
 import java.util.ArrayList;
 
@@ -40,7 +45,7 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
         recList.setLayoutManager(llm);
 
 
-        CardItem faqCard = new CardItem(R.drawable.faq, getResources().getString(R.string.faq));
+        final CardItem faqCard = new CardItem(R.drawable.faq, getResources().getString(R.string.faq));
         CardItem mapCard = new CardItem(R.drawable.map, getResources().getString(R.string.map));
         CardItem phrasebookCard = new CardItem(R.drawable.phrasebook, getResources().getString(R.string.phrasebook));
 
@@ -64,6 +69,20 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
                                 fragmentTransaction.commit();
                                 break;
                             case 1:
+                                FaqCategoryLoadManager_.getInstance_(MainActivity.getMainActivity()).loadFaqCategoryResults(
+                                        new FaqCategoryCallBack() {
+                                            @Override
+                                            public void onRestResults(int state, ArrayList<FaqCategory> results) {
+                                                Log.d("TEST", "");
+                                            }
+
+                                            @Override
+                                            public boolean isDestroyed() {
+                                                return false;
+                                            }
+                                        }
+                                );
+
                                 break;
                             case 2:
                                 PhraseFragment phraseFragment = new PhraseFragment();
@@ -84,5 +103,6 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
 
         return view;
     }
+
 
 }

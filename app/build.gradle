@@ -44,14 +44,37 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+    }
 }
 repositories {
     maven { url "https://jitpack.io" }
 }
 
+configurations.compile {
+    exclude module: 'spring-core'
+    exclude module: 'spring-web'
+    exclude module: 'commons-logging'
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 def AAVersion = '3.3.2'
+
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0].processResources.manifestFile  // This line is important
+        resourcePackageName android.defaultConfig.applicationId
+    }
+}
 
 dependencies {
     compile('com.mikepenz:materialdrawer:4.0.8@aar') {
@@ -77,6 +100,10 @@ dependencies {
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
     compile 'com.melnykov:floatingactionbutton:1.3.0'
+    compile 'com.google.code.gson:gson:1.7.2'
+    compile 'org.springframework.android:spring-android-core:1.0.1.RELEASE'
+    compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
+    compile 'org.springframework.android:spring-android-auth:1.0.1.RELEASE'
 
 
 }
