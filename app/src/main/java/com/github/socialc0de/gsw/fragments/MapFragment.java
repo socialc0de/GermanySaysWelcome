@@ -158,7 +158,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
             retrievedData = (ArrayList<ArrayList<MapItem>>)data.getData();
 
             RadiusMarkerClusterer poiMarkers = new RadiusMarkerClusterer(getActivity());
-            Drawable clusterIconD = getResources().getDrawable(R.drawable.fr);
+            Drawable clusterIconD = getResources().getDrawable(R.drawable.clustericon);
             Bitmap clusterIcon = ((BitmapDrawable) clusterIconD).getBitmap();
             poiMarkers.setIcon(clusterIcon);
 
