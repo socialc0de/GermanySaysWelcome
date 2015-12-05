@@ -1,15 +1,13 @@
 
 package com.github.socialc0de.gsw.customClasses.api;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class FaqCategory {
 
     private Integer id;
-    private List<Translation> translations = new ArrayList<Translation>();
+    private Translations translations;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
@@ -35,7 +33,7 @@ public class FaqCategory {
      * @return
      *     The translations
      */
-    public List<Translation> getTranslations() {
+    public Translations getTranslations() {
         return translations;
     }
 
@@ -44,7 +42,7 @@ public class FaqCategory {
      * @param translations
      *     The translations
      */
-    public void setTranslations(List<Translation> translations) {
+    public void setTranslations(Translations translations) {
         this.translations = translations;
     }
 
