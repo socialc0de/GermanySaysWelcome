@@ -4,30 +4,15 @@ package com.github.socialc0de.gsw.customClasses.api;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 public class Translations {
 
-    private De de;
     private Ar ar;
+    private Fr fr;
     private En en;
+    private De de;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-    /**
-     * 
-     * @return
-     *     The de
-     */
-    public De getDe() {
-        return de;
-    }
-
-    /**
-     * 
-     * @param de
-     *     The de
-     */
-    public void setDe(De de) {
-        this.de = de;
-    }
 
     /**
      * 
@@ -50,6 +35,24 @@ public class Translations {
     /**
      * 
      * @return
+     *     The fr
+     */
+    public Fr getFr() {
+        return fr;
+    }
+
+    /**
+     * 
+     * @param fr
+     *     The fr
+     */
+    public void setFr(Fr fr) {
+        this.fr = fr;
+    }
+
+    /**
+     * 
+     * @return
      *     The en
      */
     public En getEn() {
@@ -63,6 +66,24 @@ public class Translations {
      */
     public void setEn(En en) {
         this.en = en;
+    }
+
+    /**
+     * 
+     * @return
+     *     The de
+     */
+    public De getDe() {
+        return de;
+    }
+
+    /**
+     * 
+     * @param de
+     *     The de
+     */
+    public void setDe(De de) {
+        this.de = de;
     }
 
     public Map<String, Object> getAdditionalProperties() {

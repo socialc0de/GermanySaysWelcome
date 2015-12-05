@@ -6,7 +6,7 @@ import java.util.Map;
 
 
 
-public class En {
+public class Fr {
 
     private String phrase;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();

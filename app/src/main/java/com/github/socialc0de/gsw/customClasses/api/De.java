@@ -4,27 +4,29 @@ package com.github.socialc0de.gsw.customClasses.api;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 public class De {
 
-    private String name;
+    private String phrase;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
      * @return
-     *     The name
+     *     The phrase
      */
-    public String getName() {
-        return name;
+    public String getPhrase() {
+        return phrase;
     }
 
     /**
      * 
-     * @param name
-     *     The name
+     * @param phrase
+     *     The phrase
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setPhrase(String phrase) {
+        this.phrase = phrase;
     }
 
     public Map<String, Object> getAdditionalProperties() {
