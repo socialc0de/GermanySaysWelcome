@@ -18,6 +18,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.fragments.DashboardFragment;
+import com.github.socialc0de.gsw.fragments.EmergencyFragment;
 import com.github.socialc0de.gsw.fragments.FaqFragment;
 import com.github.socialc0de.gsw.fragments.MapFragment;
 import com.github.socialc0de.gsw.fragments.PhraseFragment;
@@ -88,8 +89,10 @@ public class MainActivity extends ActionBarActivity {
 
         fragmentList.add(new DashboardFragment());
         fragmentList.add(new FaqFragment());
+        fragmentList.add(new EmergencyFragment());
         fragmentList.add(new PhraseFragment());
         fragmentList.add(new MapFragment());
+
 
         createNavigationDrawer(mDrawer);
         SpannableString s = new SpannableString(getString(R.string.app_name));
@@ -141,6 +144,7 @@ public class MainActivity extends ActionBarActivity {
                     .addDrawerItems(
                             new PrimaryDrawerItem().withName(getResources().getString(R.string.dashboard)),
                             new PrimaryDrawerItem().withName(getResources().getString(R.string.faq)),
+                            new PrimaryDrawerItem().withName("Emergency"),
                             new PrimaryDrawerItem().withName(getResources().getString(R.string.phrasebook)),
                             new PrimaryDrawerItem().withName(getResources().getString(R.string.map)))
                     .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
