@@ -14,7 +14,7 @@ import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.activities.MainActivity;
 import com.github.socialc0de.gsw.adapter.CardItemAdapter;
 import com.github.socialc0de.gsw.adapter.RecyclerItemClickListener;
-import com.github.socialc0de.gsw.api.FaqCategoryLoadManager_;
+import com.github.socialc0de.gsw.api.LoadManager_;
 import com.github.socialc0de.gsw.api.interfaces.FaqCategoryCallBack;
 import com.github.socialc0de.gsw.customClasses.CardItem;
 import com.github.socialc0de.gsw.customClasses.api.FaqCategory;
@@ -69,7 +69,7 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
                                 fragmentTransaction.commit();
                                 break;
                             case 1:
-                                FaqCategoryLoadManager_.getInstance_(MainActivity.getMainActivity()).loadFaqCategoryResults(
+                                LoadManager_.getInstance_(MainActivity.getMainActivity()).loadFaqCategoryResults(
                                         new FaqCategoryCallBack() {
                                             @Override
                                             public void onRestResults(int state, ArrayList<FaqCategory> results) {
