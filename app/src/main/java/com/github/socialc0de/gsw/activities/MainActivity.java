@@ -143,7 +143,7 @@ public class MainActivity extends ActionBarActivity {
                     .addDrawerItems(
                             new PrimaryDrawerItem().withName(getResources().getString(R.string.dashboard)),
                             new PrimaryDrawerItem().withName(getResources().getString(R.string.faq)),
-                            new PrimaryDrawerItem().withName(getResources().getString(R.string.emergency)),
+                            new PrimaryDrawerItem().withName("Emergency"),
                             new PrimaryDrawerItem().withName(getResources().getString(R.string.phrasebook)),
                             new PrimaryDrawerItem().withName(getResources().getString(R.string.map)))
                     .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
