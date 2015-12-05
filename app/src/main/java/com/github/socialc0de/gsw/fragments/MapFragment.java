@@ -14,6 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
+import com.github.socialc0de.gsw.async.MyAsyncTask;
+import com.github.socialc0de.gsw.async.TaskResult;
+import com.github.socialc0de.gsw.async.interfaces.AsyncCallBack;
+import com.github.socialc0de.gsw.async.interfaces.CustomAsyncTask;
 import com.github.socialc0de.gsw.customClasses.MapItem;
 import com.melnykov.fab.FloatingActionButton;
 import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
@@ -27,6 +31,7 @@ import org.osmdroid.views.overlay.compass.CompassOverlay;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -111,57 +116,9 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                     public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
                         for (int i = 0; i < which.length; i++) Log.d("Selected items", " : " + which[i]);
 
-                        FilterTask filterTask = new FilterTask(which);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-                            filterTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                        else
-                            filterTask.execute();
+                        MyAsyncTask asyncTask = new MyAsyncTask(filterTask, which, callBack);
+                        asyncTask.execute();
 
-                        // Get ArrayList
-                        try {
-                            retrievedData = filterTask.get();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        } catch (ExecutionException e) {
-                            e.printStackTrace();
-                        }
-
-                        RadiusMarkerClusterer poiMarkers = new RadiusMarkerClusterer(getActivity());
-                        Drawable clusterIconD = getResources().getDrawable(R.drawable.fr);
-                        Bitmap clusterIcon = ((BitmapDrawable) clusterIconD).getBitmap();
-                        poiMarkers.setIcon(clusterIcon);
-
-                        Drawable authority = getResources().getDrawable(R.drawable.ic_local_hospital_white_24dp);
-                        Drawable hospital = getResources().getDrawable(R.drawable.ic_local_hospital_white_24dp);
-                        Drawable wifihotpots = getResources().getDrawable(R.drawable.ic_local_hospital_white_24dp);
-                        Drawable helpcenters = getResources().getDrawable(R.drawable.ic_local_hospital_white_24dp);
-
-                        //hospital.setTint(getResources().getColor(R.color.accentColor));
-
-                        ArrayList<Drawable> iconList = new ArrayList<Drawable>();
-                        iconList.add(hospital);
-                        iconList.add(authority);
-                        iconList.add(wifihotpots);
-                        iconList.add(helpcenters);
-
-                        for (int i = 0; i < retrievedData.size(); i++) {
-                            for (int t = 0; t < retrievedData.get(i).size(); t++) {
-                                MapItem mapItem = retrievedData.get(i).get(t);
-                                GeoPoint mapPoint = new GeoPoint(mapItem.getLatitude(), mapItem.getLongitude());
-                                Log.d(TAG, "i: " + i + " t: " + t + " retrievedData: " + mapItem.toString());
-                                Marker mapMarker = new Marker(mMapView);
-                                mapMarker.setPosition(mapPoint);
-                                mapMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-                                mapMarker.setTitle(mapItem.getTitle());
-                                mapMarker.setSubDescription(mapItem.getDescription());
-
-                                mapMarker.setIcon(iconList.get(i));
-                                poiMarkers.add(mapMarker);
-                            }
-                        }
-                        Log.d(TAG, " retrievedData loaded");
-                        mMapView.getOverlays().add(poiMarkers);
-                        mMapView.invalidate();
                         return true;
                     }
                 })
@@ -169,16 +126,87 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                 .show();
     }
 
+    /*
+    AsyncCallBack callBack = new AsyncCallBack() {
+        @Override
+        public void done(TaskResult data) {
 
-    private class FilterTask extends AsyncTask<Integer, Void, ArrayList<ArrayList<MapItem>>> {
-        private Integer[] which;
-
-        public FilterTask(Integer[] which) {
-            this.which = which;
         }
 
         @Override
-        protected ArrayList<ArrayList<MapItem>> doInBackground(Integer... params) {
+        public void error(TaskResult data) {
+
+        }
+    };
+
+    CustomAsyncTask filterTask = new CustomAsyncTask() {
+
+        @Override
+        public TaskResult run(TaskResult taskResult) {
+
+            done oder error im CallBack --> taskResult.setError(false);
+            daten setzen --> taskResult.setData(retrievedData);
+            return taskResult;
+        }
+
+    };
+    */
+
+    AsyncCallBack callBack = new AsyncCallBack() {
+        @Override
+        public void done(TaskResult data) {
+            retrievedData = (ArrayList<ArrayList<MapItem>>)data.getData();
+
+            RadiusMarkerClusterer poiMarkers = new RadiusMarkerClusterer(getActivity());
+            Drawable clusterIconD = getResources().getDrawable(R.drawable.fr);
+            Bitmap clusterIcon = ((BitmapDrawable) clusterIconD).getBitmap();
+            poiMarkers.setIcon(clusterIcon);
+
+            Drawable authority = getResources().getDrawable(R.drawable.ic_local_hospital_white_24dp);
+            Drawable hospital = getResources().getDrawable(R.drawable.ic_local_hospital_white_24dp);
+            Drawable wifihotpots = getResources().getDrawable(R.drawable.ic_local_hospital_white_24dp);
+            Drawable helpcenters = getResources().getDrawable(R.drawable.ic_local_hospital_white_24dp);
+
+            //hospital.setTint(getResources().getColor(R.color.accentColor));
+
+            ArrayList<Drawable> iconList = new ArrayList<Drawable>();
+            iconList.add(hospital);
+            iconList.add(authority);
+            iconList.add(wifihotpots);
+            iconList.add(helpcenters);
+
+            for (int i = 0; i < retrievedData.size(); i++) {
+                for (int t = 0; t < retrievedData.get(i).size(); t++) {
+                    MapItem mapItem = retrievedData.get(i).get(t);
+                    GeoPoint mapPoint = new GeoPoint(mapItem.getLatitude(), mapItem.getLongitude());
+                    Log.d(TAG, "i: " + i + " t: " + t + " retrievedData: " + mapItem.toString());
+                    Marker mapMarker = new Marker(mMapView);
+                    mapMarker.setPosition(mapPoint);
+                    mapMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+                    mapMarker.setTitle(mapItem.getTitle());
+                    mapMarker.setSubDescription(mapItem.getDescription());
+
+                    mapMarker.setIcon(iconList.get(i));
+                    poiMarkers.add(mapMarker);
+                }
+            }
+            Log.d(TAG, " retrievedData loaded");
+            mMapView.getOverlays().add(poiMarkers);
+            mMapView.invalidate();
+        }
+
+        @Override
+        public void error(TaskResult data) {
+
+        }
+    };
+
+    CustomAsyncTask filterTask = new CustomAsyncTask() {
+
+        @Override
+        public TaskResult run(TaskResult taskResult) {
+            Integer[] which = (Integer[])taskResult.getData();
+
             Log.d("AsyncTask called", "");
             ArrayList<ArrayList<MapItem>> retrievedData = new ArrayList<ArrayList<MapItem>>();
             ArrayList<MapItem> authorities = new ArrayList<MapItem>();
@@ -210,7 +238,9 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                         break;
                 }
             }
-            return retrievedData;
+            taskResult.setData(retrievedData);
+            taskResult.setError(false);
+            return taskResult;
         }
-    }
+    };
 }

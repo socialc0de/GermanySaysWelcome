@@ -39,12 +39,13 @@ public class MainActivity extends ActionBarActivity {
     private ArrayList<Fragment> fragmentList = new ArrayList<Fragment>();
     private SharedPreferences mPrefs;
     private final String welcomeScreenShownPref = "welcomeScreenShown";
+    private static MainActivity mainActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        this.mainActivity = this;
 
         // Check if app was started before
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -176,5 +177,9 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static MainActivity getMainActivity() {
+        return mainActivity;
     }
 }
