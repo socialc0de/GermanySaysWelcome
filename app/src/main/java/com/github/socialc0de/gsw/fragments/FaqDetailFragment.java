@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.customClasses.CustomCard;
+import com.melnykov.fab.FloatingActionButton;
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardExpand;
 import it.gmariotti.cardslib.library.internal.CardHeader;
@@ -65,6 +66,9 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_faq_detail, container, false);
 
+        FloatingActionButton newQuestion = (FloatingActionButton) view.findViewById(R.id.questionButton);
+        newQuestion.setOnClickListener(this);
+
         ArrayList<Card> cards = new ArrayList<Card>();
 
         Card customCard = createCustomCard("How to manage my finances? How to manage my finances? How to manage my finances? How to manage my finances?", "Law & Order", "Ask local authorities. Ask local authorities. Ask local authorities. Ask local authorities. Ask local authorities");
@@ -97,7 +101,7 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
                 .title("New Question")
                 .content("Enter question:")
                 .inputType(InputType.TYPE_CLASS_TEXT)
-                .input("Ask something thats not part of our FAQ", "_______", new MaterialDialog.InputCallback() {
+                .input("Your question", "", new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                         // Do something
