@@ -5,9 +5,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.github.socialc0de.gsw.activities.MainActivity;
-import com.github.socialc0de.gsw.api.interfaces.FaqCategoryCallBack;
 import com.github.socialc0de.gsw.api.interfaces.FaqCategoryRestClient;
+import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
+import com.github.socialc0de.gsw.api.interfaces.PhraseCategoryRestClient;
 import com.github.socialc0de.gsw.customClasses.api.FaqCategory;
+import com.github.socialc0de.gsw.customClasses.api.PhraseCategory;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Background;
@@ -28,7 +30,7 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
     public static final  int NETWORK_SERVICE_NOT_AVAILABLE = 3;
 
     private Context mCurrentActivity = null;
-    private FaqCategoryCallBack mCallback = null;
+    private RestArrayRequestCallBack mCallback = null;
 
     private int mNetworkstate = NETWORK_AVAILABLE;
 
@@ -44,7 +46,7 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
      */
 
     @Background
-    public void loadFaqCategoryResults(final FaqCategoryCallBack callback) {
+    public void loadFaqCategoryResults(final RestArrayRequestCallBack callback) {
         FaqCategoryRestClient mRestClient;
         mNetworkstate = NETWORK_AVAILABLE;
 
@@ -54,7 +56,7 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         }
         mCallback = callback; // store callback class for error
 
-        mRestClient = RestClientHelper.createRestClientWithTimeout(getCurrentActivity());//new CurrencyRestClient_(getCurrentActivity());
+        mRestClient = RestClientHelper.createFaqCategoryRestClientWithTimeout(getCurrentActivity());//new CurrencyRestClient_(getCurrentActivity());
         mRestClient.setRestErrorHandler(this);
 
         Boolean networkAvailable = checkNetworkState();
@@ -67,6 +69,39 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
             callback.onRestResults(mNetworkstate, null);
         }else {
             ArrayList<FaqCategory> results = mRestClient.loadFaqCategoryFromRest();
+
+            if(mNetworkstate == NETWORK_AVAILABLE) {
+                if (callback != null && !callback.isDestroyed()) {
+                    callback.onRestResults(mNetworkstate, results);
+                }
+            }
+        }
+    }
+
+    @Background
+    public void loadPhraseCategoryResults(final RestArrayRequestCallBack callback) {
+        PhraseCategoryRestClient mRestClient;
+        mNetworkstate = NETWORK_AVAILABLE;
+
+
+        if(callback == null){
+            return;
+        }
+        mCallback = callback; // store callback class for error
+
+        mRestClient = RestClientHelper.createPhraseCategoryRestClientWithTimeout(getCurrentActivity());//new CurrencyRestClient_(getCurrentActivity());
+        mRestClient.setRestErrorHandler(this);
+
+        Boolean networkAvailable = checkNetworkState();
+        if(networkAvailable == null){
+            return;
+        }
+
+        if(!networkAvailable){
+            mNetworkstate = NETWORK_NOT_AVAILABLE;
+            callback.onRestResults(mNetworkstate, null);
+        }else {
+            ArrayList<PhraseCategory> results =  mRestClient.loadPhraseCategoryFromRest();
 
             if(mNetworkstate == NETWORK_AVAILABLE) {
                 if (callback != null && !callback.isDestroyed()) {

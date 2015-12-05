@@ -15,11 +15,11 @@ import com.github.socialc0de.gsw.activities.MainActivity;
 import com.github.socialc0de.gsw.adapter.CardItemAdapter;
 import com.github.socialc0de.gsw.adapter.RecyclerItemClickListener;
 import com.github.socialc0de.gsw.api.LoadManager_;
-import com.github.socialc0de.gsw.api.interfaces.FaqCategoryCallBack;
+import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
 import com.github.socialc0de.gsw.customClasses.CardItem;
-import com.github.socialc0de.gsw.customClasses.api.FaqCategory;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by patricebecker on 10/11/15.
@@ -70,9 +70,9 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
                                 break;
                             case 1:
                                 LoadManager_.getInstance_(MainActivity.getMainActivity()).loadFaqCategoryResults(
-                                        new FaqCategoryCallBack() {
+                                        new RestArrayRequestCallBack() {
                                             @Override
-                                            public void onRestResults(int state, ArrayList<FaqCategory> results) {
+                                            public void onRestResults(int state, ArrayList<?> results) {
                                                 Log.d("TEST", "");
                                             }
 
