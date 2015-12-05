@@ -3,9 +3,11 @@ package com.github.socialc0de.gsw.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.customClasses.CustomCard;
 import it.gmariotti.cardslib.library.internal.Card;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FaqDetailFragment extends Fragment {
+public class FaqDetailFragment extends Fragment implements View.OnClickListener {
 
 
     public FaqDetailFragment() {
@@ -89,4 +91,17 @@ public class FaqDetailFragment extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View view) {
+        new MaterialDialog.Builder(getActivity())
+                .title("New Question")
+                .content("Enter question:")
+                .inputType(InputType.TYPE_CLASS_TEXT)
+                .input("Ask something thats not part of our FAQ", "_______", new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(MaterialDialog dialog, CharSequence input) {
+                        // Do something
+                    }
+                }).show();
+    }
 }
