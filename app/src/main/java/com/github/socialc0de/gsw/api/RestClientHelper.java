@@ -6,6 +6,8 @@ import com.github.socialc0de.gsw.api.interfaces.FaqCategoryRestClient;
 import com.github.socialc0de.gsw.api.interfaces.FaqCategoryRestClient_;
 import com.github.socialc0de.gsw.api.interfaces.PhraseCategoryRestClient;
 import com.github.socialc0de.gsw.api.interfaces.PhraseCategoryRestClient_;
+import com.github.socialc0de.gsw.api.interfaces.PoiCategoryRestClient;
+import com.github.socialc0de.gsw.api.interfaces.PoiCategoryRestClient_;
 
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
@@ -18,6 +20,23 @@ public class RestClientHelper {
 
     public static FaqCategoryRestClient createFaqCategoryRestClientWithTimeout(final Context context) {
         FaqCategoryRestClient restClient = new FaqCategoryRestClient_(context);
+
+        // set timeout to 20s
+        ClientHttpRequestFactory requestFactory = restClient.getRestTemplate().getRequestFactory();
+        if(requestFactory instanceof SimpleClientHttpRequestFactory) {
+            ((SimpleClientHttpRequestFactory) requestFactory).setConnectTimeout(20 * 1000);
+            ((SimpleClientHttpRequestFactory) requestFactory).setReadTimeout(20 * 1000);
+        }
+        else if(requestFactory instanceof HttpComponentsClientHttpRequestFactory) {
+            ((HttpComponentsClientHttpRequestFactory) requestFactory).setReadTimeout(20 * 1000);
+            ((HttpComponentsClientHttpRequestFactory) requestFactory).setConnectTimeout(20 * 1000);
+        }
+
+        return restClient;
+    }
+
+    public static PoiCategoryRestClient createPoiCategoryRestClientWithTimeout(final Context context) {
+        PoiCategoryRestClient restClient = new PoiCategoryRestClient_(context);
 
         // set timeout to 20s
         ClientHttpRequestFactory requestFactory = restClient.getRestTemplate().getRequestFactory();

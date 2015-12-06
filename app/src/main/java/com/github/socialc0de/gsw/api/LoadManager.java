@@ -6,10 +6,12 @@ import android.net.NetworkInfo;
 
 import com.github.socialc0de.gsw.activities.MainActivity;
 import com.github.socialc0de.gsw.api.interfaces.FaqCategoryRestClient;
+import com.github.socialc0de.gsw.api.interfaces.PoiCategoryRestClient;
 import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
 import com.github.socialc0de.gsw.api.interfaces.PhraseCategoryRestClient;
 import com.github.socialc0de.gsw.customClasses.api.FaqCategory;
 import com.github.socialc0de.gsw.customClasses.api.PhraseCategory;
+import com.github.socialc0de.gsw.customClasses.api.PoiCategory;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Background;
@@ -102,6 +104,39 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
             callback.onRestResults(mNetworkstate, null);
         }else {
             ArrayList<PhraseCategory> results =  mRestClient.loadPhraseCategoryFromRest();
+
+            if(mNetworkstate == NETWORK_AVAILABLE) {
+                if (callback != null && !callback.isDestroyed()) {
+                    callback.onRestResults(mNetworkstate, results);
+                }
+            }
+        }
+    }
+
+    @Background
+    public void loadPoiCategoryResults(final RestArrayRequestCallBack callback) {
+        PoiCategoryRestClient mRestClient;
+        mNetworkstate = NETWORK_AVAILABLE;
+
+
+        if(callback == null){
+            return;
+        }
+        mCallback = callback; // store callback class for error
+
+        mRestClient = RestClientHelper.createPoiCategoryRestClientWithTimeout(getCurrentActivity());//new CurrencyRestClient_(getCurrentActivity());
+        mRestClient.setRestErrorHandler(this);
+
+        Boolean networkAvailable = checkNetworkState();
+        if(networkAvailable == null){
+            return;
+        }
+
+        if(!networkAvailable){
+            mNetworkstate = NETWORK_NOT_AVAILABLE;
+            callback.onRestResults(mNetworkstate, null);
+        }else {
+            ArrayList<PoiCategory> results =  mRestClient.loadPoiCategoryFromRest();
 
             if(mNetworkstate == NETWORK_AVAILABLE) {
                 if (callback != null && !callback.isDestroyed()) {

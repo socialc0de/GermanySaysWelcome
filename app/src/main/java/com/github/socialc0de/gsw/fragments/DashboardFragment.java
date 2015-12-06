@@ -69,7 +69,7 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
                                 fragmentTransaction.commit();
                                 break;
                             case 1:
-                                LoadManager_.getInstance_(MainActivity.getMainActivity()).loadFaqCategoryResults(
+                                LoadManager_.getInstance_(MainActivity.getMainActivity()).loadPhraseCategoryResults(
                                         new RestArrayRequestCallBack() {
                                             @Override
                                             public void onRestResults(int state, ArrayList<?> results) {
