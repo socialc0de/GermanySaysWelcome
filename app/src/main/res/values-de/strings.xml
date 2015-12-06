@@ -69,4 +69,9 @@
 	<string name="helpcenter">Hilfszentren</string>
 	<string name="hospitals">Krankenhäuser</string>
 	<string name="hotspots">WiFi HotSpots</string>
+	<string name="title_activity_new_question">NewQuestionActivity</string>
+	<string name="newquestion">Neue Frage</string>
+	<string name="hinttextquestion">Ihre Frage...</string>
+	<string name="hello_world">HW</string>
+	<string name="enterquestion">Frage eingeben:</string>
 </resources>
