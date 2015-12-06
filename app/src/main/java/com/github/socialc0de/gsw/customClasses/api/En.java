@@ -8,33 +8,50 @@ import java.util.Map;
 
 public class En {
 
-    private String phrase;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private String name = "";
+    private String description = "";
+    private String question = "";
+    private String answer = "";
+    private String phrase = "";
 
-    /**
-     * 
-     * @return
-     *     The phrase
-     */
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
     public String getPhrase() {
         return phrase;
     }
 
-    /**
-     * 
-     * @param phrase
-     *     The phrase
-     */
     public void setPhrase(String phrase) {
         this.phrase = phrase;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }
