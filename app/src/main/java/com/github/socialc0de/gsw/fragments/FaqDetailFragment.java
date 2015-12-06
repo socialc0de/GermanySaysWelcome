@@ -38,7 +38,7 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
                         .setupCardElement(ViewToClickToExpand.CardElementUI.CARD);
         customCard.setViewToClickToExpand(viewToClickToExpand);
 
-//Set onClick listener
+        // Set onClick listener
         customCard.setOnClickListener(new Card.OnCardClickListener() {
             @Override
             public void onClick(Card card, View view) {
@@ -67,6 +67,9 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
         View view = inflater.inflate(R.layout.fragment_faq_detail, container, false);
 
         FloatingActionButton newQuestion = (FloatingActionButton) view.findViewById(R.id.questionButton);
+        newQuestion.setColorNormalResId(R.color.accentColor);
+        newQuestion.setColorRippleResId(R.color.accentColor);
+        newQuestion.setColorPressedResId(R.color.accentColor);
         newQuestion.setOnClickListener(this);
 
         ArrayList<Card> cards = new ArrayList<Card>();

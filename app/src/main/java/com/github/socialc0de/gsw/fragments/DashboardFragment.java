@@ -73,7 +73,6 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
                                         new RestArrayRequestCallBack() {
                                             @Override
                                             public void onRestResults(int state, ArrayList<?> results) {
-                                                Log.d("TEST", "");
                                             }
 
                                             @Override

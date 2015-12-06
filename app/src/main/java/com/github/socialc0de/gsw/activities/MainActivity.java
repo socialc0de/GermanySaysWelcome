@@ -126,7 +126,7 @@ public class MainActivity extends ActionBarActivity {
         if (mDrawer == null) {
             headerResult = new AccountHeaderBuilder()
                     .withActivity(this)
-                    .withHeaderBackground(R.drawable.productback)
+                    .withHeaderBackground(R.drawable.gb)
                     .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                         @Override
                         public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
