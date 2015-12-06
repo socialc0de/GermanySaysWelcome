@@ -87,7 +87,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="spring-android-auth-1.0.1.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="spring-social-core-1.0.2.RELEASE" level="project" />

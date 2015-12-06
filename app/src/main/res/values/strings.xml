@@ -52,6 +52,9 @@
 
 	<!-- FAQ -->
 	<string name="faqdetail">FAQ Detail</string>
+	<string name="newquestion">New Question</string>
+	<string name="enterquestion">Enter question:</string>
+	<string name="hinttextquestion">Your question...</string>
 
 	<!-- Setup -->
 	<string name="step1">Step 1: You just arrived in Germany</string>

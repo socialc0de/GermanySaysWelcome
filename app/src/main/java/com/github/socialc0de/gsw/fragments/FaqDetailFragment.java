@@ -98,10 +98,10 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onClick(View view) {
         new MaterialDialog.Builder(getActivity())
-                .title("New Question")
-                .content("Enter question:")
+                .title(getResources().getString(R.string.newquestion))
+                .content(getResources().getString(R.string.enterquestion))
                 .inputType(InputType.TYPE_CLASS_TEXT)
-                .input("Your question", "", new MaterialDialog.InputCallback() {
+                .input(getResources().getString(R.string.hinttextquestion), "", new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                         // Do something
