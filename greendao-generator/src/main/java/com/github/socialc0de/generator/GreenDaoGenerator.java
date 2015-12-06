@@ -13,20 +13,34 @@ public class GreenDaoGenerator {
         schema.setDefaultJavaPackageDao("com.github.socialc0de.gsw.api.database.dao");
         schema.setDefaultJavaPackageTest("com.github.socialc0de.gsw.api.database.test");
 
+
         Entity translation = setupTranslationEntity(schema);
-        Entity audienceEntity = setupAudienceEntity(schema, translation);
+        Property translationID = translation.addLongProperty("translationID").notNull().getProperty();
+        Entity audienceEntity = setupAudienceEntity(schema, translation, translationID);
+        Entity phraseCategoryEntity = setupPhraseCategoryEntity(schema, translation, translationID);
 
 
         new DaoGenerator().generateAll(schema, args[0]);
     }
 
-    private static Entity setupAudienceEntity(final Schema schema, Entity translation) {
+    private static Entity setupAudienceEntity(final Schema schema, Entity translation, Property translationID) {
         Entity entity = schema.addEntity("AudienceEntry");
         entity.setTableName("AudienceEntry");
         entity.addIdProperty();
         entity.addIntProperty("DID");
 
-        Property translationID = translation.addLongProperty("translationID").notNull().getProperty();
+        ToMany tt = entity.addToMany(translation, translationID);
+        tt.setName("translations");
+
+        return entity;
+    }
+
+    private static Entity setupPhraseCategoryEntity(final Schema schema, Entity translation, Property translationID) {
+        Entity entity = schema.addEntity("PhraseCategory");
+        entity.setTableName("PhraseCategory");
+        entity.addIdProperty();
+        entity.addIntProperty("DID");
+
         ToMany tt = entity.addToMany(translation, translationID);
         tt.setName("translations");
 
@@ -37,6 +51,7 @@ public class GreenDaoGenerator {
         Entity entity = schema.addEntity("TranslationEntity");
         entity.setTableName("TranslationEntity");
         entity.addIdProperty();
+        entity.addStringProperty("DID");
         entity.addStringProperty("language_code");
         entity.addStringProperty("name");
         entity.addStringProperty("description");
