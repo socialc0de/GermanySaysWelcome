@@ -4,6 +4,7 @@ import com.github.socialc0de.gsw.customClasses.api.FaqEntry;
 
 import org.androidannotations.annotations.rest.Accept;
 import org.androidannotations.annotations.rest.Get;
+import org.androidannotations.annotations.rest.Post;
 import org.androidannotations.annotations.rest.RequiresHeader;
 import org.androidannotations.annotations.rest.Rest;
 import org.androidannotations.api.rest.MediaType;
@@ -33,6 +34,9 @@ public interface FaqEntryRestClient extends RestClientErrorHandling {
     @Accept(MediaType.APPLICATION_JSON)
     @RequiresHeader({"User-Agent"})
     ArrayList<FaqEntry> loadFaqEntriesFromRest();
+
+    @Post("/faq")
+    void addFaqEntry(FaqEntry entry);
 
 
     // if you need to add some configuration to the Spring RestTemplate.

@@ -19,40 +19,45 @@ public class Language {
         return name;
     }
 
-    public void setName(String name) {
+    public Language setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public Language setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public String getQuestion() {
         return question;
     }
 
-    public void setQuestion(String question) {
+    public Language setQuestion(String question) {
         this.question = question;
+        return this;
     }
 
     public String getAnswer() {
         return answer;
     }
 
-    public void setAnswer(String answer) {
+    public Language setAnswer(String answer) {
         this.answer = answer;
+        return this;
     }
 
     public String getPhrase() {
         return phrase;
     }
 
-    public void setPhrase(String phrase) {
+    public Language setPhrase(String phrase) {
         this.phrase = phrase;
+        return this;
     }
 
 }

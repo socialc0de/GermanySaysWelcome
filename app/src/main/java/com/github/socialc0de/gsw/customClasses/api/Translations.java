@@ -82,8 +82,9 @@ public class Translations {
      * @param de
      *     The de
      */
-    public void setDe(De de) {
+    public Translations setDe(De de) {
         this.de = de;
+        return this;
     }
 
     public Map<String, Object> getAdditionalProperties() {

@@ -289,6 +289,26 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
     }
 
     @Background
+    public void addFaqEntry(FaqEntry faqEntry) {
+        FaqEntryRestClient mRestClient;
+        mNetworkstate = NETWORK_AVAILABLE;
+
+        mRestClient = RestClientHelper.createFaqEntryRestClientWithTimeout(getCurrentActivity());//new CurrencyRestClient_(getCurrentActivity());
+        mRestClient.setRestErrorHandler(this);
+
+        Boolean networkAvailable = checkNetworkState();
+        if(networkAvailable == null){
+            return;
+        }
+
+        if(!networkAvailable){
+            mNetworkstate = NETWORK_NOT_AVAILABLE;
+        }else {
+            mRestClient.addFaqEntry(faqEntry);
+        }
+    }
+
+    @Background
     public void loadPoiEntriesResults(final RestArrayRequestCallBack callback) {
         PoiEntryRestClient mRestClient;
         mNetworkstate = NETWORK_AVAILABLE;
