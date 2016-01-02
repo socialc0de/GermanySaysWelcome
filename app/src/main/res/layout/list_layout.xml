@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?><!--<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    card_view:cardPreventCornerOverlap="false"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardCornerRadius="4dp"
+    android:padding="50dp"
+    android:layout_marginRight="50dp">
+    <ImageView
+            android:id="@+id/listLayoutImageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="centerCrop"/>
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="60dp">
+            <LinearLayout
+                android:id="@+id/listLayoutLinearLayout"
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/listLayoutTextView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:text="Tablet"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textGrey"
+                    android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/listLayoutTextView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="-4dp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:text="Rectory Ln 37, Poringland, Norfolk, GB"
+                    android:textColor="@color/textGrey"
+                    android:textSize="9sp" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/listLayoutTextView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|right"
+                android:fontFamily="sans-serif-bold"
+                android:text="Electronics"
+                android:textColor="@color/accentColor"
+                android:textSize="9sp"
+                android:layout_marginRight="15dp"/>
+        </FrameLayout>
+</android.support.v7.widget.CardView>-->
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="360dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardPreventCornerOverlap="false"
+    card_view:cardUseCompatPadding="true">
+
+    <ImageView
+        android:id="@+id/listLayoutImageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="80dp">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/listLayoutLinearLayout"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/listLayoutTextView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="Tablet"
+                    android:textColor="@color/textGrey"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/listLayoutTextView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="-4dp"
+                    android:layout_weight="1"
+                    android:text="Rectory Ln 37, Poringland, Norfolk, GB"
+                    android:textColor="@color/textGrey"
+                    android:textSize="12sp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/listLayoutTextView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginRight="15dp"
+            android:fontFamily="sans-serif-bold"
+            android:text="Electronics"
+            android:textColor="@color/accentColor"
+            android:textSize="9sp" />
+
+
+    </FrameLayout>
+</android.support.v7.widget.CardView>

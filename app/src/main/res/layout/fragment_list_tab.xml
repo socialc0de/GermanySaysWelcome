@@ -2,47 +2,11 @@
 			 android:layout_width="fill_parent"
 			 android:layout_height="match_parent">
 
-	<ScrollView
-			android:id="@+id/fragment_list_scrollView"
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:scrollbars="none">
-
-		<LinearLayout
-				android:layout_width="fill_parent"
-				android:layout_height="fill_parent"
-				android:orientation="vertical">
-
-			<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center"
-					android:background="@color/textWhite"
-					android:gravity="center"
-					android:orientation="vertical"
-					android:textColor="@color/textWhite">
-
-				<ListView
-						android:id="@+id/listView"
-						android:layout_width="match_parent"
-						android:layout_height="fill_parent"
-						android:divider="@drawable/list_border"
-						android:dividerHeight="1px"
-						android:scrollbars="none"/>
-			</LinearLayout>
-
-			<TextView
-					android:id="@+id/empty"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_centerHorizontal="true"
-					android:layout_centerVertical="true"
-					android:layout_gravity="center"
-					android:text="No offers available"/>
-
-
-		</LinearLayout>
-
-
-	</ScrollView>
+	<ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:divider="@drawable/list_border"
+            android:dividerHeight="1px"
+            android:scrollbars="none"/>
 </FrameLayout>
