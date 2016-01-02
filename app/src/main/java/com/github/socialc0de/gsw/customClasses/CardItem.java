@@ -6,10 +6,12 @@ package com.github.socialc0de.gsw.customClasses;
 public class CardItem {
     private int image;
     private String categoryName;
+    private int id = 0;
 
-    public CardItem(int image, String categoryName) {
+    public CardItem(int image, String categoryName, int id) {
         this.image = image;
         this.categoryName = categoryName;
+        this.id = id;
     }
 
     public String getCategoryName() {
@@ -18,5 +20,13 @@ public class CardItem {
 
     public int getImage() {
         return image;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

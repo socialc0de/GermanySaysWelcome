@@ -25,6 +25,7 @@ import java.util.ArrayList;
  */
 public class FaqDetailFragment extends Fragment implements View.OnClickListener {
 
+    public int categoryId = 0;
 
     public FaqDetailFragment() {
     }
@@ -110,5 +111,13 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
                         // Do something
                     }
                 }).show();
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 }

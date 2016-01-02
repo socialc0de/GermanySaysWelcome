@@ -49,9 +49,9 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
         recList.setLayoutManager(llm);
 
 
-        final CardItem faqCard = new CardItem(R.drawable.faq, getResources().getString(R.string.faq));
-        CardItem mapCard = new CardItem(R.drawable.map, getResources().getString(R.string.map));
-        CardItem phrasebookCard = new CardItem(R.drawable.phrasebook, getResources().getString(R.string.phrasebook));
+        final CardItem faqCard = new CardItem(R.drawable.faq, getResources().getString(R.string.faq), 0);
+        CardItem mapCard = new CardItem(R.drawable.map, getResources().getString(R.string.map), 1);
+        CardItem phrasebookCard = new CardItem(R.drawable.phrasebook, getResources().getString(R.string.phrasebook), 2);
 
         ArrayList<CardItem> cardItemArrayList = new ArrayList<CardItem>();
         cardItemArrayList.add(faqCard);

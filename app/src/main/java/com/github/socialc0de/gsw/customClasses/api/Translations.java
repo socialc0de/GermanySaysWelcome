@@ -8,10 +8,10 @@ import java.util.Map;
 
 public class Translations {
 
-    private Ar ar;
-    private Fr fr;
-    private En en;
-    private De de;
+    private Ar ar = new Ar();
+    private Fr fr = new Fr();
+    private En en = new En();
+    private De de = new De();
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
