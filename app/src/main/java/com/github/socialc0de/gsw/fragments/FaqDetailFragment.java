@@ -1,6 +1,8 @@
 package com.github.socialc0de.gsw.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.InputType;
@@ -9,7 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
+import com.github.socialc0de.gsw.activities.MainActivity;
+import com.github.socialc0de.gsw.activities.SetupActivity;
+import com.github.socialc0de.gsw.api.LoadManager_;
+import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
+import com.github.socialc0de.gsw.customClasses.CardItem;
 import com.github.socialc0de.gsw.customClasses.CustomCard;
+import com.github.socialc0de.gsw.customClasses.api.FaqCategory;
+import com.github.socialc0de.gsw.customClasses.api.FaqEntry;
 import com.melnykov.fab.FloatingActionButton;
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardExpand;
@@ -26,6 +35,9 @@ import java.util.ArrayList;
 public class FaqDetailFragment extends Fragment implements View.OnClickListener {
 
     public int categoryId = 0;
+    private ArrayList<Card> cards = new ArrayList<Card>();
+    private CardRecyclerView mRecyclerView;
+    private SharedPreferences mPrefs;
 
     public FaqDetailFragment() {
     }
@@ -72,30 +84,54 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
         newQuestion.setColorRippleResId(R.color.accentColor);
         newQuestion.setColorPressedResId(R.color.accentColor);
         newQuestion.setOnClickListener(this);
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getMainActivity());
+        final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, "en");
+        cards.clear();
 
-        ArrayList<Card> cards = new ArrayList<Card>();
+        LoadManager_.getInstance_(MainActivity.getMainActivity()).loadFaqEntriesByCategoryResults(
+                new RestArrayRequestCallBack() {
+                    @Override
+                    public void onRestResults(int state, ArrayList<?> results) {
+                        for(FaqEntry entry : (ArrayList<FaqEntry>)results){
 
-        Card customCard = createCustomCard("How to manage my finances? How to manage my finances? How to manage my finances? How to manage my finances?", "Law & Order", "Ask local authorities. Ask local authorities. Ask local authorities. Ask local authorities. Ask local authorities");
-        Card customCard1 = createCustomCard("How to manage my asylum application?", "Asylum", "Ask local authorities");
-        Card customCard2 = createCustomCard("How to manage my job application?", "Education & Work", "Ask local authorities");
+                            if(lngCode.equals("de")){
+                                cards.add(createCustomCard(entry.getCreated(), entry.getTranslations().getDe().getQuestion(), entry.getTranslations().getDe().getAnswer()));
+                            } else if(lngCode.equals("en")){
+                                cards.add(createCustomCard(entry.getCreated(), entry.getTranslations().getEn().getQuestion(), entry.getTranslations().getEn().getAnswer()));
+                            } else if(lngCode.equals("fr")){
+                                cards.add(createCustomCard(entry.getCreated(), entry.getTranslations().getFr().getQuestion(), entry.getTranslations().getFr().getAnswer()));
+                            } else if(lngCode.equals("ar")){
+                                cards.add(createCustomCard(entry.getCreated(), entry.getTranslations().getAr().getQuestion(), entry.getTranslations().getAr().getAnswer()));
+                            }
+                        }
+                        MainActivity.getMainActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                reload();
+                            }
+                        });
+                    }
 
-
-        cards.add(customCard);
-        cards.add(customCard1);
-        cards.add(customCard2);
-
-        CardArrayRecyclerViewAdapter mCardArrayAdapter = new CardArrayRecyclerViewAdapter(getActivity(), cards);
+                    @Override
+                    public boolean isDestroyed() {
+                        return false;
+                    }
+                }
+                , categoryId);
 
         //Staggered grid view
-        CardRecyclerView mRecyclerView = (CardRecyclerView) view.findViewById(R.id.carddemo_recyclerview);
+        mRecyclerView = (CardRecyclerView) view.findViewById(R.id.carddemo_recyclerview);
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        //Set the empty view
+        return view;
+    }
+
+    private void reload(){
+        CardArrayRecyclerViewAdapter mCardArrayAdapter = new CardArrayRecyclerViewAdapter(getActivity(), cards);
         if (mRecyclerView != null) {
             mRecyclerView.setAdapter(mCardArrayAdapter);
         }
-        return view;
     }
 
 

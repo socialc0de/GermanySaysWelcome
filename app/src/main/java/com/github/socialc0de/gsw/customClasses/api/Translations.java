@@ -12,7 +12,6 @@ public class Translations {
     private Fr fr = new Fr();
     private En en = new En();
     private De de = new De();
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
      * 
@@ -87,12 +86,6 @@ public class Translations {
         return this;
     }
 
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
 
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
 
 }

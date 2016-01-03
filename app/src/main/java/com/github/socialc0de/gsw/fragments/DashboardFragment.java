@@ -75,7 +75,7 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
                             case 1:
                                 FaqEntry faqEntry = new FaqEntry();
                                 faqEntry.setCounty(2222);
-                                faqEntry.setTranslations(new Translations().setDe(((De)(new De().setQuestion("dd")))));
+                                faqEntry.setTranslations(new Translations().setDe(((De)(new De().setQuestion("karl")))));
                                 LoadManager_.getInstance_(MainActivity.getMainActivity()).addFaqEntry(faqEntry);
                                 LoadManager_.getInstance_(MainActivity.getMainActivity()).loadEmergencyEntriesResults(
                                         new RestArrayRequestCallBack() {

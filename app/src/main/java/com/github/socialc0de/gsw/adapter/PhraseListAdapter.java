@@ -1,7 +1,9 @@
 package com.github.socialc0de.gsw.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +53,8 @@ public class PhraseListAdapter extends ArrayAdapter<PhraseEntry> {
 
             }
             PhraseEntry currentData = arrayList.get(position);
+
+            //TODO: Französich
 
             if(currentData.getTranslations().getDe() != null)
             ((TextView) v.findViewById(R.id.german_phrase)).setText(currentData.getTranslations().getDe().getPhrase());

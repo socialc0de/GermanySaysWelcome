@@ -8,7 +8,7 @@ public class FaqCategory {
 
     private Integer id;
     private Translations translations;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private String image;
 
     /**
      * 
@@ -46,12 +46,5 @@ public class FaqCategory {
         this.translations = translations;
     }
 
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
 
 }

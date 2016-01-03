@@ -1,6 +1,8 @@
 package com.github.socialc0de.gsw.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.SlidingTabLayout;
 import com.github.socialc0de.gsw.activities.MainActivity;
+import com.github.socialc0de.gsw.activities.SetupActivity;
 import com.github.socialc0de.gsw.adapter.CardItemAdapter;
 import com.github.socialc0de.gsw.adapter.PhraseViewPagerAdapter;
 import com.github.socialc0de.gsw.adapter.RecyclerItemClickListener;
@@ -33,6 +36,7 @@ public class FaqFragment extends Fragment {
     private ArrayList<CardItem> cardItemArrayList = new ArrayList<CardItem>();
     private RecyclerView recList;
     private View myView;
+    private SharedPreferences mPrefs;
 
     @Nullable
     @Override
@@ -47,13 +51,27 @@ public class FaqFragment extends Fragment {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
 
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getMainActivity());
+
+        final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, "en");
+
+
         cardItemArrayList.clear();
         LoadManager_.getInstance_(MainActivity.getMainActivity()).loadFaqCategoryResults(
                 new RestArrayRequestCallBack() {
                     @Override
                     public void onRestResults(int state, ArrayList<?> results) {
                         for(FaqCategory category : (ArrayList<FaqCategory>)results){
-                            cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getDe().getName(), category.getId()));
+
+                            if(lngCode.equals("de")){
+                                cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getDe().getName(), category.getId()));
+                            } else if(lngCode.equals("en")){
+                                cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getEn().getName(), category.getId()));
+                            } else if(lngCode.equals("fr")){
+                                cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getFr().getName(), category.getId()));
+                            } else if(lngCode.equals("ar")){
+                                cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getAr().getName(), category.getId()));
+                            }
                         }
                         MainActivity.getMainActivity().runOnUiThread(new Runnable() {
                             @Override

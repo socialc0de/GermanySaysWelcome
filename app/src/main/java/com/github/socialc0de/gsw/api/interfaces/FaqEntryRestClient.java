@@ -35,7 +35,7 @@ public interface FaqEntryRestClient extends RestClientErrorHandling {
     @RequiresHeader({"User-Agent"})
     ArrayList<FaqEntry> loadFaqEntriesFromRest();
 
-    @Post("/faq")
+    @Post("/faq/")
     void addFaqEntry(FaqEntry entry);
 
 

@@ -26,8 +26,8 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
     private Button chooseButton;
     private LinearLayout nextButton;
     private SharedPreferences mPrefs;
-    private final String asylumStep = "asylumStep";
-    private final String languageSetting = "languageSetting";
+    public static final String ASYLUM_STEP = "asylumStep";
+    public static final String LANGUAGE_CODE = "languageSetting";
     private Locale myLocale;
     private boolean steponedone = false;
     private String predefinedSystemLanguage;
@@ -42,7 +42,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
         setContentView(R.layout.activity_setup);
         predefinedSystemLanguage = Locale.getDefault().getISO3Language();
 
-        items1 = new CharSequence[]{getResources().getString(R.string.german), getResources().getString(R.string.english), getResources().getString(R.string.arabic)};
+        items1 = new CharSequence[]{getResources().getString(R.string.german), getResources().getString(R.string.english), getResources().getString(R.string.arabic), getResources().getString(R.string.france)};
 
         chooseButton = (Button) findViewById(R.id.choose_button);
         chooseButton.setOnClickListener(this);
@@ -106,6 +106,9 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
                                         case 2:
                                             langCode = "ar";
                                             break;
+                                        case 3:
+                                            langCode = "fr";
+                                            break;
                                         default:
                                             langCode = predefinedSystemLanguage;
                                             break;
@@ -116,7 +119,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
 
                                     mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                     SharedPreferences.Editor editor = mPrefs.edit();
-                                    editor.putString(languageSetting, langCode);
+                                    editor.putString(LANGUAGE_CODE, langCode);
                                     editor.commit();
 
                                     chooseText.setText(text);
@@ -141,7 +144,7 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
 
                                     mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                     SharedPreferences.Editor editor = mPrefs.edit();
-                                    editor.putString(asylumStep, step + "");
+                                    editor.putString(ASYLUM_STEP, step + "");
                                     editor.commit();
 
                                     return true;
