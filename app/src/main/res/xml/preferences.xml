@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<CheckBoxPreference
-			android:title="Update in Background"
-			android:key="backgroundUpdating"
-			android:defaultValue="true"
-			/>
-	<ListPreference
-			android:key="languageSetting"
-			android:title="@string/setupstep1title"
-			android:entries="@array/languageOptions"
-			android:entryValues="@array/languageKeys"
-			/>
-	<ListPreference
-			android:key="asylumStep"
-			android:title="@string/setupstep2title"
-			android:entries="@array/asylumSteps"
-			android:entryValues="@array/asylumKeys"
-			/>
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="backgroundUpdating"
+        android:title="Update in Background" />
+    <ListPreference
+        android:entries="@array/languageOptions"
+        android:entryValues="@array/languageKeys"
+        android:key="languageSetting"
+        android:title="@string/setupstep1title" />
+    <ListPreference
+        android:entries="@array/asylumSteps"
+        android:entryValues="@array/asylumKeys"
+        android:key="asylumStep"
+        android:title="@string/setupstep2title" />
 </PreferenceScreen>

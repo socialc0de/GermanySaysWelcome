@@ -9,31 +9,31 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.activities.MainActivity;
 import com.github.socialc0de.gsw.activities.SetupActivity;
 import com.github.socialc0de.gsw.api.LoadManager_;
 import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
-import com.github.socialc0de.gsw.customClasses.CardItem;
 import com.github.socialc0de.gsw.customClasses.CustomCard;
 import com.github.socialc0de.gsw.customClasses.api.Ar;
 import com.github.socialc0de.gsw.customClasses.api.De;
 import com.github.socialc0de.gsw.customClasses.api.En;
-import com.github.socialc0de.gsw.customClasses.api.FaqCategory;
 import com.github.socialc0de.gsw.customClasses.api.FaqEntry;
 import com.github.socialc0de.gsw.customClasses.api.Fr;
 import com.github.socialc0de.gsw.customClasses.api.Language;
 import com.github.socialc0de.gsw.customClasses.api.Translations;
 import com.melnykov.fab.FloatingActionButton;
+
+import java.util.ArrayList;
+
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardExpand;
 import it.gmariotti.cardslib.library.internal.CardHeader;
 import it.gmariotti.cardslib.library.internal.ViewToClickToExpand;
 import it.gmariotti.cardslib.library.recyclerview.internal.CardArrayRecyclerViewAdapter;
 import it.gmariotti.cardslib.library.recyclerview.view.CardRecyclerView;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -97,15 +97,15 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
                 new RestArrayRequestCallBack() {
                     @Override
                     public void onRestResults(int state, ArrayList<?> results) {
-                        for(FaqEntry entry : (ArrayList<FaqEntry>)results){
+                        for (FaqEntry entry : (ArrayList<FaqEntry>) results) {
 
-                            if(lngCode.equals(Language.LanguageCodes.DE.toString())){
+                            if (lngCode.equals(Language.LanguageCodes.DE.toString())) {
                                 cards.add(createCustomCard("", entry.getTranslations().getDe().getQuestion(), entry.getTranslations().getDe().getAnswer()));
-                            } else if(lngCode.equals(Language.LanguageCodes.EN.toString())){
+                            } else if (lngCode.equals(Language.LanguageCodes.EN.toString())) {
                                 cards.add(createCustomCard("", entry.getTranslations().getEn().getQuestion(), entry.getTranslations().getEn().getAnswer()));
-                            } else if(lngCode.equals(Language.LanguageCodes.FR.toString())){
+                            } else if (lngCode.equals(Language.LanguageCodes.FR.toString())) {
                                 cards.add(createCustomCard("", entry.getTranslations().getFr().getQuestion(), entry.getTranslations().getFr().getAnswer()));
-                            } else if(lngCode.equals(Language.LanguageCodes.AR.toString())){
+                            } else if (lngCode.equals(Language.LanguageCodes.AR.toString())) {
                                 cards.add(createCustomCard("", entry.getTranslations().getAr().getQuestion(), entry.getTranslations().getAr().getAnswer()));
                             }
                         }
@@ -133,7 +133,7 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
         return view;
     }
 
-    private void reload(){
+    private void reload() {
         CardArrayRecyclerViewAdapter mCardArrayAdapter = new CardArrayRecyclerViewAdapter(getActivity(), cards);
         if (mRecyclerView != null) {
             mRecyclerView.setAdapter(mCardArrayAdapter);
@@ -152,14 +152,14 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                         FaqEntry faqEntry = new FaqEntry();
                         faqEntry.setCounty(0000);
-                        if(lngCode.equals(Language.LanguageCodes.DE.toString())){
-                            faqEntry.setTranslations(new Translations().setDe(((De)(new De().setQuestion(input.toString())))));
-                        } else if(lngCode.equals(Language.LanguageCodes.EN.toString())){
-                            faqEntry.setTranslations(new Translations().setEn((En)(new En().setQuestion(input.toString()))));
-                        } else if(lngCode.equals(Language.LanguageCodes.FR.toString())){
-                            faqEntry.setTranslations(new Translations().setFr(((Fr)(new Fr().setQuestion(input.toString())))));
-                        } else if(lngCode.equals(Language.LanguageCodes.AR.toString())){
-                            faqEntry.setTranslations(new Translations().setAr(((Ar)(new Ar().setQuestion(input.toString())))));
+                        if (lngCode.equals(Language.LanguageCodes.DE.toString())) {
+                            faqEntry.setTranslations(new Translations().setDe(((De) (new De().setQuestion(input.toString())))));
+                        } else if (lngCode.equals(Language.LanguageCodes.EN.toString())) {
+                            faqEntry.setTranslations(new Translations().setEn((En) (new En().setQuestion(input.toString()))));
+                        } else if (lngCode.equals(Language.LanguageCodes.FR.toString())) {
+                            faqEntry.setTranslations(new Translations().setFr(((Fr) (new Fr().setQuestion(input.toString())))));
+                        } else if (lngCode.equals(Language.LanguageCodes.AR.toString())) {
+                            faqEntry.setTranslations(new Translations().setAr(((Ar) (new Ar().setQuestion(input.toString())))));
                         }
                         LoadManager_.getInstance_(MainActivity.getMainActivity()).addFaqEntry(faqEntry);
                     }

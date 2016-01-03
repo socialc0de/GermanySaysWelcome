@@ -6,26 +6,22 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.github.socialc0de.gsw.R;
-import com.github.socialc0de.gsw.SlidingTabLayout;
 import com.github.socialc0de.gsw.activities.MainActivity;
 import com.github.socialc0de.gsw.activities.SetupActivity;
 import com.github.socialc0de.gsw.adapter.CardItemAdapter;
-import com.github.socialc0de.gsw.adapter.PhraseViewPagerAdapter;
 import com.github.socialc0de.gsw.adapter.RecyclerItemClickListener;
 import com.github.socialc0de.gsw.api.LoadManager_;
 import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
 import com.github.socialc0de.gsw.customClasses.CardItem;
 import com.github.socialc0de.gsw.customClasses.api.FaqCategory;
 import com.github.socialc0de.gsw.customClasses.api.Language;
-import com.github.socialc0de.gsw.customClasses.api.PhraseCategory;
 
 import java.util.ArrayList;
 
@@ -62,15 +58,15 @@ public class FaqFragment extends Fragment {
                 new RestArrayRequestCallBack() {
                     @Override
                     public void onRestResults(int state, ArrayList<?> results) {
-                        for(FaqCategory category : (ArrayList<FaqCategory>)results){
+                        for (FaqCategory category : (ArrayList<FaqCategory>) results) {
 
-                            if(lngCode.equals(Language.LanguageCodes.DE.toString())){
+                            if (lngCode.equals(Language.LanguageCodes.DE.toString())) {
                                 cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getDe().getName(), category.getId()));
-                            } else if(lngCode.equals(Language.LanguageCodes.EN.toString())){
+                            } else if (lngCode.equals(Language.LanguageCodes.EN.toString())) {
                                 cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getEn().getName(), category.getId()));
-                            } else if(lngCode.equals(Language.LanguageCodes.FR.toString())){
+                            } else if (lngCode.equals(Language.LanguageCodes.FR.toString())) {
                                 cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getFr().getName(), category.getId()));
-                            } else if(lngCode.equals(Language.LanguageCodes.AR.toString())){
+                            } else if (lngCode.equals(Language.LanguageCodes.AR.toString())) {
                                 cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getAr().getName(), category.getId()));
                             }
                         }
@@ -88,7 +84,6 @@ public class FaqFragment extends Fragment {
                     }
                 }
         );
-
 
 
         recList.addOnItemTouchListener(
@@ -113,7 +108,7 @@ public class FaqFragment extends Fragment {
         return myView;
     }
 
-    public void reload(){
+    public void reload() {
         CardItemAdapter ca = new CardItemAdapter(cardItemArrayList);
         recList.setAdapter(ca);
         //recList.invalidate();

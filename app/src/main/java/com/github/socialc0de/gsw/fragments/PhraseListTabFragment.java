@@ -8,14 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.ScrollView;
 
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.activities.MainActivity;
 import com.github.socialc0de.gsw.adapter.PhraseListAdapter;
 import com.github.socialc0de.gsw.api.LoadManager_;
 import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
-import com.github.socialc0de.gsw.customClasses.api.PhraseCategory;
 import com.github.socialc0de.gsw.customClasses.api.PhraseEntry;
 
 import java.util.ArrayList;
@@ -33,8 +31,38 @@ public class PhraseListTabFragment extends Fragment {
     public PhraseListTabFragment() {
     }
 
+    public static void getTotalHeightofListView(ListView listView, PhraseListAdapter listAdapter) {
+
+        int totalHeight = 0;
+
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View mView = listAdapter.getView(i, null, listView);
+
+            mView.measure(
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+
+            totalHeight += mView.getMeasuredHeight();
+            Log.w("HEIGHT" + i, String.valueOf(totalHeight));
+
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight
+                + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public PhraseListTabFragment setTitle(String title) {
+        this.title = title;
+        return this;
     }
 
     public int getCategory() {
@@ -43,11 +71,6 @@ public class PhraseListTabFragment extends Fragment {
 
     public PhraseListTabFragment setCategory(int category) {
         this.category = category;
-        return this;
-    }
-
-    public PhraseListTabFragment setTitle(String title) {
-        this.title = title;
         return this;
     }
 
@@ -73,13 +96,11 @@ public class PhraseListTabFragment extends Fragment {
         });
 
 
-
-
         LoadManager_.getInstance_(MainActivity.getMainActivity()).loadPhraseEntriesByCategoryResults(
                 new RestArrayRequestCallBack() {
                     @Override
                     public void onRestResults(int state, ArrayList<?> results) {
-                        phraseEntries = (ArrayList<PhraseEntry>)results;
+                        phraseEntries = (ArrayList<PhraseEntry>) results;
                         MainActivity.getMainActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -94,38 +115,14 @@ public class PhraseListTabFragment extends Fragment {
                         return false;
                     }
                 }
-        , category);
+                , category);
 
         return viewRoot;
     }
 
-    public void reload(){
+    public void reload() {
         PhraseListAdapter listAdapter = new PhraseListAdapter(getActivity(), R.layout.list_layout, phraseEntries);
         listView.setAdapter(listAdapter);
-       // getTotalHeightofListView(listView, listAdapter);
-    }
-    public static void getTotalHeightofListView(ListView listView, PhraseListAdapter listAdapter) {
-
-        int totalHeight = 0;
-
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            View mView = listAdapter.getView(i, null, listView);
-
-            mView.measure(
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-
-            totalHeight += mView.getMeasuredHeight();
-            Log.w("HEIGHT" + i, String.valueOf(totalHeight));
-
-        }
-
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight
-                + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-        listView.setLayoutParams(params);
-        listView.requestLayout();
-
+        // getTotalHeightofListView(listView, listAdapter);
     }
 }

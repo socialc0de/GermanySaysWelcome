@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.customClasses.CardItem;
 
@@ -17,6 +18,10 @@ import java.util.ArrayList;
 public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.CardItemViewHolder> {
     private ArrayList<CardItem> cardItemArrayList;
 
+    public CardItemAdapter(ArrayList<CardItem> cardItemArrayList) {
+        this.cardItemArrayList = cardItemArrayList;
+    }
+
     @Override
     public CardItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.
@@ -24,10 +29,6 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.CardIt
                 inflate(R.layout.card_view, parent, false);
 
         return new CardItemViewHolder(itemView);
-    }
-
-    public CardItemAdapter(ArrayList<CardItem> cardItemArrayList) {
-        this.cardItemArrayList = cardItemArrayList;
     }
 
     @Override

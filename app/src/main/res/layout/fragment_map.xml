@@ -1,24 +1,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-				xmlns:tools="http://schemas.android.com/tools"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				tools:context="com.github.socialc0de.gsw.fragments.MapFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.github.socialc0de.gsw.fragments.MapFragment">
 
-	<org.osmdroid.views.MapView
-			xmlns:android="http://schemas.android.com/apk/res/android"
-			android:id="@+id/mapview"
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:clickable="true"/>
+    <org.osmdroid.views.MapView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mapview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="true" />
 
-	<com.melnykov.fab.FloatingActionButton
-			android:id="@+id/filterButton"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_alignParentBottom="true"
-			android:layout_alignParentRight="false"
-			android:layout_marginBottom="20dp"
-			android:layout_marginLeft="20dp"
-			android:src="@drawable/ic_info_outline_white"
-			/>
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/filterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="false"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/ic_info_outline_white" />
 </RelativeLayout>

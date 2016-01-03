@@ -47,7 +47,7 @@ public class EmergencyFragment extends Fragment {
             public void onClick(Card card, View view) {
 
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"+ num));
+                intent.setData(Uri.parse("tel:" + num));
                 startActivity(intent);
             }
         });
@@ -74,9 +74,9 @@ public class EmergencyFragment extends Fragment {
 
         ArrayList<Card> cards = new ArrayList<Card>();
 
-        Card customCard = createCustomCard("Click to call", "Police 100", "Germany Police acts as executive governmental force.","110");
-        Card customCard1 = createCustomCard("If you need Ambulance", "Ambulance", "That's a test Paragraph","112");
-        Card customCard2 = createCustomCard("Just Testing", "next emergency call number", "that's an example too","800");
+        Card customCard = createCustomCard("Click to call", "Police 100", "Germany Police acts as executive governmental force.", "110");
+        Card customCard1 = createCustomCard("If you need Ambulance", "Ambulance", "That's a test Paragraph", "112");
+        Card customCard2 = createCustomCard("Just Testing", "next emergency call number", "that's an example too", "800");
 
 
         cards.add(customCard);

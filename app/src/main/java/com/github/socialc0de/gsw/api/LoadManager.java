@@ -9,11 +9,11 @@ import com.github.socialc0de.gsw.api.interfaces.AudienceRestClient;
 import com.github.socialc0de.gsw.api.interfaces.EmergencyEntryRestClient;
 import com.github.socialc0de.gsw.api.interfaces.FaqCategoryRestClient;
 import com.github.socialc0de.gsw.api.interfaces.FaqEntryRestClient;
+import com.github.socialc0de.gsw.api.interfaces.PhraseCategoryRestClient;
 import com.github.socialc0de.gsw.api.interfaces.PhraseEntryRestClient;
 import com.github.socialc0de.gsw.api.interfaces.PoiCategoryRestClient;
 import com.github.socialc0de.gsw.api.interfaces.PoiEntryRestClient;
 import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
-import com.github.socialc0de.gsw.api.interfaces.PhraseCategoryRestClient;
 import com.github.socialc0de.gsw.customClasses.api.AudienceEntry;
 import com.github.socialc0de.gsw.customClasses.api.EmergencyEntry;
 import com.github.socialc0de.gsw.customClasses.api.FaqCategory;
@@ -35,11 +35,11 @@ import java.util.ArrayList;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class LoadManager implements org.androidannotations.api.rest.RestErrorHandler{
-    public static final  int NETWORK_NOT_AVAILABLE = 0;
-    public static final  int NETWORK_AVAILABLE = 1;
-    public static final  int NETWORK_MISC = 2;
-    public static final  int NETWORK_SERVICE_NOT_AVAILABLE = 3;
+public class LoadManager implements org.androidannotations.api.rest.RestErrorHandler {
+    public static final int NETWORK_NOT_AVAILABLE = 0;
+    public static final int NETWORK_AVAILABLE = 1;
+    public static final int NETWORK_MISC = 2;
+    public static final int NETWORK_SERVICE_NOT_AVAILABLE = 3;
 
     private Context mCurrentActivity = null;
     private RestArrayRequestCallBack mCallback = null;
@@ -63,7 +63,7 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mNetworkstate = NETWORK_AVAILABLE;
 
 
-        if(callback == null){
+        if (callback == null) {
             return;
         }
         mCallback = callback; // store callback class for error
@@ -72,19 +72,19 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mRestClient.setRestErrorHandler(this);
 
         Boolean networkAvailable = checkNetworkState();
-        if(networkAvailable == null){
+        if (networkAvailable == null) {
             return;
         }
 
-        if(!networkAvailable){
+        if (!networkAvailable) {
             mNetworkstate = NETWORK_NOT_AVAILABLE;
             callback.onRestResults(mNetworkstate, null);
-        }else {
+        } else {
             ArrayList<FaqCategory> results = mRestClient.loadFaqCategoryFromRest();
-            if(results == null)
+            if (results == null)
                 results = new ArrayList<FaqCategory>();
 
-            if(mNetworkstate == NETWORK_AVAILABLE) {
+            if (mNetworkstate == NETWORK_AVAILABLE) {
                 if (callback != null && !callback.isDestroyed()) {
                     callback.onRestResults(mNetworkstate, results);
                 }
@@ -98,7 +98,7 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mNetworkstate = NETWORK_AVAILABLE;
 
 
-        if(callback == null){
+        if (callback == null) {
             return;
         }
         mCallback = callback; // store callback class for error
@@ -107,19 +107,19 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mRestClient.setRestErrorHandler(this);
 
         Boolean networkAvailable = checkNetworkState();
-        if(networkAvailable == null){
+        if (networkAvailable == null) {
             return;
         }
 
-        if(!networkAvailable){
+        if (!networkAvailable) {
             mNetworkstate = NETWORK_NOT_AVAILABLE;
             callback.onRestResults(mNetworkstate, null);
-        }else {
-            ArrayList<PhraseCategory> results =  mRestClient.loadPhraseCategoryFromRest();
-            if(results == null)
+        } else {
+            ArrayList<PhraseCategory> results = mRestClient.loadPhraseCategoryFromRest();
+            if (results == null)
                 results = new ArrayList<PhraseCategory>();
 
-            if(mNetworkstate == NETWORK_AVAILABLE) {
+            if (mNetworkstate == NETWORK_AVAILABLE) {
                 if (callback != null && !callback.isDestroyed()) {
                     callback.onRestResults(mNetworkstate, results);
                 }
@@ -133,7 +133,7 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mNetworkstate = NETWORK_AVAILABLE;
 
 
-        if(callback == null){
+        if (callback == null) {
             return;
         }
         mCallback = callback; // store callback class for error
@@ -142,19 +142,19 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mRestClient.setRestErrorHandler(this);
 
         Boolean networkAvailable = checkNetworkState();
-        if(networkAvailable == null){
+        if (networkAvailable == null) {
             return;
         }
 
-        if(!networkAvailable){
+        if (!networkAvailable) {
             mNetworkstate = NETWORK_NOT_AVAILABLE;
             callback.onRestResults(mNetworkstate, null);
-        }else {
-            ArrayList<PoiCategory> results =  mRestClient.loadPoiCategoryFromRest();
-            if(results == null)
+        } else {
+            ArrayList<PoiCategory> results = mRestClient.loadPoiCategoryFromRest();
+            if (results == null)
                 results = new ArrayList<PoiCategory>();
 
-            if(mNetworkstate == NETWORK_AVAILABLE) {
+            if (mNetworkstate == NETWORK_AVAILABLE) {
                 if (callback != null && !callback.isDestroyed()) {
                     callback.onRestResults(mNetworkstate, results);
                 }
@@ -168,7 +168,7 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mNetworkstate = NETWORK_AVAILABLE;
 
 
-        if(callback == null){
+        if (callback == null) {
             return;
         }
         mCallback = callback; // store callback class for error
@@ -177,19 +177,19 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mRestClient.setRestErrorHandler(this);
 
         Boolean networkAvailable = checkNetworkState();
-        if(networkAvailable == null){
+        if (networkAvailable == null) {
             return;
         }
 
-        if(!networkAvailable){
+        if (!networkAvailable) {
             mNetworkstate = NETWORK_NOT_AVAILABLE;
             callback.onRestResults(mNetworkstate, null);
-        }else {
-            ArrayList<AudienceEntry> results =  mRestClient.loadAudienceFromRest();
-            if(results == null)
+        } else {
+            ArrayList<AudienceEntry> results = mRestClient.loadAudienceFromRest();
+            if (results == null)
                 results = new ArrayList<AudienceEntry>();
 
-            if(mNetworkstate == NETWORK_AVAILABLE) {
+            if (mNetworkstate == NETWORK_AVAILABLE) {
                 if (callback != null && !callback.isDestroyed()) {
                     callback.onRestResults(mNetworkstate, results);
                 }
@@ -203,7 +203,7 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mNetworkstate = NETWORK_AVAILABLE;
 
 
-        if(callback == null){
+        if (callback == null) {
             return;
         }
         mCallback = callback; // store callback class for error
@@ -212,19 +212,19 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mRestClient.setRestErrorHandler(this);
 
         Boolean networkAvailable = checkNetworkState();
-        if(networkAvailable == null){
+        if (networkAvailable == null) {
             return;
         }
 
-        if(!networkAvailable){
+        if (!networkAvailable) {
             mNetworkstate = NETWORK_NOT_AVAILABLE;
             callback.onRestResults(mNetworkstate, null);
-        }else {
-            ArrayList<FaqEntry> results =  mRestClient.loadFaqEntriesByCategoryFromRest(category);
-            if(results == null)
+        } else {
+            ArrayList<FaqEntry> results = mRestClient.loadFaqEntriesByCategoryFromRest(category);
+            if (results == null)
                 results = new ArrayList<FaqEntry>();
 
-            if(mNetworkstate == NETWORK_AVAILABLE) {
+            if (mNetworkstate == NETWORK_AVAILABLE) {
                 if (callback != null && !callback.isDestroyed()) {
                     callback.onRestResults(mNetworkstate, results);
                 }
@@ -238,7 +238,7 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mNetworkstate = NETWORK_AVAILABLE;
 
 
-        if(callback == null){
+        if (callback == null) {
             return;
         }
         mCallback = callback; // store callback class for error
@@ -247,19 +247,19 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mRestClient.setRestErrorHandler(this);
 
         Boolean networkAvailable = checkNetworkState();
-        if(networkAvailable == null){
+        if (networkAvailable == null) {
             return;
         }
 
-        if(!networkAvailable){
+        if (!networkAvailable) {
             mNetworkstate = NETWORK_NOT_AVAILABLE;
             callback.onRestResults(mNetworkstate, null);
-        }else {
-            ArrayList<FaqEntry> results =  mRestClient.loadFaqEntriesByAudienceFromRest(audience);
-            if(results == null)
+        } else {
+            ArrayList<FaqEntry> results = mRestClient.loadFaqEntriesByAudienceFromRest(audience);
+            if (results == null)
                 results = new ArrayList<FaqEntry>();
 
-            if(mNetworkstate == NETWORK_AVAILABLE) {
+            if (mNetworkstate == NETWORK_AVAILABLE) {
                 if (callback != null && !callback.isDestroyed()) {
                     callback.onRestResults(mNetworkstate, results);
                 }
@@ -273,7 +273,7 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mNetworkstate = NETWORK_AVAILABLE;
 
 
-        if(callback == null){
+        if (callback == null) {
             return;
         }
         mCallback = callback; // store callback class for error
@@ -282,19 +282,19 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mRestClient.setRestErrorHandler(this);
 
         Boolean networkAvailable = checkNetworkState();
-        if(networkAvailable == null){
+        if (networkAvailable == null) {
             return;
         }
 
-        if(!networkAvailable){
+        if (!networkAvailable) {
             mNetworkstate = NETWORK_NOT_AVAILABLE;
             callback.onRestResults(mNetworkstate, null);
-        }else {
-            ArrayList<FaqEntry> results =  mRestClient.loadFaqEntriesFromRest();
-            if(results == null)
+        } else {
+            ArrayList<FaqEntry> results = mRestClient.loadFaqEntriesFromRest();
+            if (results == null)
                 results = new ArrayList<FaqEntry>();
 
-            if(mNetworkstate == NETWORK_AVAILABLE) {
+            if (mNetworkstate == NETWORK_AVAILABLE) {
                 if (callback != null && !callback.isDestroyed()) {
                     callback.onRestResults(mNetworkstate, results);
                 }
@@ -311,13 +311,13 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mRestClient.setRestErrorHandler(this);
 
         Boolean networkAvailable = checkNetworkState();
-        if(networkAvailable == null){
+        if (networkAvailable == null) {
             return;
         }
 
-        if(!networkAvailable){
+        if (!networkAvailable) {
             mNetworkstate = NETWORK_NOT_AVAILABLE;
-        }else {
+        } else {
             faqEntry.getTranslations().postFormat();
             mRestClient.addFaqEntry(faqEntry);
         }
@@ -329,7 +329,7 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mNetworkstate = NETWORK_AVAILABLE;
 
 
-        if(callback == null){
+        if (callback == null) {
             return;
         }
         mCallback = callback; // store callback class for error
@@ -338,19 +338,19 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mRestClient.setRestErrorHandler(this);
 
         Boolean networkAvailable = checkNetworkState();
-        if(networkAvailable == null){
+        if (networkAvailable == null) {
             return;
         }
 
-        if(!networkAvailable){
+        if (!networkAvailable) {
             mNetworkstate = NETWORK_NOT_AVAILABLE;
             callback.onRestResults(mNetworkstate, null);
-        }else {
-            ArrayList<PoiEntry> results =  mRestClient.loadPoiEntriesFromRest();
-            if(results == null)
+        } else {
+            ArrayList<PoiEntry> results = mRestClient.loadPoiEntriesFromRest();
+            if (results == null)
                 results = new ArrayList<PoiEntry>();
 
-            if(mNetworkstate == NETWORK_AVAILABLE) {
+            if (mNetworkstate == NETWORK_AVAILABLE) {
                 if (callback != null && !callback.isDestroyed()) {
                     callback.onRestResults(mNetworkstate, results);
                 }
@@ -364,7 +364,7 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mNetworkstate = NETWORK_AVAILABLE;
 
 
-        if(callback == null){
+        if (callback == null) {
             return;
         }
         mCallback = callback; // store callback class for error
@@ -373,19 +373,19 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mRestClient.setRestErrorHandler(this);
 
         Boolean networkAvailable = checkNetworkState();
-        if(networkAvailable == null){
+        if (networkAvailable == null) {
             return;
         }
 
-        if(!networkAvailable){
+        if (!networkAvailable) {
             mNetworkstate = NETWORK_NOT_AVAILABLE;
             callback.onRestResults(mNetworkstate, null);
-        }else {
-            ArrayList<PoiEntry> results =  mRestClient.loadPoiEntriesByCategoryFromRest(category);
-            if(results == null)
+        } else {
+            ArrayList<PoiEntry> results = mRestClient.loadPoiEntriesByCategoryFromRest(category);
+            if (results == null)
                 results = new ArrayList<PoiEntry>();
 
-            if(mNetworkstate == NETWORK_AVAILABLE) {
+            if (mNetworkstate == NETWORK_AVAILABLE) {
                 if (callback != null && !callback.isDestroyed()) {
                     callback.onRestResults(mNetworkstate, results);
                 }
@@ -399,7 +399,7 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mNetworkstate = NETWORK_AVAILABLE;
 
 
-        if(callback == null){
+        if (callback == null) {
             return;
         }
         mCallback = callback; // store callback class for error
@@ -408,19 +408,19 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mRestClient.setRestErrorHandler(this);
 
         Boolean networkAvailable = checkNetworkState();
-        if(networkAvailable == null){
+        if (networkAvailable == null) {
             return;
         }
 
-        if(!networkAvailable){
+        if (!networkAvailable) {
             mNetworkstate = NETWORK_NOT_AVAILABLE;
             callback.onRestResults(mNetworkstate, null);
-        }else {
-            ArrayList<PhraseEntry> results =  mRestClient.loadPhraseEntriesFromRest();
-            if(results == null)
+        } else {
+            ArrayList<PhraseEntry> results = mRestClient.loadPhraseEntriesFromRest();
+            if (results == null)
                 results = new ArrayList<PhraseEntry>();
 
-            if(mNetworkstate == NETWORK_AVAILABLE) {
+            if (mNetworkstate == NETWORK_AVAILABLE) {
                 if (callback != null && !callback.isDestroyed()) {
                     callback.onRestResults(mNetworkstate, results);
                 }
@@ -434,7 +434,7 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mNetworkstate = NETWORK_AVAILABLE;
 
 
-        if(callback == null){
+        if (callback == null) {
             return;
         }
         mCallback = callback; // store callback class for error
@@ -443,19 +443,19 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mRestClient.setRestErrorHandler(this);
 
         Boolean networkAvailable = checkNetworkState();
-        if(networkAvailable == null){
+        if (networkAvailable == null) {
             return;
         }
 
-        if(!networkAvailable){
+        if (!networkAvailable) {
             mNetworkstate = NETWORK_NOT_AVAILABLE;
             callback.onRestResults(mNetworkstate, null);
-        }else {
-            ArrayList<PhraseEntry> results =  mRestClient.loadPhraseEntriesByCategoryFromRest(category);
-            if(results == null)
+        } else {
+            ArrayList<PhraseEntry> results = mRestClient.loadPhraseEntriesByCategoryFromRest(category);
+            if (results == null)
                 results = new ArrayList<PhraseEntry>();
 
-            if(mNetworkstate == NETWORK_AVAILABLE) {
+            if (mNetworkstate == NETWORK_AVAILABLE) {
                 if (callback != null && !callback.isDestroyed()) {
                     callback.onRestResults(mNetworkstate, results);
                 }
@@ -469,7 +469,7 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mNetworkstate = NETWORK_AVAILABLE;
 
 
-        if(callback == null){
+        if (callback == null) {
             return;
         }
         mCallback = callback; // store callback class for error
@@ -478,19 +478,19 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         mRestClient.setRestErrorHandler(this);
 
         Boolean networkAvailable = checkNetworkState();
-        if(networkAvailable == null){
+        if (networkAvailable == null) {
             return;
         }
 
-        if(!networkAvailable){
+        if (!networkAvailable) {
             mNetworkstate = NETWORK_NOT_AVAILABLE;
             callback.onRestResults(mNetworkstate, null);
-        }else {
-            ArrayList<EmergencyEntry> results =  mRestClient.loadEmergencyEntriesFromRest();
-            if(results == null)
+        } else {
+            ArrayList<EmergencyEntry> results = mRestClient.loadEmergencyEntriesFromRest();
+            if (results == null)
                 results = new ArrayList<EmergencyEntry>();
 
-            if(mNetworkstate == NETWORK_AVAILABLE) {
+            if (mNetworkstate == NETWORK_AVAILABLE) {
                 if (callback != null && !callback.isDestroyed()) {
                     callback.onRestResults(mNetworkstate, results);
                 }
@@ -498,19 +498,20 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         }
     }
 
-    public void setCurrentActivity(Context currentActivity){
-        this.mCurrentActivity = currentActivity;
+    private Context getCurrentActivity() {
+        return this.mCurrentActivity;
     }
 
-    private Context getCurrentActivity(){
-        return this.mCurrentActivity;
+    public void setCurrentActivity(Context currentActivity) {
+        this.mCurrentActivity = currentActivity;
     }
 
     /**
      * Check network state. Returns true, if network connected
+     *
      * @return true, if connected
      */
-    private Boolean checkNetworkState(){
+    private Boolean checkNetworkState() {
 
         ConnectivityManager connectivityManager = (ConnectivityManager) MainActivity.getMainActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -525,7 +526,7 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
     public void onRestClientExceptionThrown(NestedRuntimeException e) {
         //BackgroundExecutor.cancelAll("cancellable_task", true);
         mNetworkstate = NETWORK_MISC;
-        if(mCallback!=null && !mCallback.isDestroyed()){
+        if (mCallback != null && !mCallback.isDestroyed()) {
             mCallback.onRestResults(mNetworkstate, null);
         }
     }

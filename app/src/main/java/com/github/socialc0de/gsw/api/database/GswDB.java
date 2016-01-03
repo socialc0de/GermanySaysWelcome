@@ -1,7 +1,5 @@
 package com.github.socialc0de.gsw.api.database;
 
-import android.content.Context;
-import android.database.DatabaseUtils;
 import android.util.Log;
 
 import com.github.socialc0de.gsw.activities.MainActivity;
@@ -10,10 +8,8 @@ import com.github.socialc0de.gsw.api.database.dao.PhraseCategoryDao;
 import com.github.socialc0de.gsw.api.database.dao.TranslationEntityDao;
 import com.github.socialc0de.gsw.customClasses.api.Language;
 import com.github.socialc0de.gsw.customClasses.api.PhraseCategory;
-import com.github.socialc0de.gsw.customClasses.api.Translations;
 
 import java.util.ArrayList;
-
 
 
 public class GswDB {
@@ -46,13 +42,13 @@ public class GswDB {
         });
     }
 
-    private static com.github.socialc0de.gsw.api.database.entity.PhraseCategory getPhraseCategoryDatabase(PhraseCategory phraseCategory){
+    private static com.github.socialc0de.gsw.api.database.entity.PhraseCategory getPhraseCategoryDatabase(PhraseCategory phraseCategory) {
         com.github.socialc0de.gsw.api.database.entity.PhraseCategory phraseCategoryDB = new com.github.socialc0de.gsw.api.database.entity.PhraseCategory();
         phraseCategoryDB.setDID(phraseCategory.getId());
         return phraseCategoryDB;
     }
 
-    private static com.github.socialc0de.gsw.api.database.entity.TranslationEntity getTranslationEntity(Language language){
+    private static com.github.socialc0de.gsw.api.database.entity.TranslationEntity getTranslationEntity(Language language) {
         com.github.socialc0de.gsw.api.database.entity.TranslationEntity translationEntity = new com.github.socialc0de.gsw.api.database.entity.TranslationEntity();
 
         translationEntity.setLanguage_code(language.getClass().getName().toLowerCase());
@@ -62,7 +58,7 @@ public class GswDB {
         translationEntity.setName(language.getName());
         translationEntity.setPhrase(language.getPhrase());
         translationEntity.setQuestion(language.getQuestion());
-        
+
         return translationEntity;
     }
 

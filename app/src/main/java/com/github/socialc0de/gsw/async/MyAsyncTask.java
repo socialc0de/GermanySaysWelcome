@@ -1,7 +1,6 @@
 package com.github.socialc0de.gsw.async;
 
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import com.github.socialc0de.gsw.activities.MainActivity;
 import com.github.socialc0de.gsw.async.interfaces.AsyncCallBack;
@@ -16,7 +15,7 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
     private CustomAsyncTask asyncTask;
     private Object data;
 
-    public MyAsyncTask(CustomAsyncTask asyncTask, Object data, AsyncCallBack callBack){
+    public MyAsyncTask(CustomAsyncTask asyncTask, Object data, AsyncCallBack callBack) {
         this.asyncTask = asyncTask;
         this.data = data;
         this.callBack = callBack;
@@ -27,13 +26,13 @@ public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
         final TaskResult taskResult = new TaskResult(data, false);
         try {
             asyncTask.run(taskResult);
-        }catch (Exception e){
+        } catch (Exception e) {
             taskResult.setError(true);
         }
         MainActivity.getMainActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(taskResult.isError())
+                if (taskResult.isError())
                     callBack.error(taskResult);
                 else
                     callBack.done(taskResult);

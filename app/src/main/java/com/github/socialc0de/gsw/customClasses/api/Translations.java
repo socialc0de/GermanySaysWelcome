@@ -1,4 +1,3 @@
-
 package com.github.socialc0de.gsw.customClasses.api;
 
 public class Translations {
@@ -9,18 +8,14 @@ public class Translations {
     private De de = new De();
 
     /**
-     * 
-     * @return
-     *     The ar
+     * @return The ar
      */
     public Ar getAr() {
         return ar;
     }
 
     /**
-     * 
-     * @param ar
-     *     The ar
+     * @param ar The ar
      */
     public Translations setAr(Ar ar) {
         this.ar = ar;
@@ -28,18 +23,14 @@ public class Translations {
     }
 
     /**
-     * 
-     * @return
-     *     The fr
+     * @return The fr
      */
     public Fr getFr() {
         return fr;
     }
 
     /**
-     * 
-     * @param fr
-     *     The fr
+     * @param fr The fr
      */
     public Translations setFr(Fr fr) {
         this.fr = fr;
@@ -47,18 +38,14 @@ public class Translations {
     }
 
     /**
-     * 
-     * @return
-     *     The en
+     * @return The en
      */
     public En getEn() {
         return en;
     }
 
     /**
-     * 
-     * @param en
-     *     The en
+     * @param en The en
      */
     public Translations setEn(En en) {
         this.en = en;
@@ -66,37 +53,33 @@ public class Translations {
     }
 
     /**
-     * 
-     * @return
-     *     The de
+     * @return The de
      */
     public De getDe() {
         return de;
     }
 
     /**
-     * 
-     * @param de
-     *     The de
+     * @param de The de
      */
     public Translations setDe(De de) {
         this.de = de;
         return this;
     }
 
-    public void postFormat(){
+    public void postFormat() {
         ar.postFormat();
         de.postFormat();
         en.postFormat();
         fr.postFormat();
 
-        if(ar.isNull())
+        if (ar.isNull())
             ar = null;
-        if(de.isNull())
+        if (de.isNull())
             de = null;
-        if(fr.isNull())
+        if (fr.isNull())
             fr = null;
-        if(en.isNull())
+        if (en.isNull())
             en = null;
     }
 

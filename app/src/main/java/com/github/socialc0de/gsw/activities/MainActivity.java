@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
@@ -35,12 +36,16 @@ import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
 
+    private static MainActivity mainActivity;
+    private final String welcomeScreenShownPref = "welcomeScreenShown";
     private Drawer mDrawer;
     private AccountHeader headerResult;
     private ArrayList<Fragment> fragmentList = new ArrayList<Fragment>();
     private SharedPreferences mPrefs;
-    private final String welcomeScreenShownPref = "welcomeScreenShown";
-    private static MainActivity mainActivity;
+
+    public static MainActivity getMainActivity() {
+        return mainActivity;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,7 +165,6 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -181,9 +185,5 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public static MainActivity getMainActivity() {
-        return mainActivity;
     }
 }

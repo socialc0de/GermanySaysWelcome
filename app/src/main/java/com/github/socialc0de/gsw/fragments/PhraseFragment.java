@@ -3,10 +3,10 @@ package com.github.socialc0de.gsw.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.SlidingTabLayout;
 import com.github.socialc0de.gsw.activities.MainActivity;
@@ -34,7 +34,7 @@ public class PhraseFragment extends Fragment {
                 new RestArrayRequestCallBack() {
                     @Override
                     public void onRestResults(int state, ArrayList<?> results) {
-                        for(PhraseCategory category : (ArrayList<PhraseCategory>)results){
+                        for (PhraseCategory category : (ArrayList<PhraseCategory>) results) {
                             tbs.add(new PhraseListTabFragment().setTitle(category.getTranslations().getDe().getName()).setCategory(category.getId()));
                         }
 

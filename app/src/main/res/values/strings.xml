@@ -1,104 +1,104 @@
 <resources>
-	<string name="app_name">Germany Says Welcome</string>
-	<string name="title_activity_main">MainActivity</string>
+    <string name="app_name">Germany Says Welcome</string>
+    <string name="title_activity_main">MainActivity</string>
 
-	<!-- Phrasebook Headings -->
-	<string name="animals">Animals</string>
-	<string name="sexual_gender_identity">Sexual and gender identity</string>
-	<string name="basic_adjectives">Basic Adjectives</string>
-	<string name="misc">Misc</string>
-	<string name="children">Children</string>
-	<string name="direction_places_transport">Direction, places and transport</string>
-	<string name="profession">Profession</string>
-	<string name="nature_weather">Nature and Weather</string>
-	<string name="colours">Colours</string>
-	<string name="food">Food</string>
-	<string name="basic_conversation">Basic Conversation</string>
-	<string name="clothing">Clothing</string>
-	<string name="medical_terms">Medical Terms</string>
+    <!-- Phrasebook Headings -->
+    <string name="animals">Animals</string>
+    <string name="sexual_gender_identity">Sexual and gender identity</string>
+    <string name="basic_adjectives">Basic Adjectives</string>
+    <string name="misc">Misc</string>
+    <string name="children">Children</string>
+    <string name="direction_places_transport">Direction, places and transport</string>
+    <string name="profession">Profession</string>
+    <string name="nature_weather">Nature and Weather</string>
+    <string name="colours">Colours</string>
+    <string name="food">Food</string>
+    <string name="basic_conversation">Basic Conversation</string>
+    <string name="clothing">Clothing</string>
+    <string name="medical_terms">Medical Terms</string>
 
-	<!-- User Interface -->
-	<string name="cancel">Cancel</string>
-	<string name="done">Done</string>
-	<string name="next">Next</string>
-	<string name="action_settings">Settings</string>
-	<string name="example">Example</string>
+    <!-- User Interface -->
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+    <string name="next">Next</string>
+    <string name="action_settings">Settings</string>
+    <string name="example">Example</string>
 
-	<!-- Fragment Names -->
-	<string name="dashboard">Dashboard</string>
-	<string name="phrasebook">Phrasebook</string>
-	<string name="faq">FAQ</string>
-	<string name="map">Map</string>
-	<string name="emergency">Emergency</string>
-	<string name="about">About</string>
-	<string name="title_activity_setup">Setup</string>
+    <!-- Fragment Names -->
+    <string name="dashboard">Dashboard</string>
+    <string name="phrasebook">Phrasebook</string>
+    <string name="faq">FAQ</string>
+    <string name="map">Map</string>
+    <string name="emergency">Emergency</string>
+    <string name="about">About</string>
+    <string name="title_activity_setup">Setup</string>
 
-	<!-- Fragment specific content -->
-	<!-- Settings -->
-	<string name="settingstoast">To leave the settings, click the Back-Button on your phone</string>
-	<string name="settingslangchange">To make changed visible, exit the settings</string>
-	<string name="allinfo">View all information</string>
-	<string name="settingsstep">Step:</string>
+    <!-- Fragment specific content -->
+    <!-- Settings -->
+    <string name="settingstoast">To leave the settings, click the Back-Button on your phone</string>
+    <string name="settingslangchange">To make changed visible, exit the settings</string>
+    <string name="allinfo">View all information</string>
+    <string name="settingsstep">Step:</string>
 
-	<!-- Map -->
-	<string name="authority_information">Authority Information:</string>
-	<string name="free_wifi">Free Wifi HotSpot</string>
-	<string name="filter">Choose Filter</string>
-	
-	<string name="authorities">Authorities</string>
-	<string name="hotspots">WiFi HotSpots</string>
-	<string name="hospitals">Hospitals</string>
-	<string name="helpcenter">Helping Centers</string>
+    <!-- Map -->
+    <string name="authority_information">Authority Information:</string>
+    <string name="free_wifi">Free Wifi HotSpot</string>
+    <string name="filter">Choose Filter</string>
 
-	<!-- FAQ -->
-	<string name="faqdetail">FAQ Detail</string>
-	<string name="newquestion">New Question</string>
-	<string name="enterquestion">Enter question:</string>
-	<string name="hinttextquestion">Your question...</string>
+    <string name="authorities">Authorities</string>
+    <string name="hotspots">WiFi HotSpots</string>
+    <string name="hospitals">Hospitals</string>
+    <string name="helpcenter">Helping Centers</string>
 
-	<!-- Setup -->
-	<string name="step1">Step 1: You just arrived in Germany</string>
-	<string name="step2">Step 2: You wait for asylum confirmation</string>
-	<string name="step3">Step 3: You\'ll start finding a job</string>
+    <!-- FAQ -->
+    <string name="faqdetail">FAQ Detail</string>
+    <string name="newquestion">New Question</string>
+    <string name="enterquestion">Enter question:</string>
+    <string name="hinttextquestion">Your question...</string>
 
-	<string name="step1short">Step 1: Arrival</string>
-	<string name="step2short">Step 2: Asylum Application</string>
-	<string name="step3short">Step 3: Societal Integration</string>
+    <!-- Setup -->
+    <string name="step1">Step 1: You just arrived in Germany</string>
+    <string name="step2">Step 2: You wait for asylum confirmation</string>
+    <string name="step3">Step 3: You\'ll start finding a job</string>
 
-	<string name="setupstep1">Step (1/2)</string>
-	<string name="setupstep1button">Choose Language</string>
-	<string name="setupstep1title">Choose Your Language</string>
+    <string name="step1short">Step 1: Arrival</string>
+    <string name="step2short">Step 2: Asylum Application</string>
+    <string name="step3short">Step 3: Societal Integration</string>
+
+    <string name="setupstep1">Step (1/2)</string>
+    <string name="setupstep1button">Choose Language</string>
+    <string name="setupstep1title">Choose Your Language</string>
 	<string name="setupstep1description">Please enter your language. You\'ll be able to change your input later in the
 		settings.
 	</string>
-	<string name="setupstep2">Step (2/2)</string>
-	<string name="setupstep2button">Choose Status</string>
-	<string name="setupstep2title">Choose Your Asylum Status</string>
+    <string name="setupstep2">Step (2/2)</string>
+    <string name="setupstep2button">Choose Status</string>
+    <string name="setupstep2title">Choose Your Asylum Status</string>
 	<string name="setupstep2description">To show you according information, we\'d like to ask you for your asylum
 		status. Enter your step:
 	</string>
 
-	<!-- Error messages -->
-	<string name="couldnt_fetch">Could not fetch %s. Please check your network connection and then try again.</string>
-	<string name="no_location">Couldn\'t get Location</string>
-	<string name="no_questions">No Questions found</string>
-	<string name="no_stepselected">Please define a step to continue!</string>
+    <!-- Error messages -->
+    <string name="couldnt_fetch">Could not fetch %s. Please check your network connection and then try again.</string>
+    <string name="no_location">Couldn\'t get Location</string>
+    <string name="no_questions">No Questions found</string>
+    <string name="no_stepselected">Please define a step to continue!</string>
 
-	<!-- Loading messages -->
-	<string name="loading_wifi_locations">Loading Wifi Hotspot Locations</string>
-	<string name="loading_administration_locations">Loading Administration Locations</string>
+    <!-- Loading messages -->
+    <string name="loading_wifi_locations">Loading Wifi Hotspot Locations</string>
+    <string name="loading_administration_locations">Loading Administration Locations</string>
 
-	<!-- Langugages -->
-	<string name="arabic">اللغة العربية</string>
-	<string name="german">Deutsch</string>
-	<string name="english">English</string>
-	<string name="france">Francais</string>
+    <!-- Langugages -->
+    <string name="arabic">اللغة العربية</string>
+    <string name="german">Deutsch</string>
+    <string name="english">English</string>
+    <string name="france">Francais</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-	<string name="hello_blank_fragment">Hello blank fragment</string>
-	<string name="title_activity_new_question">NewQuestionActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_new_question">NewQuestionActivity</string>
 
-	<string name="hello_world">Hello world!</string>
+    <string name="hello_world">Hello world!</string>
 
 
 </resources>

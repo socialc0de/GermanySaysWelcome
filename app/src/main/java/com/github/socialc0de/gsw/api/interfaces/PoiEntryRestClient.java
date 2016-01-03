@@ -1,7 +1,5 @@
 package com.github.socialc0de.gsw.api.interfaces;
 
-import com.github.socialc0de.gsw.customClasses.api.FaqEntry;
-import com.github.socialc0de.gsw.customClasses.api.PoiCategory;
 import com.github.socialc0de.gsw.customClasses.api.PoiEntry;
 
 import org.androidannotations.annotations.rest.Accept;

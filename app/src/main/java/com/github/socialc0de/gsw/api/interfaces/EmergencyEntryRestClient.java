@@ -1,7 +1,6 @@
 package com.github.socialc0de.gsw.api.interfaces;
 
 import com.github.socialc0de.gsw.customClasses.api.EmergencyEntry;
-import com.github.socialc0de.gsw.customClasses.api.FaqEntry;
 
 import org.androidannotations.annotations.rest.Accept;
 import org.androidannotations.annotations.rest.Get;

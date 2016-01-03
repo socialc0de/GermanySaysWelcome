@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Pair;
 
-
 import com.github.socialc0de.gsw.api.database.dao.DaoMaster;
 import com.github.socialc0de.gsw.api.database.dao.DaoSession;
 
@@ -41,7 +40,7 @@ public class GreenDaoHelper {
     public static DaoMaster getDaoMaster(
             Context context, String dbName, SQLiteDatabase.CursorFactory factory, boolean writeable) {
         final Pair<Context, String> keyPair = new Pair<Context, String>(context, dbName);
-        if(!daoMasterMap.containsKey(keyPair)) {
+        if (!daoMasterMap.containsKey(keyPair)) {
             final DaoMaster.DevOpenHelper dbHelper = new DaoMaster.DevOpenHelper(context, dbName, factory);
             final DaoMaster daoMaster = new DaoMaster(
                     (writeable) ? dbHelper.getWritableDatabase() : dbHelper.getReadableDatabase());
@@ -53,7 +52,7 @@ public class GreenDaoHelper {
 
     public static DaoSession getDaoSession(Context context, String name) {
         synchronized (daoSessionMap) {
-            if(!daoSessionMap.containsKey(name)) {
+            if (!daoSessionMap.containsKey(name)) {
                 daoSessionMap.put(name, newDaoSession(context.getApplicationContext(), name, null, false));
             }
 

@@ -11,6 +11,7 @@ import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
+
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.customClasses.api.Language;
 

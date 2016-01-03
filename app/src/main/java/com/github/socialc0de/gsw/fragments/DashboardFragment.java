@@ -19,11 +19,9 @@ import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
 import com.github.socialc0de.gsw.customClasses.CardItem;
 import com.github.socialc0de.gsw.customClasses.api.De;
 import com.github.socialc0de.gsw.customClasses.api.FaqEntry;
-import com.github.socialc0de.gsw.customClasses.api.Language;
 import com.github.socialc0de.gsw.customClasses.api.Translations;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Created by patricebecker on 10/11/15.
@@ -75,14 +73,14 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
                             case 1:
                                 FaqEntry faqEntry = new FaqEntry();
                                 faqEntry.setCounty(2222);
-                                faqEntry.setTranslations(new Translations().setDe(((De)(new De().setQuestion("karl")))));
+                                faqEntry.setTranslations(new Translations().setDe(((De) (new De().setQuestion("karl")))));
                                 LoadManager_.getInstance_(MainActivity.getMainActivity()).addFaqEntry(faqEntry);
 
                                 LoadManager_.getInstance_(MainActivity.getMainActivity()).loadEmergencyEntriesResults(
                                         new RestArrayRequestCallBack() {
                                             @Override
                                             public void onRestResults(int state, ArrayList<?> results) {
-                                                Log.d("dd","");
+                                                Log.d("dd", "");
                                             }
 
                                             @Override

@@ -1,10 +1,10 @@
-
 package com.github.socialc0de.gsw.customClasses.api;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 public class Location {
 
@@ -16,36 +16,28 @@ public class Location {
     private List<Double> coordinates = new ArrayList<Double>();
 
     /**
-     * 
-     * @return
-     *     The type
+     * @return The type
      */
     public String getType() {
         return type;
     }
 
     /**
-     * 
-     * @param type
-     *     The type
+     * @param type The type
      */
     public void setType(String type) {
         this.type = type;
     }
 
     /**
-     * 
-     * @return
-     *     The coordinates
+     * @return The coordinates
      */
     public List<Double> getCoordinates() {
         return coordinates;
     }
 
     /**
-     * 
-     * @param coordinates
-     *     The coordinates
+     * @param coordinates The coordinates
      */
     public void setCoordinates(List<Double> coordinates) {
         this.coordinates = coordinates;

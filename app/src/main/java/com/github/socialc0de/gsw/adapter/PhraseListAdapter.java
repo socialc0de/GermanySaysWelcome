@@ -1,9 +1,7 @@
 package com.github.socialc0de.gsw.adapter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,53 +20,53 @@ import java.util.ArrayList;
 
 public class PhraseListAdapter extends ArrayAdapter<PhraseEntry> {
 
-        private int targetedLayout;
-        private ArrayList<PhraseEntry> arrayList;
-        private Typeface typeface1;
-        private Context context;
+    private int targetedLayout;
+    private ArrayList<PhraseEntry> arrayList;
+    private Typeface typeface1;
+    private Context context;
 
-        public PhraseListAdapter(Context context, int resource, ArrayList<PhraseEntry> arrayList) {
-            super(context, resource, arrayList);
-            this.context = context;
-            this.targetedLayout = resource;
-            this.arrayList = arrayList;
+    public PhraseListAdapter(Context context, int resource, ArrayList<PhraseEntry> arrayList) {
+        super(context, resource, arrayList);
+        this.context = context;
+        this.targetedLayout = resource;
+        this.arrayList = arrayList;
 
-            // Define Font for PhraseListItem titles
-            typeface1 = Typeface.createFromAsset(context.getAssets(), "ralewaybold.ttf");
+        // Define Font for PhraseListItem titles
+        typeface1 = Typeface.createFromAsset(context.getAssets(), "ralewaybold.ttf");
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View v;
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (convertView == null) {
+            // get layout from mobile.xml
+            v = inflater.inflate(R.layout.phrase_row, null);
+            Log.d("getView called, ", "convertView == null");
+            //Log.e("Convertview == ", "null");
+        } else {
+            v = convertView;
+            //Log.e("Convertview =/= ", "null");
+            Log.d("getView called, ", "View = convertView");
+
         }
+        PhraseEntry currentData = arrayList.get(position);
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View v;
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            if (convertView == null) {
-                // get layout from mobile.xml
-                v = inflater.inflate(R.layout.phrase_row, null);
-                Log.d("getView called, ", "convertView == null");
-                //Log.e("Convertview == ", "null");
-            } else {
-                v = convertView;
-                //Log.e("Convertview =/= ", "null");
-                Log.d("getView called, ", "View = convertView");
+        //TODO: Französich
 
-            }
-            PhraseEntry currentData = arrayList.get(position);
-
-            //TODO: Französich
-
-            if(currentData.getTranslations().getDe() != null)
+        if (currentData.getTranslations().getDe() != null)
             ((TextView) v.findViewById(R.id.german_phrase)).setText(currentData.getTranslations().getDe().getPhrase());
 
-            if(currentData.getTranslations().getEn() != null)
+        if (currentData.getTranslations().getEn() != null)
             ((TextView) v.findViewById(R.id.english_phrase)).setText(currentData.getTranslations().getEn().getPhrase());
 
-            if(currentData.getTranslations().getAr() != null)
+        if (currentData.getTranslations().getAr() != null)
             ((TextView) v.findViewById(R.id.arabic_phrase)).setText(currentData.getTranslations().getAr().getPhrase());
-            return v;
-        }
-
-        @Override
-        public int getCount() {
-            return this.arrayList.size();
-        }
+        return v;
     }
+
+    @Override
+    public int getCount() {
+        return this.arrayList.size();
+    }
+}

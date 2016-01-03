@@ -1,10 +1,10 @@
-
 package com.github.socialc0de.gsw.customClasses.api;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 public class PoiEntry {
 
@@ -31,126 +31,98 @@ public class PoiEntry {
     private Translations translations;
 
     /**
-     * 
-     * @return
-     *     The id
+     * @return The id
      */
     public Integer getId() {
         return id;
     }
 
     /**
-     * 
-     * @param id
-     *     The id
+     * @param id The id
      */
     public void setId(Integer id) {
         this.id = id;
     }
 
     /**
-     * 
-     * @return
-     *     The created
+     * @return The created
      */
     public String getCreated() {
         return created;
     }
 
     /**
-     * 
-     * @param created
-     *     The created
+     * @param created The created
      */
     public void setCreated(String created) {
         this.created = created;
     }
 
     /**
-     * 
-     * @return
-     *     The location
+     * @return The location
      */
     public Location getLocation() {
         return location;
     }
 
     /**
-     * 
-     * @param location
-     *     The location
+     * @param location The location
      */
     public void setLocation(Location location) {
         this.location = location;
     }
 
     /**
-     * 
-     * @return
-     *     The county
+     * @return The county
      */
     public Integer getCounty() {
         return county;
     }
 
     /**
-     * 
-     * @param county
-     *     The county
+     * @param county The county
      */
     public void setCounty(Integer county) {
         this.county = county;
     }
 
     /**
-     * 
-     * @return
-     *     The audiences
+     * @return The audiences
      */
     public List<Integer> getAudiences() {
         return audiences;
     }
 
     /**
-     * 
-     * @param audiences
-     *     The audiences
+     * @param audiences The audiences
      */
     public void setAudiences(List<Integer> audiences) {
         this.audiences = audiences;
     }
 
     /**
-     * 
-     * @return
-     *     The categories
+     * @return The categories
      */
     public List<Integer> getCategories() {
         return categories;
     }
 
     /**
-     * 
-     * @param categories
-     *     The categories
+     * @param categories The categories
      */
     public void setCategories(List<Integer> categories) {
         this.categories = categories;
     }
 
     /**
-     * 
-     * @return
-     *     The translations
+     * @return The translations
      */
     public Translations getTranslations() {
         return translations;
     }
 
     /**
-     * 
-     * @param translations
-     *     The translations
+     * @param translations The translations
      */
     public void setTranslations(Translations translations) {
         this.translations = translations;

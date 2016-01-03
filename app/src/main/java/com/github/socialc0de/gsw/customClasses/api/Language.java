@@ -5,10 +5,6 @@ package com.github.socialc0de.gsw.customClasses.api;
  */
 public class Language {
 
-    public enum LanguageCodes {
-        DE, EN, AR, FR
-    }
-
     private String name = "";
     private String description = "";
     private String question = "";
@@ -60,21 +56,25 @@ public class Language {
         return this;
     }
 
-    public void postFormat(){
-        if(name.equals(""))
+    public void postFormat() {
+        if (name.equals(""))
             name = null;
-        if(description.equals(""))
+        if (description.equals(""))
             description = null;
-        if(question.equals(""))
+        if (question.equals(""))
             question = null;
-        if(answer.equals(""))
+        if (answer.equals(""))
             answer = null;
-        if(phrase.equals(""))
+        if (phrase.equals(""))
             phrase = null;
     }
 
-    public boolean isNull(){
+    public boolean isNull() {
         return (name == null || name.equals("")) && (description == null || description.equals("")) && (question == null || question.equals("")) && (answer == null || answer.equals("")) && (phrase == null || phrase.equals(""));
+    }
+
+    public enum LanguageCodes {
+        DE, EN, AR, FR
     }
 
 }

@@ -18,9 +18,7 @@ import com.github.socialc0de.gsw.api.interfaces.PoiCategoryRestClient;
 import com.github.socialc0de.gsw.api.interfaces.PoiCategoryRestClient_;
 import com.github.socialc0de.gsw.api.interfaces.PoiEntryRestClient;
 import com.github.socialc0de.gsw.api.interfaces.PoiEntryRestClient_;
-import com.github.socialc0de.gsw.customClasses.api.EmergencyEntry;
 
-import org.androidannotations.api.rest.RestClientErrorHandling;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
@@ -95,13 +93,12 @@ public class RestClientHelper {
         return restClient;
     }
 
-    public static void setTimeout(RestTemplate restTemplate, int seconds){
+    public static void setTimeout(RestTemplate restTemplate, int seconds) {
         ClientHttpRequestFactory requestFactory = restTemplate.getRequestFactory();
-        if(requestFactory instanceof SimpleClientHttpRequestFactory) {
+        if (requestFactory instanceof SimpleClientHttpRequestFactory) {
             ((SimpleClientHttpRequestFactory) requestFactory).setConnectTimeout(seconds * 1000);
             ((SimpleClientHttpRequestFactory) requestFactory).setReadTimeout(seconds * 1000);
-        }
-        else if(requestFactory instanceof HttpComponentsClientHttpRequestFactory) {
+        } else if (requestFactory instanceof HttpComponentsClientHttpRequestFactory) {
             ((HttpComponentsClientHttpRequestFactory) requestFactory).setReadTimeout(seconds * 1000);
             ((HttpComponentsClientHttpRequestFactory) requestFactory).setConnectTimeout(seconds * 1000);
         }

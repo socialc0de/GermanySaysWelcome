@@ -9,7 +9,7 @@ public class MapItem {
     private String description;
     private int resource;
 
-    public MapItem(double latitude, double longitude, String title, String description, int resource){
+    public MapItem(double latitude, double longitude, String title, String description, int resource) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.title = title;
@@ -19,7 +19,7 @@ public class MapItem {
 
     @Override
     public String toString() {
-        return "Titel: "+title+" Description: "+description+" Latitude: "+latitude+" Longitude: "+longitude;
+        return "Titel: " + title + " Description: " + description + " Latitude: " + latitude + " Longitude: " + longitude;
     }
 
     public double getLatitude() {

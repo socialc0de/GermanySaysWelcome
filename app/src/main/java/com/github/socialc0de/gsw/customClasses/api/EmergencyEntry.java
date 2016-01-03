@@ -1,4 +1,3 @@
-
 package com.github.socialc0de.gsw.customClasses.api;
 
 
@@ -24,90 +23,70 @@ public class EmergencyEntry {
     private Translations translations;
 
     /**
-     * 
-     * @return
-     *     The id
+     * @return The id
      */
     public Integer getId() {
         return id;
     }
 
     /**
-     * 
-     * @param id
-     *     The id
+     * @param id The id
      */
     public void setId(Integer id) {
         this.id = id;
     }
 
     /**
-     * 
-     * @return
-     *     The created
+     * @return The created
      */
     public String getCreated() {
         return created;
     }
 
     /**
-     * 
-     * @param created
-     *     The created
+     * @param created The created
      */
     public void setCreated(String created) {
         this.created = created;
     }
 
     /**
-     * 
-     * @return
-     *     The number
+     * @return The number
      */
     public String getNumber() {
         return number;
     }
 
     /**
-     * 
-     * @param number
-     *     The number
+     * @param number The number
      */
     public void setNumber(String number) {
         this.number = number;
     }
 
     /**
-     * 
-     * @return
-     *     The county
+     * @return The county
      */
     public Integer getCounty() {
         return county;
     }
 
     /**
-     * 
-     * @param county
-     *     The county
+     * @param county The county
      */
     public void setCounty(Integer county) {
         this.county = county;
     }
 
     /**
-     * 
-     * @return
-     *     The translations
+     * @return The translations
      */
     public Translations getTranslations() {
         return translations;
     }
 
     /**
-     * 
-     * @param translations
-     *     The translations
+     * @param translations The translations
      */
     public void setTranslations(Translations translations) {
         this.translations = translations;

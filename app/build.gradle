@@ -76,7 +76,8 @@ def AAVersion = '3.3.2'
 
 apt {
     arguments {
-        androidManifestFile variant.outputs[0].processResources.manifestFile  // This line is important
+        androidManifestFile variant.outputs[0].processResources.manifestFile
+        // This line is important
         resourcePackageName android.defaultConfig.applicationId
     }
 }

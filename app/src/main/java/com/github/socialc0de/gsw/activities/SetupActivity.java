@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.customClasses.api.Language;
@@ -23,12 +24,12 @@ import com.github.socialc0de.gsw.customClasses.api.Language;
 import java.util.Locale;
 
 public class SetupActivity extends ActionBarActivity implements View.OnClickListener {
+    public static final String ASYLUM_STEP = "asylumStep";
+    public static final String LANGUAGE_CODE = "languageSetting";
     private TextView chooseText, stepViewer, instructionText, nextButtonText;
     private Button chooseButton;
     private LinearLayout nextButton;
     private SharedPreferences mPrefs;
-    public static final String ASYLUM_STEP = "asylumStep";
-    public static final String LANGUAGE_CODE = "languageSetting";
     private Locale myLocale;
     private boolean steponedone = false;
     private String predefinedSystemLanguage;
