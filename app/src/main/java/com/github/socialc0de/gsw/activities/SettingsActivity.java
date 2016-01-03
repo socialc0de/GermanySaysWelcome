@@ -12,6 +12,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 import com.github.socialc0de.gsw.R;
+import com.github.socialc0de.gsw.customClasses.api.Language;
 
 import java.util.Locale;
 
@@ -74,17 +75,17 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     }
 
     public void setLanguageSetting() {
-        if (sharedPreferences.getString(KEY_LANGUAGE, "").equals("de")) {
+        if (sharedPreferences.getString(KEY_LANGUAGE, "").equals(Language.LanguageCodes.DE.toString())) {
             languagePref.setSummary(getResources().getString(R.string.german));
-        } else if (sharedPreferences.getString(KEY_LANGUAGE, "").equals("en")) {
+        } else if (sharedPreferences.getString(KEY_LANGUAGE, "").equals(Language.LanguageCodes.EN.toString())) {
             languagePref.setSummary(getResources().getString(R.string.english));
-        } else if (sharedPreferences.getString(KEY_LANGUAGE, "").equals("ar")) {
+        } else if (sharedPreferences.getString(KEY_LANGUAGE, "").equals(Language.LanguageCodes.AR.toString())) {
             languagePref.setSummary(getResources().getString(R.string.arabic));
         }
     }
 
     public void setLocale() {
-        String lang = sharedPreferences.getString(KEY_LANGUAGE, "en");
+        String lang = sharedPreferences.getString(KEY_LANGUAGE, Language.LanguageCodes.EN.toString());
         myLocale = new Locale(lang);
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();

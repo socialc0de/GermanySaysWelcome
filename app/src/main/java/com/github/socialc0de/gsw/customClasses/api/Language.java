@@ -60,4 +60,21 @@ public class Language {
         return this;
     }
 
+    public void postFormat(){
+        if(name.equals(""))
+            name = null;
+        if(description.equals(""))
+            description = null;
+        if(question.equals(""))
+            question = null;
+        if(answer.equals(""))
+            answer = null;
+        if(phrase.equals(""))
+            phrase = null;
+    }
+
+    public boolean isNull(){
+        return (name == null || name.equals("")) && (description == null || description.equals("")) && (question == null || question.equals("")) && (answer == null || answer.equals("")) && (phrase == null || phrase.equals(""));
+    }
+
 }

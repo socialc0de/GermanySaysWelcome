@@ -24,6 +24,7 @@ import com.github.socialc0de.gsw.api.LoadManager_;
 import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
 import com.github.socialc0de.gsw.customClasses.CardItem;
 import com.github.socialc0de.gsw.customClasses.api.FaqCategory;
+import com.github.socialc0de.gsw.customClasses.api.Language;
 import com.github.socialc0de.gsw.customClasses.api.PhraseCategory;
 
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class FaqFragment extends Fragment {
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getMainActivity());
 
-        final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, "en");
+        final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, Language.LanguageCodes.EN.toString());
 
 
         cardItemArrayList.clear();
@@ -63,13 +64,13 @@ public class FaqFragment extends Fragment {
                     public void onRestResults(int state, ArrayList<?> results) {
                         for(FaqCategory category : (ArrayList<FaqCategory>)results){
 
-                            if(lngCode.equals("de")){
+                            if(lngCode.equals(Language.LanguageCodes.DE.toString())){
                                 cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getDe().getName(), category.getId()));
-                            } else if(lngCode.equals("en")){
+                            } else if(lngCode.equals(Language.LanguageCodes.EN.toString())){
                                 cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getEn().getName(), category.getId()));
-                            } else if(lngCode.equals("fr")){
+                            } else if(lngCode.equals(Language.LanguageCodes.FR.toString())){
                                 cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getFr().getName(), category.getId()));
-                            } else if(lngCode.equals("ar")){
+                            } else if(lngCode.equals(Language.LanguageCodes.AR.toString())){
                                 cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getAr().getName(), category.getId()));
                             }
                         }

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
+import com.github.socialc0de.gsw.customClasses.api.Language;
 
 import java.util.Locale;
 
@@ -98,16 +99,16 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
 
                                     switch (which) {
                                         case 0:
-                                            langCode = "de";
+                                            langCode = Language.LanguageCodes.DE.toString();
                                             break;
                                         case 1:
-                                            langCode = "en";
+                                            langCode = Language.LanguageCodes.EN.toString();
                                             break;
                                         case 2:
-                                            langCode = "ar";
+                                            langCode = Language.LanguageCodes.AR.toString();
                                             break;
                                         case 3:
-                                            langCode = "fr";
+                                            langCode = Language.LanguageCodes.FR.toString();
                                             break;
                                         default:
                                             langCode = predefinedSystemLanguage;

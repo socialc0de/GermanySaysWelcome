@@ -1,11 +1,6 @@
 
 package com.github.socialc0de.gsw.customClasses.api;
 
-import java.util.HashMap;
-import java.util.Map;
-
-
-
 public class Translations {
 
     private Ar ar = new Ar();
@@ -27,8 +22,9 @@ public class Translations {
      * @param ar
      *     The ar
      */
-    public void setAr(Ar ar) {
+    public Translations setAr(Ar ar) {
         this.ar = ar;
+        return this;
     }
 
     /**
@@ -45,8 +41,9 @@ public class Translations {
      * @param fr
      *     The fr
      */
-    public void setFr(Fr fr) {
+    public Translations setFr(Fr fr) {
         this.fr = fr;
+        return this;
     }
 
     /**
@@ -63,8 +60,9 @@ public class Translations {
      * @param en
      *     The en
      */
-    public void setEn(En en) {
+    public Translations setEn(En en) {
         this.en = en;
+        return this;
     }
 
     /**
@@ -86,6 +84,20 @@ public class Translations {
         return this;
     }
 
+    public void postFormat(){
+        ar.postFormat();
+        de.postFormat();
+        en.postFormat();
+        fr.postFormat();
 
+        if(ar.isNull())
+            ar = null;
+        if(de.isNull())
+            de = null;
+        if(fr.isNull())
+            fr = null;
+        if(en.isNull())
+            en = null;
+    }
 
 }

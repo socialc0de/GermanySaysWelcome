@@ -17,8 +17,14 @@ import com.github.socialc0de.gsw.api.LoadManager_;
 import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
 import com.github.socialc0de.gsw.customClasses.CardItem;
 import com.github.socialc0de.gsw.customClasses.CustomCard;
+import com.github.socialc0de.gsw.customClasses.api.Ar;
+import com.github.socialc0de.gsw.customClasses.api.De;
+import com.github.socialc0de.gsw.customClasses.api.En;
 import com.github.socialc0de.gsw.customClasses.api.FaqCategory;
 import com.github.socialc0de.gsw.customClasses.api.FaqEntry;
+import com.github.socialc0de.gsw.customClasses.api.Fr;
+import com.github.socialc0de.gsw.customClasses.api.Language;
+import com.github.socialc0de.gsw.customClasses.api.Translations;
 import com.melnykov.fab.FloatingActionButton;
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardExpand;
@@ -37,7 +43,8 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
     public int categoryId = 0;
     private ArrayList<Card> cards = new ArrayList<Card>();
     private CardRecyclerView mRecyclerView;
-    private SharedPreferences mPrefs;
+    private SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getMainActivity());
+    private final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, "EN");
 
     public FaqDetailFragment() {
     }
@@ -84,8 +91,6 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
         newQuestion.setColorRippleResId(R.color.accentColor);
         newQuestion.setColorPressedResId(R.color.accentColor);
         newQuestion.setOnClickListener(this);
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getMainActivity());
-        final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, "en");
         cards.clear();
 
         LoadManager_.getInstance_(MainActivity.getMainActivity()).loadFaqEntriesByCategoryResults(
@@ -94,14 +99,14 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
                     public void onRestResults(int state, ArrayList<?> results) {
                         for(FaqEntry entry : (ArrayList<FaqEntry>)results){
 
-                            if(lngCode.equals("de")){
-                                cards.add(createCustomCard(entry.getCreated(), entry.getTranslations().getDe().getQuestion(), entry.getTranslations().getDe().getAnswer()));
-                            } else if(lngCode.equals("en")){
-                                cards.add(createCustomCard(entry.getCreated(), entry.getTranslations().getEn().getQuestion(), entry.getTranslations().getEn().getAnswer()));
-                            } else if(lngCode.equals("fr")){
-                                cards.add(createCustomCard(entry.getCreated(), entry.getTranslations().getFr().getQuestion(), entry.getTranslations().getFr().getAnswer()));
-                            } else if(lngCode.equals("ar")){
-                                cards.add(createCustomCard(entry.getCreated(), entry.getTranslations().getAr().getQuestion(), entry.getTranslations().getAr().getAnswer()));
+                            if(lngCode.equals(Language.LanguageCodes.DE.toString())){
+                                cards.add(createCustomCard("", entry.getTranslations().getDe().getQuestion(), entry.getTranslations().getDe().getAnswer()));
+                            } else if(lngCode.equals(Language.LanguageCodes.EN.toString())){
+                                cards.add(createCustomCard("", entry.getTranslations().getEn().getQuestion(), entry.getTranslations().getEn().getAnswer()));
+                            } else if(lngCode.equals(Language.LanguageCodes.FR.toString())){
+                                cards.add(createCustomCard("", entry.getTranslations().getFr().getQuestion(), entry.getTranslations().getFr().getAnswer()));
+                            } else if(lngCode.equals(Language.LanguageCodes.AR.toString())){
+                                cards.add(createCustomCard("", entry.getTranslations().getAr().getQuestion(), entry.getTranslations().getAr().getAnswer()));
                             }
                         }
                         MainActivity.getMainActivity().runOnUiThread(new Runnable() {
@@ -123,6 +128,7 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
         mRecyclerView = (CardRecyclerView) view.findViewById(R.id.carddemo_recyclerview);
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        newQuestion.attachToRecyclerView(mRecyclerView);
 
         return view;
     }
@@ -144,7 +150,18 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
                 .input(getResources().getString(R.string.hinttextquestion), "", new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
-                        // Do something
+                        FaqEntry faqEntry = new FaqEntry();
+                        faqEntry.setCounty(0000);
+                        if(lngCode.equals(Language.LanguageCodes.DE.toString())){
+                            faqEntry.setTranslations(new Translations().setDe(((De)(new De().setQuestion(input.toString())))));
+                        } else if(lngCode.equals(Language.LanguageCodes.EN.toString())){
+                            faqEntry.setTranslations(new Translations().setEn((En)(new En().setQuestion(input.toString()))));
+                        } else if(lngCode.equals(Language.LanguageCodes.FR.toString())){
+                            faqEntry.setTranslations(new Translations().setFr(((Fr)(new Fr().setQuestion(input.toString())))));
+                        } else if(lngCode.equals(Language.LanguageCodes.AR.toString())){
+                            faqEntry.setTranslations(new Translations().setAr(((Ar)(new Ar().setQuestion(input.toString())))));
+                        }
+                        LoadManager_.getInstance_(MainActivity.getMainActivity()).addFaqEntry(faqEntry);
                     }
                 }).show();
     }
