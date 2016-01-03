@@ -1,8 +1,10 @@
 package com.github.socialc0de.gsw.fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -10,7 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.socialc0de.gsw.R;
+import com.github.socialc0de.gsw.activities.MainActivity;
+import com.github.socialc0de.gsw.activities.SetupActivity;
+import com.github.socialc0de.gsw.api.LoadManager_;
+import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
 import com.github.socialc0de.gsw.customClasses.CustomCard;
+import com.github.socialc0de.gsw.customClasses.api.EmergencyEntry;
+import com.github.socialc0de.gsw.customClasses.api.FaqEntry;
+import com.github.socialc0de.gsw.customClasses.api.Language;
 
 import java.util.ArrayList;
 
@@ -26,6 +35,10 @@ import it.gmariotti.cardslib.library.recyclerview.view.CardRecyclerView;
  */
 public class EmergencyFragment extends Fragment {
 
+    private ArrayList<Card> cards = new ArrayList<Card>();
+    private CardRecyclerView mRecyclerView;
+    private SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getMainActivity());
+    private final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, "EN");
 
     public EmergencyFragment() {
     }
@@ -72,30 +85,52 @@ public class EmergencyFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.emergency, container, false);
 
-        ArrayList<Card> cards = new ArrayList<Card>();
+        LoadManager_.getInstance_(MainActivity.getMainActivity()).loadEmergencyEntriesResults(
+                new RestArrayRequestCallBack() {
+                    @Override
+                    public void onRestResults(int state, ArrayList<?> results) {
+                        for (EmergencyEntry entry : (ArrayList<EmergencyEntry>) results) {
 
-        Card customCard = createCustomCard("Click to call", "Police 100", "Germany Police acts as executive governmental force.", "110");
-        Card customCard1 = createCustomCard("If you need Ambulance", "Ambulance", "That's a test Paragraph", "112");
-        Card customCard2 = createCustomCard("Just Testing", "next emergency call number", "that's an example too", "800");
+                            if (lngCode.equals(Language.LanguageCodes.DE.toString())) {
+                                cards.add(createCustomCard(entry.getNumber(), entry.getTranslations().getDe().getName(), entry.getTranslations().getDe().getDescription(), entry.getNumber()));
+                            } else if (lngCode.equals(Language.LanguageCodes.EN.toString())) {
+                                cards.add(createCustomCard(entry.getNumber(), entry.getTranslations().getEn().getName(), entry.getTranslations().getEn().getDescription(), entry.getNumber()));
+                            } else if (lngCode.equals(Language.LanguageCodes.FR.toString())) {
+                                cards.add(createCustomCard(entry.getNumber(), entry.getTranslations().getFr().getName(), entry.getTranslations().getFr().getDescription(), entry.getNumber()));
+                            } else if (lngCode.equals(Language.LanguageCodes.AR.toString())) {
+                                cards.add(createCustomCard(entry.getNumber(), entry.getTranslations().getAr().getName(), entry.getTranslations().getAr().getDescription(), entry.getNumber()));
+                            }
+                        }
+                        MainActivity.getMainActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                reload();
+                            }
+                        });
+                    }
 
+                    @Override
+                    public boolean isDestroyed() {
+                        return false;
+                    }
+                });
 
-        cards.add(customCard);
-        cards.add(customCard1);
-        cards.add(customCard2);
-
-        CardArrayRecyclerViewAdapter mCardArrayAdapter = new CardArrayRecyclerViewAdapter(getActivity(), cards);
 
         //Staggered grid view
-        CardRecyclerView mRecyclerView = (CardRecyclerView) view.findViewById(R.id.carddemo_recyclerview);
+        mRecyclerView = (CardRecyclerView) view.findViewById(R.id.carddemo_recyclerview);
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        //Set the empty view
-        if (mRecyclerView != null) {
-            mRecyclerView.setAdapter(mCardArrayAdapter);
-        }
+
         return view;
     }
 
+    private void reload(){
+        CardArrayRecyclerViewAdapter mCardArrayAdapter = new CardArrayRecyclerViewAdapter(getActivity(), cards);
+        if (mRecyclerView != null) {
+            mRecyclerView.setAdapter(mCardArrayAdapter);
+            mRecyclerView.invalidate();
+        }
+    }
 
 }

@@ -50,11 +50,13 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
         final CardItem faqCard = new CardItem(R.drawable.faq, getResources().getString(R.string.faq), 0);
         CardItem mapCard = new CardItem(R.drawable.map, getResources().getString(R.string.map), 1);
         CardItem phrasebookCard = new CardItem(R.drawable.phrasebook, getResources().getString(R.string.phrasebook), 2);
+        CardItem ermergencyCard = new CardItem(R.drawable.ermergency, getResources().getString(R.string.emergency), 2);
 
         ArrayList<CardItem> cardItemArrayList = new ArrayList<CardItem>();
         cardItemArrayList.add(faqCard);
         cardItemArrayList.add(mapCard);
         cardItemArrayList.add(phrasebookCard);
+        cardItemArrayList.add(ermergencyCard);
 
         CardItemAdapter ca = new CardItemAdapter(cardItemArrayList);
         recList.setAdapter(ca);
@@ -71,6 +73,7 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
                                 fragmentTransaction.commit();
                                 break;
                             case 1:
+                                /*
                                 FaqEntry faqEntry = new FaqEntry();
                                 faqEntry.setCounty(2222);
                                 faqEntry.setTranslations(new Translations().setDe(((De) (new De().setQuestion("karl")))));
@@ -89,12 +92,22 @@ public class DashboardFragment extends android.support.v4.app.Fragment {
                                             }
                                         }
                                 );
-
+                                */
+                                MapFragment mapFragment = new MapFragment();
+                                fragmentTransaction.replace(R.id.container, mapFragment, getResources().getString(R.string.map));
+                                fragmentTransaction.addToBackStack(getResources().getString(R.string.map));
+                                fragmentTransaction.commit();
                                 break;
                             case 2:
                                 PhraseFragment phraseFragment = new PhraseFragment();
                                 fragmentTransaction.replace(R.id.container, phraseFragment, getResources().getString(R.string.phrasebook));
                                 fragmentTransaction.addToBackStack(getResources().getString(R.string.phrasebook));
+                                fragmentTransaction.commit();
+                                break;
+                            case 3:
+                                EmergencyFragment emergencyFragment = new EmergencyFragment();
+                                fragmentTransaction.replace(R.id.container, emergencyFragment, getResources().getString(R.string.emergency));
+                                fragmentTransaction.addToBackStack(getResources().getString(R.string.emergency));
                                 fragmentTransaction.commit();
                                 break;
                         }

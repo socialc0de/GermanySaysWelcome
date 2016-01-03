@@ -137,6 +137,7 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
         CardArrayRecyclerViewAdapter mCardArrayAdapter = new CardArrayRecyclerViewAdapter(getActivity(), cards);
         if (mRecyclerView != null) {
             mRecyclerView.setAdapter(mCardArrayAdapter);
+            mRecyclerView.invalidate();
         }
     }
 
