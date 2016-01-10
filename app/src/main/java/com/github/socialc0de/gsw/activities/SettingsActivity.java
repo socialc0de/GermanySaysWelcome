@@ -61,8 +61,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
     @Override
     public void onBackPressed() {
-        Intent setIntent = new Intent(this, MainActivity.class);
-        startActivity(setIntent);
         super.onBackPressed();
         return;
     }

@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -34,13 +35,12 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import java.util.ArrayList;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     private static MainActivity mainActivity;
     private final String welcomeScreenShownPref = "welcomeScreenShown";
     private Drawer mDrawer;
     private AccountHeader headerResult;
-    private ArrayList<Fragment> fragmentList = new ArrayList<Fragment>();
     private SharedPreferences mPrefs;
 
     public static MainActivity getMainActivity() {
@@ -92,12 +92,6 @@ public class MainActivity extends ActionBarActivity {
                 .show();
 
 
-        fragmentList.add(new DashboardFragment());
-        fragmentList.add(new FaqFragment());
-        fragmentList.add(new EmergencyFragment());
-        fragmentList.add(new PhraseFragment());
-        fragmentList.add(new MapFragment());
-
 
         createNavigationDrawer(mDrawer);
         SpannableString s = new SpannableString(getString(R.string.app_name));
@@ -122,7 +116,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentList.get(0)).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new DashboardFragment()).commit();
 
 
     }
@@ -157,7 +151,27 @@ public class MainActivity extends ActionBarActivity {
                         public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                             getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                             //Log.d("onItemClick called: ", "position: "+position);
-                            getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentList.get(position - 1)).addToBackStack(null).commit();
+                            Fragment selectedFragment;
+                            switch (position - 1) {
+                                case 0:
+                                    selectedFragment = new DashboardFragment();
+                                    break;
+                                case 1:
+                                    selectedFragment = new FaqFragment();
+                                    break;
+                                case 2:
+                                    selectedFragment = new EmergencyFragment();
+                                    break;
+                                case 3:
+                                    selectedFragment = new PhraseFragment();
+                                    break;
+                                case 4:
+                                    selectedFragment = new MapFragment();
+                                    break;
+                                default:
+                                    selectedFragment = new DashboardFragment();
+                            }
+                            getSupportFragmentManager().beginTransaction().replace(R.id.container, selectedFragment).disallowAddToBackStack().commit();
                             return false;
                         }
                     })

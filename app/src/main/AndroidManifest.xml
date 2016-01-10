@@ -34,16 +34,12 @@
         <activity
             android:name=".activities.SettingsActivity"
             android:label="Settings"
-            android:parentActivityName=".activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base.Settings">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.github.socialc0de.gsw.activities.MainActivity" />
         </activity>
-        <activity
-            android:name=".activities.NewQuestionActivity"
-            android:label="@string/title_activity_new_question"></activity>
     </application>
 
 </manifest>
