@@ -20,7 +20,7 @@ public class GreenDaoGenerator {
         Entity phraseCategoryEntity = setupPhraseCategoryEntity(schema, translation, translationID);
 
 
-        new DaoGenerator().generateAll(schema, args[0]);
+        new DaoGenerator().generateAll(schema, "app/src/main/java/com/github/socialc0de/gsw/api/database/");
     }
 
     private static Entity setupAudienceEntity(final Schema schema, Entity translation, Property translationID) {
