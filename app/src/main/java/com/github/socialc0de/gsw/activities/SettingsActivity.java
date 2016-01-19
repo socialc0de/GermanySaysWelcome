@@ -80,6 +80,8 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
             languagePref.setSummary(getResources().getString(R.string.english));
         } else if (sharedPreferences.getString(KEY_LANGUAGE, "").equals(Language.LanguageCodes.AR.toString())) {
             languagePref.setSummary(getResources().getString(R.string.arabic));
+        } else if (sharedPreferences.getString(KEY_LANGUAGE, "").equals(Language.LanguageCodes.FR.toString())) {
+            languagePref.setSummary(getResources().getString(R.string.france));
         }
     }
 
