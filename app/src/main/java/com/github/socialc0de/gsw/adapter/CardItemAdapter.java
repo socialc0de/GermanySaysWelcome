@@ -8,7 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.socialc0de.gsw.R;
+import com.github.socialc0de.gsw.activities.MainActivity;
 import com.github.socialc0de.gsw.customClasses.CardItem;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -35,7 +37,8 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.CardIt
     public void onBindViewHolder(CardItemViewHolder holder, int position) {
         CardItem cardItem = cardItemArrayList.get(position);
         holder.dashboardText.setText(cardItem.getCategoryName());
-        holder.dashboardImage.setImageResource(cardItem.getImage());
+        Picasso.with(MainActivity.getMainActivity()).load(cardItem.getImage()).into(holder.dashboardImage);
+
     }
 
     @Override

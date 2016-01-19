@@ -2,6 +2,7 @@ package com.github.socialc0de.gsw.fragments;
 
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,22 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.socialc0de.gsw.R;
-import com.github.socialc0de.gsw.activities.MainActivity;
 import com.github.socialc0de.gsw.adapter.CardItemAdapter;
 import com.github.socialc0de.gsw.adapter.RecyclerItemClickListener;
-import com.github.socialc0de.gsw.api.LoadManager_;
-import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
 import com.github.socialc0de.gsw.customClasses.CardItem;
-import com.github.socialc0de.gsw.customClasses.api.De;
-import com.github.socialc0de.gsw.customClasses.api.FaqEntry;
-import com.github.socialc0de.gsw.customClasses.api.Translations;
 
 import java.util.ArrayList;
 
 /**
  * Created by patricebecker on 10/11/15.
  */
-public class DashboardFragment extends android.support.v4.app.Fragment {
+public class DashboardFragment extends Fragment {
 
 
     public DashboardFragment() {
