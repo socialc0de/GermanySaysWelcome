@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="languageOptions">
+        <item>@string/german</item>
+        <item>@string/english</item>
+        <item>@string/arabic</item>
+    </string-array>
+    <string-array name="languageKeys">
+        <item>de</item>
+        <item>en</item>
+        <item>ar</item>
+    </string-array>
+    <string-array name="asylumSteps">
+        <item>@string/step1short</item>
+        <item>@string/step2short</item>
+        <item>@string/step3short</item>
+        <item>@string/allinfo</item>
+    </string-array>
+    <string-array name="asylumKeys">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>0</item>
+    </string-array>
+    <string-array name="filterChooser">
+        <item>@string/authorities</item>
+        <item>@string/hotspots</item>
+        <item>@string/hospitals</item>
+        <item>@string/helpcenter</item>
+    </string-array>
+</resources>
