@@ -34,6 +34,7 @@ import com.melnykov.fab.FloatingActionButton;
 import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
@@ -206,7 +207,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
 
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-        Log.d(""+location.getLongitude(),""+location.getLatitude());
+        Log.d("" + location.getLongitude(), "" + location.getLatitude());
         if (location != null) startPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
 
         mScaleBarOverlay = new ScaleBarOverlay(getContext());
@@ -240,6 +241,34 @@ public class MapFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    private void reload(String id) {
+        BoundingBoxE6 mapBoundingBox = mMapView.getBoundingBox();
+        float minLat = (float) (mapBoundingBox.getLatSouthE6() / 1E6);
+        float minLng = (float) (mapBoundingBox.getLonWestE6() / 1E6);
+        float maxLat = (float) (mapBoundingBox.getLatNorthE6() / 1E6);
+        float maxLng = (float) (mapBoundingBox.getLonEastE6() / 1E6);
+        PoiCategory poiCategory = hashMap.get(id);
+        LoadManager_.getInstance_(MainActivity.getMainActivity()).loadPoiEntriesByCategoryAndBBoxResults(
+                new RestArrayRequestCallBack() {
+                    @Override
+                    public void onRestResults(int state, ArrayList<?> results) {
+
+                        MainActivity.getMainActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Stuff
+                            }
+                        });
+                    }
+
+                    @Override
+                    public boolean isDestroyed() {
+                        return false;
+                    }
+                }
+                , poiCategory.getId(), minLat, minLng, maxLat, maxLng);
+    }
+
     @Override
     public void onClick(View v) {
 
@@ -251,10 +280,10 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                 new RestArrayRequestCallBack() {
                     @Override
                     public void onRestResults(int state, ArrayList<?> results) {
-                        int i=0;
+                        int i = 0;
                         hashMap.clear();
                         final String[] stringarray = new String[results.size()];
-                        for (PoiCategory category: (ArrayList<PoiCategory>) results){
+                        for (PoiCategory category : (ArrayList<PoiCategory>) results) {
                             if (lngCode.equals(Language.LanguageCodes.DE.toString())) {
                                 stringarray[i] = category.getTranslations().getDe().getName();
                                 hashMap.put(category.getTranslations().getDe().getName(), category);
@@ -280,8 +309,12 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                                         .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
                                             @Override
                                             public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
-                                                PoiCategory poiCategory = hashMap.get(text[0]);
-                                                
+
+                                                for (int i = 0; i < text.length; i++) {
+                                                    reload(text[i].toString());
+
+                                                }
+
 
                                                 return true;
                                             }
