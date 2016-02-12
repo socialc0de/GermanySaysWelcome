@@ -61,13 +61,13 @@ public class FaqFragment extends Fragment {
                         for (FaqCategory category : (ArrayList<FaqCategory>) results) {
 
                             if (lngCode.equals(Language.LanguageCodes.DE.toString())) {
-                                cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getDe().getName(), category.getId()));
+                                cardItemArrayList.add(new CardItem(category.getImage(), category.getTranslations().getDe().getName(), category.getId()));
                             } else if (lngCode.equals(Language.LanguageCodes.EN.toString())) {
-                                cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getEn().getName(), category.getId()));
+                                cardItemArrayList.add(new CardItem(category.getImage(), category.getTranslations().getEn().getName(), category.getId()));
                             } else if (lngCode.equals(Language.LanguageCodes.FR.toString())) {
-                                cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getFr().getName(), category.getId()));
+                                cardItemArrayList.add(new CardItem(category.getImage(), category.getTranslations().getFr().getName(), category.getId()));
                             } else if (lngCode.equals(Language.LanguageCodes.AR.toString())) {
-                                cardItemArrayList.add(new CardItem(R.drawable.faq, category.getTranslations().getAr().getName(), category.getId()));
+                                cardItemArrayList.add(new CardItem(category.getImage(), category.getTranslations().getAr().getName(), category.getId()));
                             }
                         }
                         MainActivity.getMainActivity().runOnUiThread(new Runnable() {
