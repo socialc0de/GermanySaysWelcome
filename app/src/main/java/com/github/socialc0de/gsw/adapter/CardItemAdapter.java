@@ -37,7 +37,10 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemAdapter.CardIt
     public void onBindViewHolder(CardItemViewHolder holder, int position) {
         CardItem cardItem = cardItemArrayList.get(position);
         holder.dashboardText.setText(cardItem.getCategoryName());
-        Picasso.with(MainActivity.getMainActivity()).load(cardItem.getImage()).into(holder.dashboardImage);
+        if(!cardItem.getImage().equals(""))
+            Picasso.with(MainActivity.getMainActivity()).load(cardItem.getImage()).into(holder.dashboardImage);
+        else
+            Picasso.with(MainActivity.getMainActivity()).load(cardItem.getImageID()).into(holder.dashboardImage);
 
     }
 
