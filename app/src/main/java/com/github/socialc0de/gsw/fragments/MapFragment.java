@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.activities.MainActivity;
@@ -32,6 +33,7 @@ import com.github.socialc0de.gsw.customClasses.api.PoiCategory;
 import com.github.socialc0de.gsw.customClasses.api.PoiEntry;
 import com.melnykov.fab.FloatingActionButton;
 
+import com.squareup.picasso.Picasso;
 import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -248,7 +250,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
         float minLng = (float) (mapBoundingBox.getLonWestE6() / 1E6);
         float maxLat = (float) (mapBoundingBox.getLatNorthE6() / 1E6);
         float maxLng = (float) (mapBoundingBox.getLonEastE6() / 1E6);
-        PoiCategory poiCategory = hashMap.get(id);
+        final PoiCategory poiCategory = hashMap.get(id);
         LoadManager_.getInstance_(MainActivity.getMainActivity()).loadPoiEntriesByCategoryAndBBoxResults(
                 new RestArrayRequestCallBack() {
                     @Override
@@ -257,9 +259,17 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                         MainActivity.getMainActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                /*
+                                ImageView imageView = new ImageView(getActivity());
+                                PoiCategory poiCategory2 = new PoiCategory();
+                                if (arrayList.get(0) != null) {poiCategory2 = (PoiCategory) arrayList.get(0);}
+                                Picasso.with(MainActivity.getMainActivity()).load(poiCategory2.getIcon()).into(imageView);
+                                Drawable drawable = imageView.getDrawable();
+                                */
+
                                 for (int i=0; i<arrayList.size(); i++){
-                                    PoiCategory poiCategory1 = (PoiCategory) arrayList.get(i);
-                                    //addKnoten(poiCategory1.);
+                                    PoiEntry poiEntry = (PoiEntry) arrayList.get(i);
+                                    addKnoten(getActivity().getResources().getDrawable(R.drawable.clustericon),poiEntry.getTranslations().getDe().getName(),new GeoPoint(poiEntry.getLocation().getCoordinates().get(0),poiEntry.getLocation().getCoordinates().get(1)));
                                 }
                             }
                         });
