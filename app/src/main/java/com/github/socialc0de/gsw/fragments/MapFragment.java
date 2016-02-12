@@ -2,12 +2,14 @@ package com.github.socialc0de.gsw.fragments;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import android.view.ViewGroup;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.activities.MainActivity;
+import com.github.socialc0de.gsw.activities.SetupActivity;
 import com.github.socialc0de.gsw.api.LoadManager_;
 import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
 import com.github.socialc0de.gsw.async.MyAsyncTask;
@@ -24,6 +27,8 @@ import com.github.socialc0de.gsw.async.TaskResult;
 import com.github.socialc0de.gsw.async.interfaces.AsyncCallBack;
 import com.github.socialc0de.gsw.async.interfaces.CustomAsyncTask;
 import com.github.socialc0de.gsw.customClasses.MapItem;
+import com.github.socialc0de.gsw.customClasses.api.Language;
+import com.github.socialc0de.gsw.customClasses.api.PoiCategory;
 import com.melnykov.fab.FloatingActionButton;
 
 import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
@@ -37,6 +42,7 @@ import org.osmdroid.views.overlay.compass.CompassOverlay;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by patricebecker on 20/11/15.
@@ -51,6 +57,9 @@ public class MapFragment extends Fragment implements View.OnClickListener {
     private GeoPoint startPoint;
     private FloatingActionButton floatingActionButton;
     private String[] filterArray;
+    private SharedPreferences mPrefs;
+    private HashMap<String, PoiCategory> hashMap = new HashMap<String, PoiCategory>();
+
     CustomAsyncTask filterTask = new CustomAsyncTask() {
 
         @Override
@@ -233,13 +242,55 @@ public class MapFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        final ArrayList categories = new ArrayList();
+
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getMainActivity());
+        final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, Language.LanguageCodes.EN.toString());
+
 
         LoadManager_.getInstance_(MainActivity.getMainActivity()).loadPoiCategoryResults(
                 new RestArrayRequestCallBack() {
                     @Override
                     public void onRestResults(int state, ArrayList<?> results) {
-                        for (int i=0; i<results.size(); i++) categories.add(results.get(i));
+                        int i=0;
+                        hashMap.clear();
+                        final String[] stringarray = new String[results.size()];
+                        for (PoiCategory category: (ArrayList<PoiCategory>) results){
+                            if (lngCode.equals(Language.LanguageCodes.DE.toString())) {
+                                stringarray[i] = category.getTranslations().getDe().getName();
+                                hashMap.put(category.getTranslations().getDe().getName(), category);
+                            } else if (lngCode.equals(Language.LanguageCodes.EN.toString())) {
+                                stringarray[i] = category.getTranslations().getEn().getName();
+                                hashMap.put(category.getTranslations().getEn().getName(), category);
+                            } else if (lngCode.equals(Language.LanguageCodes.FR.toString())) {
+                                stringarray[i] = category.getTranslations().getFr().getName();
+                                hashMap.put(category.getTranslations().getFr().getName(), category);
+                            } else if (lngCode.equals(Language.LanguageCodes.AR.toString())) {
+                                stringarray[i] = category.getTranslations().getAr().getName();
+                                hashMap.put(category.getTranslations().getAr().getName(), category);
+
+                            }
+                            i++;
+                        }
+                        MainActivity.getMainActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                new MaterialDialog.Builder(MainActivity.getMainActivity())
+                                        .title(R.string.filter)
+                                        .items(stringarray)
+                                        .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
+                                            @Override
+                                            public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
+                                                PoiCategory poiCategory = hashMap.get(text[0]);
+                                                
+
+                                                return true;
+                                            }
+                                        })
+                                        .positiveText(R.string.done)
+                                        .show();
+                            }
+                        });
+
                     }
 
                     @Override
@@ -249,25 +300,5 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                 }
         );
 
-
-        
-
-        new MaterialDialog.Builder(getContext())
-                .title(R.string.filter)
-                .items(R.array.filterChooser)
-                .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
-                    @Override
-                    public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
-                        for (int i = 0; i < which.length; i++)
-                            Log.d("Selected items", " : " + which[i]);
-
-                        MyAsyncTask asyncTask = new MyAsyncTask(filterTask, which, callBack);
-                        asyncTask.execute();
-
-                        return true;
-                    }
-                })
-                .positiveText(R.string.done)
-                .show();
     }
 }
