@@ -16,6 +16,9 @@ import android.view.ViewGroup;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
+import com.github.socialc0de.gsw.activities.MainActivity;
+import com.github.socialc0de.gsw.api.LoadManager_;
+import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
 import com.github.socialc0de.gsw.async.MyAsyncTask;
 import com.github.socialc0de.gsw.async.TaskResult;
 import com.github.socialc0de.gsw.async.interfaces.AsyncCallBack;
@@ -230,6 +233,25 @@ public class MapFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        final ArrayList categories = new ArrayList();
+
+        LoadManager_.getInstance_(MainActivity.getMainActivity()).loadPoiCategoryResults(
+                new RestArrayRequestCallBack() {
+                    @Override
+                    public void onRestResults(int state, ArrayList<?> results) {
+                        for (int i=0; i<results.size(); i++) categories.add(results.get(i));
+                    }
+
+                    @Override
+                    public boolean isDestroyed() {
+                        return false;
+                    }
+                }
+        );
+
+
+        
+
         new MaterialDialog.Builder(getContext())
                 .title(R.string.filter)
                 .items(R.array.filterChooser)
