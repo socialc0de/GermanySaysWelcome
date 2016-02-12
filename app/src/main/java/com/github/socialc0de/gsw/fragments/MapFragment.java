@@ -1,9 +1,12 @@
 package com.github.socialc0de.gsw.fragments;
 
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -173,6 +176,8 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_map, container, false);
+        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+
 
         floatingActionButton = (FloatingActionButton) view.findViewById(R.id.filterButton);
         floatingActionButton.setOnClickListener(this);
@@ -185,15 +190,19 @@ public class MapFragment extends Fragment implements View.OnClickListener {
         mMapView.setBuiltInZoomControls(true);
         mMapController = (MapController) mMapView.getController();
         mMapController.setZoom(13);
-        startPoint = new GeoPoint(48.13, -1.63);
-        mMapController.setCenter(startPoint);
 
+
+        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+        Log.d(""+location.getLongitude(),""+location.getLatitude());
+        if (location != null) startPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
 
         mScaleBarOverlay = new ScaleBarOverlay(getContext());
         mScaleBarOverlay.setCentred(true);
         mScaleBarOverlay.setScaleBarOffset(getActivity().getWindowManager().getDefaultDisplay().getWidth() / 2, 10);
         mMapView.getOverlays().add(this.mScaleBarOverlay);
 
+        mMapController.setCenter(startPoint);
 
         Marker startMarker = new Marker(mMapView);
         startMarker.setPosition(startPoint);
