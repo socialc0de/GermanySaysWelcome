@@ -393,6 +393,43 @@ public class LoadManager implements org.androidannotations.api.rest.RestErrorHan
         }
     }
 
+
+    @Background
+    public void loadPoiEntriesByCategoryAndBBoxResults(final RestArrayRequestCallBack callback, int category, float minLat, float minLng, float maxLat, float maxLng) {
+        PoiEntryRestClient mRestClient;
+        mNetworkstate = NETWORK_AVAILABLE;
+
+
+        if (callback == null) {
+            return;
+        }
+        mCallback = callback; // store callback class for error
+
+        mRestClient = RestClientHelper.createPoiEntryRestClientWithTimeout(getCurrentActivity());//new CurrencyRestClient_(getCurrentActivity());
+        mRestClient.setRestErrorHandler(this);
+
+        Boolean networkAvailable = checkNetworkState();
+        if (networkAvailable == null) {
+            return;
+        }
+
+        if (!networkAvailable) {
+            mNetworkstate = NETWORK_NOT_AVAILABLE;
+            callback.onRestResults(mNetworkstate, null);
+        } else {
+            ArrayList<PoiEntry> results = mRestClient.loadPoiEntriesByCategoryAndBBoxFromRest(category, minLat, minLng, maxLat, maxLng);
+            if (results == null)
+                results = new ArrayList<PoiEntry>();
+
+            if (mNetworkstate == NETWORK_AVAILABLE) {
+                if (callback != null && !callback.isDestroyed()) {
+                    callback.onRestResults(mNetworkstate, results);
+                }
+            }
+        }
+    }
+
+
     @Background
     public void loadPhraseEntriesResults(final RestArrayRequestCallBack callback) {
         PhraseEntryRestClient mRestClient;
