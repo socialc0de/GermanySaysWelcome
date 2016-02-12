@@ -29,6 +29,11 @@ public interface PoiEntryRestClient extends RestClientErrorHandling {
     @RequiresHeader({"User-Agent"})
     ArrayList<PoiEntry> loadPoiEntriesByCategoryFromRest(int category);
 
+    @Get("/poi/by-category/{category}/?in_bbox={minLat},{minLng},{maxLat},{maxLng}")
+    @Accept(MediaType.APPLICATION_JSON)
+    @RequiresHeader({"User-Agent"})
+    ArrayList<PoiEntry> loadPoiEntriesByCategoryAndBBoxFromRest(int category, float minLat, float minLng, float maxLat, float maxLng);
+
 
     // if you need to add some configuration to the Spring RestTemplate.
     RestTemplate getRestTemplate();
