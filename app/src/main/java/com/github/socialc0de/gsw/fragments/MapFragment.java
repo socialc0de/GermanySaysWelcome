@@ -29,6 +29,7 @@ import com.github.socialc0de.gsw.async.interfaces.CustomAsyncTask;
 import com.github.socialc0de.gsw.customClasses.MapItem;
 import com.github.socialc0de.gsw.customClasses.api.Language;
 import com.github.socialc0de.gsw.customClasses.api.PoiCategory;
+import com.github.socialc0de.gsw.customClasses.api.PoiEntry;
 import com.melnykov.fab.FloatingActionButton;
 
 import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
@@ -251,12 +252,15 @@ public class MapFragment extends Fragment implements View.OnClickListener {
         LoadManager_.getInstance_(MainActivity.getMainActivity()).loadPoiEntriesByCategoryAndBBoxResults(
                 new RestArrayRequestCallBack() {
                     @Override
-                    public void onRestResults(int state, ArrayList<?> results) {
+                    public void onRestResults(int state, final ArrayList<?> arrayList) {
 
                         MainActivity.getMainActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                // Stuff
+                                for (int i=0; i<arrayList.size(); i++){
+                                    PoiCategory poiCategory1 = (PoiCategory) arrayList.get(i);
+                                    //addKnoten(poiCategory1.);
+                                }
                             }
                         });
                     }
@@ -267,6 +271,16 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                     }
                 }
                 , poiCategory.getId(), minLat, minLng, maxLat, maxLng);
+    }
+
+    public void addKnoten(Drawable icon, String text, GeoPoint location){
+        Marker marker = new Marker(mMapView);
+        marker.setPosition(location);
+        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+        marker.setTitle(text);
+        marker.setIcon(icon);
+        mMapView.getOverlays().add(marker);
+        mMapView.invalidate();
     }
 
     @Override
