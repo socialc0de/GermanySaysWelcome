@@ -8,7 +8,7 @@
     android:padding="15dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal|left"
         android:orientation="vertical">
@@ -16,7 +16,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_gravity="left">
 
             <ImageView
                 android:id="@+id/de_image"
@@ -44,7 +45,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_gravity="left">
 
             <ImageView
                 android:id="@+id/en_image"
@@ -70,7 +72,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_gravity="left">
 
             <ImageView
                 android:id="@+id/fr_image"
@@ -93,17 +96,18 @@
                 android:textColor="@color/textGrey"
                 android:textSize="16sp" />
         </LinearLayout>
+        <TextView
+            android:id="@+id/arabic_phrase"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center_vertical|right"
+            android:orientation="vertical"
+            android:text="Test"
+            android:textColor="@color/textGrey"
+            android:textSize="16sp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/arabic_phrase"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:gravity="center_vertical|right"
-        android:orientation="vertical"
-        android:text="Test"
-        android:textColor="@color/textGrey"
-        android:textSize="16sp" />
+
 
 </LinearLayout>
