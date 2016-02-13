@@ -51,10 +51,12 @@ public class DashboardFragment extends Fragment {
         CardItem ermergencyCard = new CardItem(R.drawable.ermergency, getResources().getString(R.string.emergency), 2);
 
         ArrayList<CardItem> cardItemArrayList = new ArrayList<CardItem>();
+
         cardItemArrayList.add(faqCard);
         cardItemArrayList.add(mapCard);
         cardItemArrayList.add(phrasebookCard);
         cardItemArrayList.add(ermergencyCard);
+
 
         CardItemAdapter ca = new CardItemAdapter(cardItemArrayList);
         recList.setAdapter(ca);

@@ -29,6 +29,7 @@ import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
@@ -125,13 +126,10 @@ public class MainActivity extends AppCompatActivity {
         if (mDrawer == null) {
             headerResult = new AccountHeaderBuilder()
                     .withActivity(this)
-                    .withHeaderBackground(R.drawable.logo)
-                    .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
-                        @Override
-                        public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
-                            return false;
-                        }
-                    })
+                    .withHeaderBackground(R.drawable.sunrise_1107408_640)
+                    .addProfiles(
+                            new ProfileDrawerItem().withName("Germany Says Welcome").withEmail("http://germany-says-welcome.de/").withIcon(getResources().getDrawable(R.drawable.rsz_rsz_mini_logo))
+                    )
                     .withSelectionListEnabledForSingleProfile(false)
                     .build();
 
