@@ -276,32 +276,33 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                 , poiCategory.getId(), minLat, minLng, maxLat, maxLng);
     }
 
-    public void addPOI(ArrayList<PoiEntry> arrayList, PoiCategory poiCategory) {
-        RadiusMarkerClusterer poiMarkers = new RadiusMarkerClusterer(MainActivity.getMainActivity());
+    public void addPOI(final ArrayList<PoiEntry> arrayList, final PoiCategory poiCategory) {
 
-        /*
-        ImageView imageView = new ImageView(MainActivity.getMainActivity());
-        Picasso.with(MainActivity.getMainActivity()).load(poiCategory.getIcon()).into(imageView);
-        Drawable drawable = imageView.getDrawable(); */
-
-        Drawable poiIcon = ContextCompat.getDrawable(MainActivity.getMainActivity(), R.drawable.clustericon);
-        poiMarkers.setIcon(((BitmapDrawable)poiIcon).getBitmap());
-        mMapView.getOverlays().add(poiMarkers);
-        for (PoiEntry poiEntry : (ArrayList<PoiEntry>) arrayList) {
-            double lat = poiEntry.getLocation().getCoordinates().get(0);
-            double lon = poiEntry.getLocation().getCoordinates().get(1);
-
-            Marker poiMarker = new Marker(mMapView);
-            poiMarker.setPosition(new GeoPoint(lat, lon));
-            poiMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-            poiMarker.setTitle(poiEntry.getTranslations().getDe().getName());
-            poiMarker.setSnippet(poiEntry.getTranslations().getDe().getDescription());
-            poiMarker.setIcon(poiIcon);
-            poiMarkers.add(poiMarker);
-        }
         MainActivity.getMainActivity().runOnUiThread(new Runnable() {
                                                          @Override
                                                          public void run() {
+                                                             RadiusMarkerClusterer poiMarkers = new RadiusMarkerClusterer(MainActivity.getMainActivity());
+
+
+                                                             ImageView imageView = new ImageView(MainActivity.getMainActivity());
+                                                             Picasso.with(MainActivity.getMainActivity()).load(poiCategory.getIcon()).into(imageView);
+                                                             Drawable drawable = imageView.getDrawable();
+
+                                                             Drawable poiIcon = ContextCompat.getDrawable(MainActivity.getMainActivity(), R.drawable.clustericon);
+                                                             poiMarkers.setIcon(((BitmapDrawable)poiIcon).getBitmap());
+                                                             mMapView.getOverlays().add(poiMarkers);
+                                                             for (PoiEntry poiEntry : arrayList) {
+                                                                 double lat = poiEntry.getLocation().getCoordinates().get(0);
+                                                                 double lon = poiEntry.getLocation().getCoordinates().get(1);
+
+                                                                 Marker poiMarker = new Marker(mMapView);
+                                                                 poiMarker.setPosition(new GeoPoint(lat, lon));
+                                                                 poiMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+                                                                 poiMarker.setTitle(poiEntry.getTranslations().getDe().getName());
+                                                                 poiMarker.setSnippet(poiEntry.getTranslations().getDe().getDescription());
+                                                                 poiMarker.setIcon(drawable);
+                                                                 poiMarkers.add(poiMarker);
+                                                             }
                                                              mMapView.invalidate();
 
                                                          }
