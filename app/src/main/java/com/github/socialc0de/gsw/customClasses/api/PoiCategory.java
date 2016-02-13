@@ -36,7 +36,7 @@ public class PoiCategory {
     }
 
     public String getIcon() {
-        return icon;
+        return "http://i.imgur.com/w9xqYW1.png";
     }
 
     public void setIcon(String icon) {
