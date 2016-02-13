@@ -323,7 +323,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
             Marker poiMarker = new Marker(mMapView);
             poiMarker.setPosition(new GeoPoint(lat, lon));
             poiMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-a
+
             if (lngCode.equals(Language.LanguageCodes.de.toString())) {
                 poiMarker.setTitle(poiEntry.getTranslations().getDe().getName());
                 poiMarker.setSnippet(poiEntry.getTranslations().getDe().getDescription());
