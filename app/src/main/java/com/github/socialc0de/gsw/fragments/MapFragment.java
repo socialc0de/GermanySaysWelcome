@@ -323,7 +323,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
             Marker poiMarker = new Marker(mMapView);
             poiMarker.setPosition(new GeoPoint(lat, lon));
             poiMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-
+a
             if (lngCode.equals(Language.LanguageCodes.de.toString())) {
                 poiMarker.setTitle(poiEntry.getTranslations().getDe().getName());
                 poiMarker.setSnippet(poiEntry.getTranslations().getDe().getDescription());
@@ -385,12 +385,9 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                                         .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
                                             @Override
                                             public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
-
                                                 for (int i = 0; i < text.length; i++) {
                                                     reload(text[i].toString());
                                                 }
-
-
                                                 return true;
                                             }
                                         })
