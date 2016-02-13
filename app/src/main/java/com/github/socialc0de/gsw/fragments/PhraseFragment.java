@@ -1,6 +1,8 @@
 package com.github.socialc0de.gsw.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -10,9 +12,11 @@ import android.view.ViewGroup;
 import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.SlidingTabLayout;
 import com.github.socialc0de.gsw.activities.MainActivity;
+import com.github.socialc0de.gsw.activities.SetupActivity;
 import com.github.socialc0de.gsw.adapter.PhraseViewPagerAdapter;
 import com.github.socialc0de.gsw.api.LoadManager_;
 import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
+import com.github.socialc0de.gsw.customClasses.api.Language;
 import com.github.socialc0de.gsw.customClasses.api.PhraseCategory;
 
 import java.util.ArrayList;
@@ -21,6 +25,10 @@ import java.util.ArrayList;
  * Created by Roman on 11.11.2015.
  */
 public class PhraseFragment extends Fragment {
+
+    private SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getMainActivity());
+    private final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, "EN");
+
     public PhraseFragment() {
 
     }
@@ -35,7 +43,17 @@ public class PhraseFragment extends Fragment {
                     @Override
                     public void onRestResults(int state, ArrayList<?> results) {
                         for (PhraseCategory category : (ArrayList<PhraseCategory>) results) {
-                            tbs.add(new PhraseListTabFragment().setTitle(category.getTranslations().getDe().getName()).setCategory(category.getId()));
+
+
+                            if (lngCode.equals(Language.LanguageCodes.DE.toString())) {
+                                tbs.add(new PhraseListTabFragment().setTitle(category.getTranslations().getDe().getName()).setCategory(category.getId()));
+                            } else if (lngCode.equals(Language.LanguageCodes.EN.toString())) {
+                                tbs.add(new PhraseListTabFragment().setTitle(category.getTranslations().getEn().getName()).setCategory(category.getId()));
+                            } else if (lngCode.equals(Language.LanguageCodes.FR.toString())) {
+                                tbs.add(new PhraseListTabFragment().setTitle(category.getTranslations().getFr().getName()).setCategory(category.getId()));
+                            } else if (lngCode.equals(Language.LanguageCodes.AR.toString())) {
+                                tbs.add(new PhraseListTabFragment().setTitle(category.getTranslations().getAr().getName()).setCategory(category.getId()));
+                            }
                         }
 
                         MainActivity.getMainActivity().runOnUiThread(new Runnable() {

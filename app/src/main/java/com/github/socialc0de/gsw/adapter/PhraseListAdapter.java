@@ -52,7 +52,6 @@ public class PhraseListAdapter extends ArrayAdapter<PhraseEntry> {
         }
         PhraseEntry currentData = arrayList.get(position);
 
-        //TODO: Französich
 
         if (currentData.getTranslations().getDe() != null)
             ((TextView) v.findViewById(R.id.german_phrase)).setText(currentData.getTranslations().getDe().getPhrase());
@@ -62,6 +61,10 @@ public class PhraseListAdapter extends ArrayAdapter<PhraseEntry> {
 
         if (currentData.getTranslations().getAr() != null)
             ((TextView) v.findViewById(R.id.arabic_phrase)).setText(currentData.getTranslations().getAr().getPhrase());
+
+
+        if (currentData.getTranslations().getFr() != null)
+            ((TextView) v.findViewById(R.id.francais_phrase)).setText(currentData.getTranslations().getFr().getPhrase());
         return v;
     }
 
