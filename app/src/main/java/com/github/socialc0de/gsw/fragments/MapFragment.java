@@ -229,13 +229,6 @@ public class MapFragment extends Fragment implements View.OnClickListener {
         mMapView.getOverlays().add(this.mScaleBarOverlay);
 
         mMapController.setCenter(startPoint);
-
-        Marker startMarker = new Marker(mMapView);
-        startMarker.setPosition(startPoint);
-        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-        startMarker.setIcon(getResources().getDrawable(R.mipmap.ic_launcher));
-        startMarker.setTitle("Start point");
-        mMapView.getOverlays().add(startMarker);
         mMapView.invalidate();
 
         mMapView.setMapListener(new DelayedMapListener(new MapListener() {
