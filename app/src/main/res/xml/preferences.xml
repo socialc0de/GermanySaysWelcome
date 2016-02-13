@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <CheckBoxPreference
-        android:defaultValue="true"
-        android:key="backgroundUpdating"
-        android:title="Update in Background" />
-    <ListPreference
+<ListPreference
         android:entries="@array/languageOptions"
         android:entryValues="@array/languageKeys"
         android:key="languageSetting"
