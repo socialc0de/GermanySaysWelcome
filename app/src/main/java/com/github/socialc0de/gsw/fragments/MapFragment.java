@@ -4,6 +4,7 @@ package com.github.socialc0de.gsw.fragments;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
@@ -280,7 +281,8 @@ public class MapFragment extends Fragment implements View.OnClickListener {
     public void addPOI(final PoiCategory poiCategory) {
 
         RadiusMarkerClusterer poiMarkers = new RadiusMarkerClusterer(MainActivity.getMainActivity());
-        poiMarkers.setIcon(((BitmapDrawable)poiCategory.getIcon()).getBitmap());
+        poiMarkers.setIcon(BitmapFactory.decodeResource(MainActivity.getMainActivity().getResources(),
+                R.drawable.clustericon));
         mMapView.getOverlays().add(poiMarkers);
         for (PoiEntry poiEntry : poiCategory.getPoiEntries()) {
             double lat = poiEntry.getLocation().getCoordinates().get(0);
