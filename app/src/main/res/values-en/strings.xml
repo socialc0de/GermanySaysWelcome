@@ -32,7 +32,7 @@
 	<string name="next">Continue</string>
 	<string name="no_location">Could not find actual position</string>
 	<string name="no_questions">Could not find any questions</string>
-	<string name="phrasebook">Translations</string>
+	<string name="phrasebook">Phrasebook</string>
 	<string name="profession">Profession</string>
 	<string name="settingslangchange">Settings will be saved automatically</string>
 	<string name="settingstoast">To leave settings, press back-button of your phone</string>

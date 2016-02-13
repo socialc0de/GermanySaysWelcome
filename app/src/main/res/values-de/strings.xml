@@ -33,7 +33,7 @@
     <string name="next">Weiter</string>
     <string name="no_location">Konnte den aktuellen Ort nicht abrufen</string>
     <string name="no_questions">Es wurden keine Fragen gefunden</string>
-    <string name="phrasebook">Übersetzungen</string>
+    <string name="phrasebook">Phrasenbuch</string>
     <string name="profession">Beruf</string>
     <string name="settingslangchange">Die Einstellungen werden automatisch gespeichert</string>
 	<string name="settingstoast">Um die Einstellungen zu verlassen, klicken Sie auf den Zurück-Buttons Ihres Telefons
