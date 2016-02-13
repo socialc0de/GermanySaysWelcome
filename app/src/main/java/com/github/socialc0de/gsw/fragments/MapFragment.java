@@ -279,7 +279,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
     public void addPOI(ArrayList<PoiEntry> arrayList) {
         RadiusMarkerClusterer poiMarkers = new RadiusMarkerClusterer(MainActivity.getMainActivity());
         Drawable poiIcon = ContextCompat.getDrawable(MainActivity.getMainActivity(), R.drawable.clustericon);
-        Bitmap mClusterIcon = ((BitmapDrawable) poiIcon).getBitmap();
+        poiMarkers.setIcon(((BitmapDrawable)poiIcon).getBitmap());
         mMapView.getOverlays().add(poiMarkers);
         for (PoiEntry poiEntry : (ArrayList<PoiEntry>) arrayList) {
             double lat = poiEntry.getLocation().getCoordinates().get(0);
