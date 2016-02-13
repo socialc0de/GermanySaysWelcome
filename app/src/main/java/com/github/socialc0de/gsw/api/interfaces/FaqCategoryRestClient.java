@@ -1,5 +1,6 @@
 package com.github.socialc0de.gsw.api.interfaces;
 
+import com.github.socialc0de.gsw.BuildConfig;
 import com.github.socialc0de.gsw.customClasses.api.FaqCategory;
 
 import org.androidannotations.annotations.rest.Accept;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  * Created by roman on 05.12.2015.
  */
 
-@Rest(rootUrl = "https://gsw.pajowu.de/api", converters = GsonHttpMessageConverter.class)
+@Rest(rootUrl = BuildConfig.API_URL, converters = GsonHttpMessageConverter.class)
 public interface FaqCategoryRestClient extends RestClientErrorHandling {
     @Get("/faqcategories")
     @Accept(MediaType.APPLICATION_JSON)

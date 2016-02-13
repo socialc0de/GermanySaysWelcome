@@ -15,8 +15,6 @@ import com.github.socialc0de.gsw.R;
 import com.github.socialc0de.gsw.activities.MainActivity;
 import com.github.socialc0de.gsw.adapter.CardItemAdapter;
 import com.github.socialc0de.gsw.adapter.RecyclerItemClickListener;
-import com.github.socialc0de.gsw.api.LoadManager_;
-import com.github.socialc0de.gsw.api.interfaces.RestArrayRequestCallBack;
 import com.github.socialc0de.gsw.customClasses.CardItem;
 
 import java.util.ArrayList;
