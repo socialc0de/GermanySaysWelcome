@@ -74,19 +74,19 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     }
 
     public void setLanguageSetting() {
-        if (sharedPreferences.getString(KEY_LANGUAGE, "").equals(Language.LanguageCodes.DE.toString())) {
+        if (sharedPreferences.getString(KEY_LANGUAGE, "").equals(Language.LanguageCodes.de.toString())) {
             languagePref.setSummary(getResources().getString(R.string.german));
-        } else if (sharedPreferences.getString(KEY_LANGUAGE, "").equals(Language.LanguageCodes.EN.toString())) {
+        } else if (sharedPreferences.getString(KEY_LANGUAGE, "").equals(Language.LanguageCodes.en.toString())) {
             languagePref.setSummary(getResources().getString(R.string.english));
-        } else if (sharedPreferences.getString(KEY_LANGUAGE, "").equals(Language.LanguageCodes.AR.toString())) {
+        } else if (sharedPreferences.getString(KEY_LANGUAGE, "").equals(Language.LanguageCodes.ar.toString())) {
             languagePref.setSummary(getResources().getString(R.string.arabic));
-        } else if (sharedPreferences.getString(KEY_LANGUAGE, "").equals(Language.LanguageCodes.FR.toString())) {
+        } else if (sharedPreferences.getString(KEY_LANGUAGE, "").equals(Language.LanguageCodes.fr.toString())) {
             languagePref.setSummary(getResources().getString(R.string.france));
         }
     }
 
     public void setLocale() {
-        String lang = sharedPreferences.getString(KEY_LANGUAGE, Language.LanguageCodes.EN.toString());
+        String lang = sharedPreferences.getString(KEY_LANGUAGE, Language.LanguageCodes.en.toString());
         myLocale = new Locale(lang);
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();

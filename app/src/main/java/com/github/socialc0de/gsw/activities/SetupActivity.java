@@ -100,16 +100,16 @@ public class SetupActivity extends ActionBarActivity implements View.OnClickList
 
                                     switch (which) {
                                         case 0:
-                                            langCode = Language.LanguageCodes.DE.toString();
+                                            langCode = Language.LanguageCodes.de.toString();
                                             break;
                                         case 1:
-                                            langCode = Language.LanguageCodes.EN.toString();
+                                            langCode = Language.LanguageCodes.en.toString();
                                             break;
                                         case 2:
-                                            langCode = Language.LanguageCodes.AR.toString();
+                                            langCode = Language.LanguageCodes.ar.toString();
                                             break;
                                         case 3:
-                                            langCode = Language.LanguageCodes.FR.toString();
+                                            langCode = Language.LanguageCodes.fr.toString();
                                             break;
                                         default:
                                             langCode = predefinedSystemLanguage;

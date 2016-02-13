@@ -50,7 +50,7 @@ public class FaqFragment extends Fragment {
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getMainActivity());
 
-        final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, Language.LanguageCodes.EN.toString());
+        final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, Language.LanguageCodes.en.toString());
 
 
         cardItemArrayList.clear();
@@ -60,13 +60,13 @@ public class FaqFragment extends Fragment {
                     public void onRestResults(int state, ArrayList<?> results) {
                         for (FaqCategory category : (ArrayList<FaqCategory>) results) {
 
-                            if (lngCode.equals(Language.LanguageCodes.DE.toString())) {
+                            if (lngCode.equals(Language.LanguageCodes.de.toString())) {
                                 cardItemArrayList.add(new CardItem(category.getImage(), category.getTranslations().getDe().getName(), category.getId()));
-                            } else if (lngCode.equals(Language.LanguageCodes.EN.toString())) {
+                            } else if (lngCode.equals(Language.LanguageCodes.en.toString())) {
                                 cardItemArrayList.add(new CardItem(category.getImage(), category.getTranslations().getEn().getName(), category.getId()));
-                            } else if (lngCode.equals(Language.LanguageCodes.FR.toString())) {
+                            } else if (lngCode.equals(Language.LanguageCodes.fr.toString())) {
                                 cardItemArrayList.add(new CardItem(category.getImage(), category.getTranslations().getFr().getName(), category.getId()));
-                            } else if (lngCode.equals(Language.LanguageCodes.AR.toString())) {
+                            } else if (lngCode.equals(Language.LanguageCodes.ar.toString())) {
                                 cardItemArrayList.add(new CardItem(category.getImage(), category.getTranslations().getAr().getName(), category.getId()));
                             }
                         }

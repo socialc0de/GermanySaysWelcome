@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class PhraseFragment extends Fragment {
 
     private SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getMainActivity());
-    private final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, "EN");
+    private final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, "en");
 
     public PhraseFragment() {
 
@@ -45,13 +45,13 @@ public class PhraseFragment extends Fragment {
                         for (PhraseCategory category : (ArrayList<PhraseCategory>) results) {
 
 
-                            if (lngCode.equals(Language.LanguageCodes.DE.toString())) {
+                            if (lngCode.equals(Language.LanguageCodes.de.toString())) {
                                 tbs.add(new PhraseListTabFragment().setTitle(category.getTranslations().getDe().getName()).setCategory(category.getId()));
-                            } else if (lngCode.equals(Language.LanguageCodes.EN.toString())) {
+                            } else if (lngCode.equals(Language.LanguageCodes.en.toString())) {
                                 tbs.add(new PhraseListTabFragment().setTitle(category.getTranslations().getEn().getName()).setCategory(category.getId()));
-                            } else if (lngCode.equals(Language.LanguageCodes.FR.toString())) {
+                            } else if (lngCode.equals(Language.LanguageCodes.fr.toString())) {
                                 tbs.add(new PhraseListTabFragment().setTitle(category.getTranslations().getFr().getName()).setCategory(category.getId()));
-                            } else if (lngCode.equals(Language.LanguageCodes.AR.toString())) {
+                            } else if (lngCode.equals(Language.LanguageCodes.ar.toString())) {
                                 tbs.add(new PhraseListTabFragment().setTitle(category.getTranslations().getAr().getName()).setCategory(category.getId()));
                             }
                         }

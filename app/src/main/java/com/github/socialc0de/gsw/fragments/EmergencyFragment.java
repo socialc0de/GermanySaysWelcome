@@ -38,7 +38,7 @@ public class EmergencyFragment extends Fragment {
     private ArrayList<Card> cards = new ArrayList<Card>();
     private CardRecyclerView mRecyclerView;
     private SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getMainActivity());
-    private final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, "EN");
+    private final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, "en");
 
     public EmergencyFragment() {
     }
@@ -91,13 +91,17 @@ public class EmergencyFragment extends Fragment {
                     public void onRestResults(int state, ArrayList<?> results) {
                         for (EmergencyEntry entry : (ArrayList<EmergencyEntry>) results) {
 
-                            if (lngCode.equals(Language.LanguageCodes.DE.toString())) {
+                            if (lngCode.equals(Language.LanguageCodes.de.toString())) {
+                                if(!entry.getTranslations().getDe().getName().equals(""))
                                 cards.add(createCustomCard(entry.getNumber(), entry.getTranslations().getDe().getName(), entry.getTranslations().getDe().getDescription(), entry.getNumber()));
-                            } else if (lngCode.equals(Language.LanguageCodes.EN.toString())) {
+                            } else if (lngCode.equals(Language.LanguageCodes.en.toString())) {
+                                if(!entry.getTranslations().getEn().getName().equals(""))
                                 cards.add(createCustomCard(entry.getNumber(), entry.getTranslations().getEn().getName(), entry.getTranslations().getEn().getDescription(), entry.getNumber()));
-                            } else if (lngCode.equals(Language.LanguageCodes.FR.toString())) {
+                            } else if (lngCode.equals(Language.LanguageCodes.fr.toString())) {
+                                if(!entry.getTranslations().getFr().getName().equals(""))
                                 cards.add(createCustomCard(entry.getNumber(), entry.getTranslations().getFr().getName(), entry.getTranslations().getFr().getDescription(), entry.getNumber()));
-                            } else if (lngCode.equals(Language.LanguageCodes.AR.toString())) {
+                            } else if (lngCode.equals(Language.LanguageCodes.ar.toString())) {
+                                if(!entry.getTranslations().getAr().getName().equals(""))
                                 cards.add(createCustomCard(entry.getNumber(), entry.getTranslations().getAr().getName(), entry.getTranslations().getAr().getDescription(), entry.getNumber()));
                             }
                         }

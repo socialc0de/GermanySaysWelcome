@@ -74,7 +74,7 @@ public class Language {
     }
 
     public enum LanguageCodes {
-        DE, EN, AR, FR
+        de, en, ar, fr
     }
 
 }

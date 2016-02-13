@@ -44,7 +44,7 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
     private ArrayList<Card> cards = new ArrayList<Card>();
     private CardRecyclerView mRecyclerView;
     private SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getMainActivity());
-    private final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, "EN");
+    private final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, "en");
 
     public FaqDetailFragment() {
     }
@@ -99,13 +99,13 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
                     public void onRestResults(int state, ArrayList<?> results) {
                         for (FaqEntry entry : (ArrayList<FaqEntry>) results) {
 
-                            if (lngCode.equals(Language.LanguageCodes.DE.toString())) {
+                            if (lngCode.equals(Language.LanguageCodes.de.toString())) {
                                 cards.add(createCustomCard("", entry.getTranslations().getDe().getQuestion(), entry.getTranslations().getDe().getAnswer()));
-                            } else if (lngCode.equals(Language.LanguageCodes.EN.toString())) {
+                            } else if (lngCode.equals(Language.LanguageCodes.en.toString())) {
                                 cards.add(createCustomCard("", entry.getTranslations().getEn().getQuestion(), entry.getTranslations().getEn().getAnswer()));
-                            } else if (lngCode.equals(Language.LanguageCodes.FR.toString())) {
+                            } else if (lngCode.equals(Language.LanguageCodes.fr.toString())) {
                                 cards.add(createCustomCard("", entry.getTranslations().getFr().getQuestion(), entry.getTranslations().getFr().getAnswer()));
-                            } else if (lngCode.equals(Language.LanguageCodes.AR.toString())) {
+                            } else if (lngCode.equals(Language.LanguageCodes.ar.toString())) {
                                 cards.add(createCustomCard("", entry.getTranslations().getAr().getQuestion(), entry.getTranslations().getAr().getAnswer()));
                             }
                         }
@@ -153,13 +153,13 @@ public class FaqDetailFragment extends Fragment implements View.OnClickListener 
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                         FaqEntry faqEntry = new FaqEntry();
                         faqEntry.setCounty(0000);
-                        if (lngCode.equals(Language.LanguageCodes.DE.toString())) {
+                        if (lngCode.equals(Language.LanguageCodes.de.toString())) {
                             faqEntry.setTranslations(new Translations().setDe(((De) (new De().setQuestion(input.toString())))));
-                        } else if (lngCode.equals(Language.LanguageCodes.EN.toString())) {
+                        } else if (lngCode.equals(Language.LanguageCodes.en.toString())) {
                             faqEntry.setTranslations(new Translations().setEn((En) (new En().setQuestion(input.toString()))));
-                        } else if (lngCode.equals(Language.LanguageCodes.FR.toString())) {
+                        } else if (lngCode.equals(Language.LanguageCodes.fr.toString())) {
                             faqEntry.setTranslations(new Translations().setFr(((Fr) (new Fr().setQuestion(input.toString())))));
-                        } else if (lngCode.equals(Language.LanguageCodes.AR.toString())) {
+                        } else if (lngCode.equals(Language.LanguageCodes.ar.toString())) {
                             faqEntry.setTranslations(new Translations().setAr(((Ar) (new Ar().setQuestion(input.toString())))));
                         }
                         LoadManager_.getInstance_(MainActivity.getMainActivity()).addFaqEntry(faqEntry);

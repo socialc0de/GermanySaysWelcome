@@ -324,16 +324,16 @@ public class MapFragment extends Fragment implements View.OnClickListener {
             poiMarker.setPosition(new GeoPoint(lat, lon));
             poiMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
 
-            if (lngCode.equals(Language.LanguageCodes.DE.toString())) {
+            if (lngCode.equals(Language.LanguageCodes.de.toString())) {
                 poiMarker.setTitle(poiEntry.getTranslations().getDe().getName());
                 poiMarker.setSnippet(poiEntry.getTranslations().getDe().getDescription());
-            } else if (lngCode.equals(Language.LanguageCodes.EN.toString())) {
+            } else if (lngCode.equals(Language.LanguageCodes.en.toString())) {
                 poiMarker.setTitle(poiEntry.getTranslations().getEn().getName());
                 poiMarker.setSnippet(poiEntry.getTranslations().getEn().getDescription());
-            } else if (lngCode.equals(Language.LanguageCodes.FR.toString())) {
+            } else if (lngCode.equals(Language.LanguageCodes.fr.toString())) {
                 poiMarker.setTitle(poiEntry.getTranslations().getFr().getName());
                 poiMarker.setSnippet(poiEntry.getTranslations().getFr().getDescription());
-            } else if (lngCode.equals(Language.LanguageCodes.AR.toString())) {
+            } else if (lngCode.equals(Language.LanguageCodes.ar.toString())) {
                 poiMarker.setTitle(poiEntry.getTranslations().getAr().getName());
                 poiMarker.setSnippet(poiEntry.getTranslations().getAr().getDescription());
             }
@@ -349,7 +349,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getMainActivity());
-        lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, Language.LanguageCodes.EN.toString());
+        lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, Language.LanguageCodes.en.toString());
         LoadManager_.getInstance_(MainActivity.getMainActivity()).loadPoiCategoryResults(
                 new RestArrayRequestCallBack() {
                     @Override
@@ -358,16 +358,16 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                         hashMap.clear();
                         final String[] stringarray = new String[results.size()];
                         for (PoiCategory category : (ArrayList<PoiCategory>) results) {
-                            if (lngCode.equals(Language.LanguageCodes.DE.toString())) {
+                            if (lngCode.equals(Language.LanguageCodes.de.toString())) {
                                 stringarray[i] = category.getTranslations().getDe().getName();
                                 hashMap.put(category.getTranslations().getDe().getName(), category);
-                            } else if (lngCode.equals(Language.LanguageCodes.EN.toString())) {
+                            } else if (lngCode.equals(Language.LanguageCodes.en.toString())) {
                                 stringarray[i] = category.getTranslations().getEn().getName();
                                 hashMap.put(category.getTranslations().getEn().getName(), category);
-                            } else if (lngCode.equals(Language.LanguageCodes.FR.toString())) {
+                            } else if (lngCode.equals(Language.LanguageCodes.fr.toString())) {
                                 stringarray[i] = category.getTranslations().getFr().getName();
                                 hashMap.put(category.getTranslations().getFr().getName(), category);
-                            } else if (lngCode.equals(Language.LanguageCodes.AR.toString())) {
+                            } else if (lngCode.equals(Language.LanguageCodes.ar.toString())) {
                                 stringarray[i] = category.getTranslations().getAr().getName();
                                 hashMap.put(category.getTranslations().getAr().getName(), category);
                             }

@@ -62,7 +62,6 @@ public class PhraseListAdapter extends ArrayAdapter<PhraseEntry> {
         if (currentData.getTranslations().getAr() != null)
             ((TextView) v.findViewById(R.id.arabic_phrase)).setText(currentData.getTranslations().getAr().getPhrase());
 
-
         if (currentData.getTranslations().getFr() != null)
             ((TextView) v.findViewById(R.id.francais_phrase)).setText(currentData.getTranslations().getFr().getPhrase());
         return v;
