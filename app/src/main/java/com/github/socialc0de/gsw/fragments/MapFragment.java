@@ -39,6 +39,10 @@ import com.squareup.picasso.Picasso;
 import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
 import org.osmdroid.bonuspack.overlays.FolderOverlay;
 import org.osmdroid.bonuspack.overlays.Marker;
+import org.osmdroid.events.DelayedMapListener;
+import org.osmdroid.events.MapListener;
+import org.osmdroid.events.ScrollEvent;
+import org.osmdroid.events.ZoomEvent;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
@@ -67,6 +71,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
     private SharedPreferences mPrefs;
     private HashMap<String, PoiCategory> hashMap = new HashMap<String, PoiCategory>();
     private String lngCode;
+    private RadiusMarkerClusterer poiMarkers;
 
 
     CustomAsyncTask filterTask = new CustomAsyncTask() {
@@ -233,6 +238,18 @@ public class MapFragment extends Fragment implements View.OnClickListener {
         mMapView.getOverlays().add(startMarker);
         mMapView.invalidate();
 
+        mMapView.setMapListener(new DelayedMapListener(new MapListener() {
+            public boolean onZoom(final ZoomEvent e) {
+                reloadPois();
+                return true;
+            }
+
+            public boolean onScroll(final ScrollEvent e) {
+                reloadPois();
+                return true;
+            }
+        }, 1500 ));
+
         /*
         ArrayList<GeoPoint> waypoints = new ArrayList<GeoPoint>();
         for (double i = 0.01; i<0.2; i = i+0.01){
@@ -247,6 +264,19 @@ public class MapFragment extends Fragment implements View.OnClickListener {
         */
 
         return view;
+    }
+
+    private void reloadPois(){
+        if(poiMarkers == null)
+            return;
+        if(hashMap == null)
+            return;
+        if(hashMap.isEmpty())
+            return;
+        poiMarkers.getItems().clear();
+        for(String s : hashMap.keySet())
+            reload(s);
+        mMapView.invalidate();
     }
 
     private void reload(String id) {
@@ -280,7 +310,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
 
     public void addPOI(final PoiCategory poiCategory) {
 
-        RadiusMarkerClusterer poiMarkers = new RadiusMarkerClusterer(MainActivity.getMainActivity());
+        poiMarkers = new RadiusMarkerClusterer(MainActivity.getMainActivity());
         poiMarkers.setIcon(BitmapFactory.decodeResource(MainActivity.getMainActivity().getResources(),
                 R.drawable.clustericon));
         mMapView.getOverlays().add(poiMarkers);
