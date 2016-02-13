@@ -58,6 +58,8 @@ public class FaqFragment extends Fragment {
                 new RestArrayRequestCallBack() {
                     @Override
                     public void onRestResults(int state, ArrayList<?> results) {
+                        if(results == null)
+                            return;
                         for (FaqCategory category : (ArrayList<FaqCategory>) results) {
 
                             if (lngCode.equals(Language.LanguageCodes.de.toString())) {

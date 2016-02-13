@@ -32,7 +32,7 @@
 	<string name="next">Continuer</string>
 	<string name="no_location">Ne pouvait pas trouver l\'endroit actuel</string>
 	<string name="no_questions">Ne pouvait pas trouver de questions.</string>
-	<string name="phrasebook">Traductions</string>
+	<string name="phrasebook">Carnet de phrases</string>
 	<string name="profession">Métier</string>
 	<string name="settingslangchange">Les paramètres seront enregistrés automatiquement</string>
 	<string name="settingstoast">Pour reinitialiser les paramètres, veuillez cliquer le bouton retour de votre télephone.</string>
