@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             editor.commit(); // Very important to save the preference
         }
 
+        /*
         new MaterialDialog.Builder(this)
                 .title("Information")
                 .content("SetupActivity is only shown at the very first startup of the app. Here you have the chance to open our setup again [DEVELOPER-OPTION]")
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .negativeText("Close")
                 .show();
+                */
 
 
 
