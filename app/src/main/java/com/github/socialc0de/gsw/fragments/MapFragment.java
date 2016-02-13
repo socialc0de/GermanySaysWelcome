@@ -66,6 +66,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
     private SharedPreferences mPrefs;
     private HashMap<String, PoiCategory> hashMap = new HashMap<String, PoiCategory>();
 
+
     CustomAsyncTask filterTask = new CustomAsyncTask() {
 
         @Override
@@ -258,14 +259,8 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                 new RestArrayRequestCallBack() {
                     @Override
                     public void onRestResults(int state, final ArrayList<?> arrayList) {
-                        addPOI((ArrayList<PoiEntry>) arrayList, poiCategory);
-
-                        /*
-                        MainActivity.getMainActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                            }
-                        });*/
+                        poiCategory.setPoiEntries((ArrayList<PoiEntry>) arrayList);
+                        addPOI(poiCategory);
                     }
 
                     @Override
@@ -276,37 +271,25 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                 , poiCategory.getId(), minLat, minLng, maxLat, maxLng);
     }
 
-    public void addPOI(final ArrayList<PoiEntry> arrayList, final PoiCategory poiCategory) {
+    public void addPOI(final PoiCategory poiCategory) {
 
-        MainActivity.getMainActivity().runOnUiThread(new Runnable() {
-                                                         @Override
-                                                         public void run() {
-                                                             RadiusMarkerClusterer poiMarkers = new RadiusMarkerClusterer(MainActivity.getMainActivity());
+        RadiusMarkerClusterer poiMarkers = new RadiusMarkerClusterer(MainActivity.getMainActivity());
+        poiMarkers.setIcon(((BitmapDrawable)poiCategory.getIcon()).getBitmap());
+        mMapView.getOverlays().add(poiMarkers);
+        for (PoiEntry poiEntry : poiCategory.getPoiEntries()) {
+            double lat = poiEntry.getLocation().getCoordinates().get(0);
+            double lon = poiEntry.getLocation().getCoordinates().get(1);
 
+            Marker poiMarker = new Marker(mMapView);
+            poiMarker.setPosition(new GeoPoint(lat, lon));
+            poiMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+            poiMarker.setTitle(poiEntry.getTranslations().getDe().getName());
+            poiMarker.setSnippet(poiEntry.getTranslations().getDe().getDescription());
+            poiMarker.setIcon(poiCategory.getIcon());
+            poiMarkers.add(poiMarker);
+        }
+        mMapView.invalidate();
 
-                                                             ImageView imageView = new ImageView(MainActivity.getMainActivity());
-                                                             Picasso.with(MainActivity.getMainActivity()).load(poiCategory.getIcon()).into(imageView);
-                                                             Drawable drawable = imageView.getDrawable();
-
-                                                             Drawable poiIcon = ContextCompat.getDrawable(MainActivity.getMainActivity(), R.drawable.clustericon);
-                                                             poiMarkers.setIcon(((BitmapDrawable)poiIcon).getBitmap());
-                                                             mMapView.getOverlays().add(poiMarkers);
-                                                             for (PoiEntry poiEntry : arrayList) {
-                                                                 double lat = poiEntry.getLocation().getCoordinates().get(0);
-                                                                 double lon = poiEntry.getLocation().getCoordinates().get(1);
-
-                                                                 Marker poiMarker = new Marker(mMapView);
-                                                                 poiMarker.setPosition(new GeoPoint(lat, lon));
-                                                                 poiMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-                                                                 poiMarker.setTitle(poiEntry.getTranslations().getDe().getName());
-                                                                 poiMarker.setSnippet(poiEntry.getTranslations().getDe().getDescription());
-                                                                 poiMarker.setIcon(drawable);
-                                                                 poiMarkers.add(poiMarker);
-                                                             }
-                                                             mMapView.invalidate();
-
-                                                         }
-                                                     });
     }
 
     @Override
@@ -336,10 +319,12 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                             } else if (lngCode.equals(Language.LanguageCodes.AR.toString())) {
                                 stringarray[i] = category.getTranslations().getAr().getName();
                                 hashMap.put(category.getTranslations().getAr().getName(), category);
-
                             }
+                            //Läd Image Async
+                            category.loadIconView();
                             i++;
                         }
+
                         MainActivity.getMainActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -352,7 +337,6 @@ public class MapFragment extends Fragment implements View.OnClickListener {
 
                                                 for (int i = 0; i < text.length; i++) {
                                                     reload(text[i].toString());
-
                                                 }
 
 
