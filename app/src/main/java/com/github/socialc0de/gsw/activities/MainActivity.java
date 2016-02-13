@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         if (mDrawer == null) {
             headerResult = new AccountHeaderBuilder()
                     .withActivity(this)
-                    .withHeaderBackground(R.drawable.gb)
+                    .withHeaderBackground(R.drawable.logo)
                     .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                         @Override
                         public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
