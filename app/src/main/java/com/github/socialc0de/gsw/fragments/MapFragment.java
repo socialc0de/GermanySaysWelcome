@@ -258,7 +258,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                 new RestArrayRequestCallBack() {
                     @Override
                     public void onRestResults(int state, final ArrayList<?> arrayList) {
-                        addPOI((ArrayList<PoiEntry>) arrayList);
+                        addPOI((ArrayList<PoiEntry>) arrayList, poiCategory);
 
                         /*
                         MainActivity.getMainActivity().runOnUiThread(new Runnable() {
@@ -276,8 +276,14 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                 , poiCategory.getId(), minLat, minLng, maxLat, maxLng);
     }
 
-    public void addPOI(ArrayList<PoiEntry> arrayList) {
+    public void addPOI(ArrayList<PoiEntry> arrayList, PoiCategory poiCategory) {
         RadiusMarkerClusterer poiMarkers = new RadiusMarkerClusterer(MainActivity.getMainActivity());
+
+        /*
+        ImageView imageView = new ImageView(MainActivity.getMainActivity());
+        Picasso.with(MainActivity.getMainActivity()).load(poiCategory.getIcon()).into(imageView);
+        Drawable drawable = imageView.getDrawable(); */
+
         Drawable poiIcon = ContextCompat.getDrawable(MainActivity.getMainActivity(), R.drawable.clustericon);
         poiMarkers.setIcon(((BitmapDrawable)poiIcon).getBitmap());
         mMapView.getOverlays().add(poiMarkers);
