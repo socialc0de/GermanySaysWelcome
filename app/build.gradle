@@ -43,9 +43,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", "API_URL", "\"https://gsw.pajowu.de/api\""
+            buildConfigField "String", "URL", "\"http://www.germany-says-welcome.de\""
         }
         debug {
             buildConfigField "String", "API_URL", "\"https://gsw.pajowu.de/api\""
+            buildConfigField "String", "URL", "\"http://www.germany-says-welcome.de\""
         }
     }
 
