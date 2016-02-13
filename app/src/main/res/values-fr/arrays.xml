@@ -4,11 +4,13 @@
         <item>@string/german</item>
         <item>@string/english</item>
         <item>@string/arabic</item>
+        <item>@string/france</item>
     </string-array>
     <string-array name="languageKeys">
-        <item>de</item>
-        <item>en</item>
-        <item>ar</item>
+        <item>DE</item>
+        <item>EN</item>
+        <item>AR</item>
+        <item>FR</item>
     </string-array>
     <string-array name="asylumSteps">
         <item>@string/step1short</item>

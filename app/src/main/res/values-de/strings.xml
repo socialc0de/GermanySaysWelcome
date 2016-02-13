@@ -5,7 +5,7 @@
     <string name="about">Über</string>
     <string name="action_settings">Einstellungen</string>
     <string name="animals">Tiere</string>
-    <string name="arabic">اللغة العربية</string>
+    <string name="arabic">العرب</string>
     <string name="authority_information">Amtinformationen</string>
     <string name="map">Karte</string>
     <string name="basic_adjectives">Wichtige Adjektive</string>
@@ -74,4 +74,5 @@
     <string name="hinttextquestion">Ihre Frage...</string>
     <string name="hello_world">HW</string>
     <string name="enterquestion">Frage eingeben:</string>
+    <string name="france">Francais</string>
 </resources>

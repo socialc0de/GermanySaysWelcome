@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">ألمانيا تقول مرحبا بكم</string>
-	<string name="german">ألماني</string>
+	<string name="german">Deutsch</string>
 	<string name="about">حول</string>
 	<string name="action_settings">الإعدادات</string>
 	<string name="animals">الحيوانات</string>
@@ -18,7 +18,7 @@
 	<string name="direction_places_transport">الموقع والثنقل</string>
 	<string name="done">انتهى</string>
 	<string name="emergency">مكالمات الطوارئ</string>
-	<string name="english">الإنجليزية</string>
+	<string name="english">English</string>
 	<string name="example">مثال</string>
 	<string name="faq">الأسئلة الشائعة</string>
 	<string name="faqdetail">تفصيل الأسئلة الشائعة</string>
@@ -68,4 +68,5 @@
 	<string name="hinttextquestion">الأسئلة الخاصة بكم</string>
 	<string name="hello_world">HW</string>
 	<string name="enterquestion">أدخل السؤال:</string>
+	<string name="france">Francais</string>
 </resources>

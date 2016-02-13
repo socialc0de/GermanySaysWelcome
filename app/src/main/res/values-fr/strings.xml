@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <resources>
 	<string name="app_name">L\'allemagne dit Bienvenue</string>
-	<string name="german">Allemand</string>
+	<string name="german">Deutsch</string>
 	<string name="about">Sur</string>
 	<string name="action_settings">Paramètres</string>
 	<string name="animals">Animaux</string>
-	<string name="arabic">Arabe</string>
+	<string name="arabic">العرب</string>
 	<string name="authority_information">Information d\'administrations</string>
 	<string name="map">Carte</string>
 	<string name="basic_adjectives">Adjectifs importants</string>
@@ -18,7 +18,7 @@
 	<string name="direction_places_transport">Navigation et transport</string>
 	<string name="done">Fini</string>
 	<string name="emergency">Appel d\'urgence</string>
-	<string name="english">Anglais</string>
+	<string name="english">English</string>
 	<string name="example">Example</string>
 	<string name="faq">Questions souvent posées</string>
 	<string name="faqdetail">Détails des FAQ</string>
@@ -68,4 +68,5 @@
 	<string name="hinttextquestion">Votre question...</string>
 	<string name="hello_world">HW</string>
 	<string name="enterquestion">Entrer question:</string>
+	<string name="france">Francais</string>
 </resources>
