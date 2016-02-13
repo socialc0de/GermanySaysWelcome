@@ -11,6 +11,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ import com.melnykov.fab.FloatingActionButton;
 
 import com.squareup.picasso.Picasso;
 import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
+import org.osmdroid.bonuspack.overlays.FolderOverlay;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.BoundingBoxE6;
@@ -251,28 +253,19 @@ public class MapFragment extends Fragment implements View.OnClickListener {
         float maxLat = (float) (mapBoundingBox.getLatNorthE6() / 1E6);
         float maxLng = (float) (mapBoundingBox.getLonEastE6() / 1E6);
         final PoiCategory poiCategory = hashMap.get(id);
+
         LoadManager_.getInstance_(MainActivity.getMainActivity()).loadPoiEntriesByCategoryAndBBoxResults(
                 new RestArrayRequestCallBack() {
                     @Override
                     public void onRestResults(int state, final ArrayList<?> arrayList) {
+                        addPOI((ArrayList<PoiEntry>) arrayList);
 
+                        /*
                         MainActivity.getMainActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                /*
-                                ImageView imageView = new ImageView(getActivity());
-                                PoiCategory poiCategory2 = new PoiCategory();
-                                if (arrayList.get(0) != null) {poiCategory2 = (PoiCategory) arrayList.get(0);}
-                                Picasso.with(MainActivity.getMainActivity()).load(poiCategory2.getIcon()).into(imageView);
-                                Drawable drawable = imageView.getDrawable();
-                                */
-
-                                for (int i=0; i<arrayList.size(); i++){
-                                    PoiEntry poiEntry = (PoiEntry) arrayList.get(i);
-                                    addKnoten(getActivity().getResources().getDrawable(R.drawable.clustericon),poiEntry.getTranslations().getDe().getName(),new GeoPoint(poiEntry.getLocation().getCoordinates().get(0),poiEntry.getLocation().getCoordinates().get(1)));
-                                }
                             }
-                        });
+                        });*/
                     }
 
                     @Override
@@ -283,14 +276,30 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                 , poiCategory.getId(), minLat, minLng, maxLat, maxLng);
     }
 
-    public void addKnoten(Drawable icon, String text, GeoPoint location){
-        Marker marker = new Marker(mMapView);
-        marker.setPosition(location);
-        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-        marker.setTitle(text);
-        marker.setIcon(icon);
-        mMapView.getOverlays().add(marker);
-        mMapView.invalidate();
+    public void addPOI(ArrayList<PoiEntry> arrayList) {
+        RadiusMarkerClusterer poiMarkers = new RadiusMarkerClusterer(MainActivity.getMainActivity());
+        Drawable poiIcon = ContextCompat.getDrawable(MainActivity.getMainActivity(), R.drawable.clustericon);
+        Bitmap mClusterIcon = ((BitmapDrawable) poiIcon).getBitmap();
+        mMapView.getOverlays().add(poiMarkers);
+        for (PoiEntry poiEntry : (ArrayList<PoiEntry>) arrayList) {
+            double lat = poiEntry.getLocation().getCoordinates().get(0);
+            double lon = poiEntry.getLocation().getCoordinates().get(1);
+
+            Marker poiMarker = new Marker(mMapView);
+            poiMarker.setPosition(new GeoPoint(lat, lon));
+            poiMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+            poiMarker.setTitle(poiEntry.getTranslations().getDe().getName());
+            poiMarker.setSnippet(poiEntry.getTranslations().getDe().getDescription());
+            poiMarker.setIcon(poiIcon);
+            poiMarkers.add(poiMarker);
+        }
+        MainActivity.getMainActivity().runOnUiThread(new Runnable() {
+                                                         @Override
+                                                         public void run() {
+                                                             mMapView.invalidate();
+
+                                                         }
+                                                     });
     }
 
     @Override
