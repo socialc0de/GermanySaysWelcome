@@ -65,6 +65,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
     private String[] filterArray;
     private SharedPreferences mPrefs;
     private HashMap<String, PoiCategory> hashMap = new HashMap<String, PoiCategory>();
+    private String lngCode;
 
 
     CustomAsyncTask filterTask = new CustomAsyncTask() {
@@ -283,8 +284,21 @@ public class MapFragment extends Fragment implements View.OnClickListener {
             Marker poiMarker = new Marker(mMapView);
             poiMarker.setPosition(new GeoPoint(lat, lon));
             poiMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-            poiMarker.setTitle(poiEntry.getTranslations().getDe().getName());
-            poiMarker.setSnippet(poiEntry.getTranslations().getDe().getDescription());
+
+            if (lngCode.equals(Language.LanguageCodes.DE.toString())) {
+                poiMarker.setTitle(poiEntry.getTranslations().getDe().getName());
+                poiMarker.setSnippet(poiEntry.getTranslations().getDe().getDescription());
+            } else if (lngCode.equals(Language.LanguageCodes.EN.toString())) {
+                poiMarker.setTitle(poiEntry.getTranslations().getEn().getName());
+                poiMarker.setSnippet(poiEntry.getTranslations().getEn().getDescription());
+            } else if (lngCode.equals(Language.LanguageCodes.FR.toString())) {
+                poiMarker.setTitle(poiEntry.getTranslations().getFr().getName());
+                poiMarker.setSnippet(poiEntry.getTranslations().getFr().getDescription());
+            } else if (lngCode.equals(Language.LanguageCodes.AR.toString())) {
+                poiMarker.setTitle(poiEntry.getTranslations().getAr().getName());
+                poiMarker.setSnippet(poiEntry.getTranslations().getAr().getDescription());
+            }
+
             poiMarker.setIcon(poiCategory.getIcon());
             poiMarkers.add(poiMarker);
         }
@@ -296,9 +310,7 @@ public class MapFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.getMainActivity());
-        final String lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, Language.LanguageCodes.EN.toString());
-
-
+        lngCode = mPrefs.getString(SetupActivity.LANGUAGE_CODE, Language.LanguageCodes.EN.toString());
         LoadManager_.getInstance_(MainActivity.getMainActivity()).loadPoiCategoryResults(
                 new RestArrayRequestCallBack() {
                     @Override
