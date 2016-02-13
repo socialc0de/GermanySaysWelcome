@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                     .withActivity(this)
                     .withHeaderBackground(R.drawable.sunrise_1107408_640)
                     .addProfiles(
-                            new ProfileDrawerItem().withName("Germany Says Welcome").withEmail("http://germany-says-welcome.de/").withIcon(getResources().getDrawable(R.drawable.rsz_rsz_mini_logo))
+                            new ProfileDrawerItem().withName(getResources().getString(R.string.app_name)).withIcon(getResources().getDrawable(R.drawable.rsz_rsz_mini_logo))
                     )
                     .withSelectionListEnabledForSingleProfile(false)
                     .build();
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                     .addDrawerItems(
                             new PrimaryDrawerItem().withName(getResources().getString(R.string.dashboard)),
                             new PrimaryDrawerItem().withName(getResources().getString(R.string.faq)),
-                            new PrimaryDrawerItem().withName("Emergency"),
+                            new PrimaryDrawerItem().withName(getResources().getString(R.string.emergency)),
                             new PrimaryDrawerItem().withName(getResources().getString(R.string.phrasebook)),
                             new PrimaryDrawerItem().withName(getResources().getString(R.string.map)))
                     .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -199,5 +199,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public Drawer getmDrawer() {
+        return mDrawer;
+    }
+
+    public void setmDrawer(Drawer mDrawer) {
+        this.mDrawer = mDrawer;
     }
 }

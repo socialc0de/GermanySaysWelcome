@@ -67,6 +67,7 @@ public class DashboardFragment extends Fragment {
                         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                         switch (position) {
                             case 0:
+                                MainActivity.getMainActivity().getmDrawer().setSelection(1);
                                 FaqFragment faqFragment = new FaqFragment();
                                 fragmentTransaction.replace(R.id.container, faqFragment, getResources().getString(R.string.faq));
                                 fragmentTransaction.addToBackStack(getResources().getString(R.string.faq));
@@ -93,18 +94,21 @@ public class DashboardFragment extends Fragment {
                                         }
                                 );
                                 */
+                                MainActivity.getMainActivity().getmDrawer().setSelection(4);
                                 MapFragment mapFragment = new MapFragment();
                                 fragmentTransaction.replace(R.id.container, mapFragment, getResources().getString(R.string.map));
                                 fragmentTransaction.addToBackStack(getResources().getString(R.string.map));
                                 fragmentTransaction.commit();
                                 break;
                             case 2:
+                                MainActivity.getMainActivity().getmDrawer().setSelection(3);
                                 PhraseFragment phraseFragment = new PhraseFragment();
                                 fragmentTransaction.replace(R.id.container, phraseFragment, getResources().getString(R.string.phrasebook));
                                 fragmentTransaction.addToBackStack(getResources().getString(R.string.phrasebook));
                                 fragmentTransaction.commit();
                                 break;
                             case 3:
+                                MainActivity.getMainActivity().getmDrawer().setSelection(2);
                                 EmergencyFragment emergencyFragment = new EmergencyFragment();
                                 fragmentTransaction.replace(R.id.container, emergencyFragment, getResources().getString(R.string.emergency));
                                 fragmentTransaction.addToBackStack(getResources().getString(R.string.emergency));
