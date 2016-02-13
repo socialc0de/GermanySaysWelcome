@@ -261,7 +261,12 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onRestResults(int state, final ArrayList<?> arrayList) {
                         poiCategory.setPoiEntries((ArrayList<PoiEntry>) arrayList);
-                        addPOI(poiCategory);
+                        MainActivity.getMainActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                addPOI(poiCategory);
+                            }
+                        });
                     }
 
                     @Override

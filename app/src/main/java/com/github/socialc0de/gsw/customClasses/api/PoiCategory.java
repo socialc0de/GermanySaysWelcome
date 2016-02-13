@@ -13,9 +13,9 @@ public class PoiCategory {
 
     private Integer id;
     private Translations translations;
-    private String icon;
-    private ImageView iconView;
-    private ArrayList<PoiEntry> poiEntries;
+    private String icon = "";
+    private transient ImageView iconView;
+    private transient ArrayList<PoiEntry> poiEntries;
 
     /**
      * @return The id
@@ -54,14 +54,19 @@ public class PoiCategory {
         return iconView.getDrawable();
     }
 
+    public String getIconUri() {
+        return icon == null ? "http://i.imgur.com/uOFi2rA.png" : icon;
+    }
+
     public void loadIconView() {
 
         if(MainActivity.getMainActivity() != null)
-        if(!icon.equals(""))
+        if(!getIconUri().equals(""))
             MainActivity.getMainActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Picasso.with(MainActivity.getMainActivity()).load(icon).into(iconView);
+                    iconView = new ImageView(MainActivity.getMainActivity());
+                    Picasso.with(MainActivity.getMainActivity()).load(getIconUri()).into(iconView);
                 }
             });
     }
