@@ -7,10 +7,10 @@
         <item>@string/france</item>
     </string-array>
     <string-array name="languageKeys">
-        <item>DE</item>
-        <item>EN</item>
-        <item>AR</item>
-        <item>FR</item>
+        <item>de</item>
+        <item>en</item>
+        <item>ar</item>
+        <item>fr</item>
     </string-array>
     <string-array name="asylumSteps">
         <item>@string/step1short</item>
