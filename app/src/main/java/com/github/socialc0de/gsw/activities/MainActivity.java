@@ -2,7 +2,10 @@ package com.github.socialc0de.gsw.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +23,7 @@ import android.view.View;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.socialc0de.gsw.R;
+import com.github.socialc0de.gsw.customClasses.api.Language;
 import com.github.socialc0de.gsw.fragments.DashboardFragment;
 import com.github.socialc0de.gsw.fragments.EmergencyFragment;
 import com.github.socialc0de.gsw.fragments.FaqFragment;
@@ -34,6 +39,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
     private Drawer mDrawer;
     private AccountHeader headerResult;
     private SharedPreferences mPrefs;
+    private String KEY_LANGUAGE = "languageSetting";
+    private Locale myLocale;
+    private SharedPreferences sharedPreferences;
 
     public static MainActivity getMainActivity() {
         return mainActivity;
@@ -51,6 +60,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String lang = sharedPreferences.getString(KEY_LANGUAGE, Language.LanguageCodes.en.toString());
+        myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+
         setContentView(R.layout.activity_main);
         this.mainActivity = this;
 
