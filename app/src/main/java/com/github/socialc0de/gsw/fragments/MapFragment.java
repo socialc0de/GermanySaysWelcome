@@ -310,6 +310,8 @@ public class MapFragment extends Fragment implements View.OnClickListener {
 
     public void addPOI(final PoiCategory poiCategory) {
 
+        if(poiCategory.getPoiEntries() == null)
+            return;
         poiMarkers = new RadiusMarkerClusterer(MainActivity.getMainActivity());
         poiMarkers.setIcon(BitmapFactory.decodeResource(MainActivity.getMainActivity().getResources(),
                 R.drawable.clustericon));
