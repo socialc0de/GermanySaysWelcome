@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                     .withActivity(this)
                     .withHeaderBackground(R.drawable.sunrise_1107408_640)
                     .addProfiles(
-                            new ProfileDrawerItem().withName("Germany Says Welcome").withEmail("http://germany-says-welcome.de/").withIcon(getResources().getDrawable(R.drawable.rsz_rsz_mini_logo))
+                            new ProfileDrawerItem().withName(getResources().getString(R.string.app_name)).withIcon(getResources().getDrawable(R.drawable.rsz_rsz_mini_logo))
                     )
                     .withSelectionListEnabledForSingleProfile(false)
                     .build();
